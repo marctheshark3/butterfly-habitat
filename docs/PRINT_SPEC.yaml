@@ -4,10 +4,12 @@ part:
   revision: 0.1.0
   product_class: enclosure
   purpose: >
-    Observation habitat for the girls. Mesh is a printed grille, screwed on
-    with M3 clearance bolts. Slide is a loose lip, not a tested snap. ESP
-    shelf is a cable ledge, not a measured camera pocket. Photo was style
-    only. Size is the ~200 mm cube that fits one P1S bed. MIT license.
+    Observation habitat for the girls. Bought no-see-um or organza is clamped
+    between the frame and a second plate, same M3 clearance bolts. Not a
+    printed grille. A hatchling is narrower than a 2 mm printed hole. Slide
+    is a loose lip, not a tested snap. ESP shelf is a cable ledge, not a
+    measured camera pocket. Photo was style only. Size is the ~200 mm cube
+    that fits one P1S bed. MIT license.
 
 manufacturing:
   process: fdm
@@ -50,14 +52,14 @@ geometry:
     - path: stl/habitat-door-frame.stl
       body: door-frame
       expected_shells: 1
-    - path: stl/habitat-mesh-wall.stl
-      body: mesh-wall
+    - path: stl/habitat-clamp-wall.stl
+      body: clamp-wall
       expected_shells: 1
-    - path: stl/habitat-mesh-door.stl
-      body: mesh-door
+    - path: stl/habitat-clamp-door.stl
+      body: clamp-door
       expected_shells: 1
-    - path: stl/habitat-mesh-roof.stl
-      body: mesh-roof
+    - path: stl/habitat-clamp-roof.stl
+      body: clamp-roof
       expected_shells: 1
 
 fit:
@@ -136,19 +138,9 @@ dimensions:
     value_mm: 28.0
     tolerance_mm: 0.5
     source: assumed
-  - name: mesh_thickness
-    parameter: mesh_thickness_mm
-    value_mm: 2.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: mesh_opening
-    parameter: mesh_opening_mm
-    value_mm: 2.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: mesh_rib
-    parameter: mesh_rib_mm
-    value_mm: 2.0
+  - name: clamp_thickness
+    parameter: clamp_thickness_mm
+    value_mm: 3.0
     tolerance_mm: 0.2
     source: assumed
 
