@@ -1,0 +1,164 @@
+schema_version: 1
+part:
+  name: butterfly-habitat
+  revision: 0.1.0
+  product_class: enclosure
+  purpose: >
+    Observation habitat for the girls. Mesh is a printed grille, screwed on
+    with M3 clearance bolts. Slide is a loose lip, not a tested snap. ESP
+    shelf is a cable ledge, not a measured camera pocket. Photo was style
+    only. Size is the ~200 mm cube that fits one P1S bed. MIT license.
+
+manufacturing:
+  process: fdm
+  printer: bambu-lab-p1s
+  build_volume_mm: [256, 256, 256]
+  material: PETG
+  nozzle_mm: 0.4
+  layer_height_mm: 0.2
+
+cad:
+  backend: vibecad
+  parametric: true
+  units: mm
+  source_files:
+    - src/butterfly-habitat.py
+
+geometry:
+  min_wall_mm: 1.6
+  min_feature_mm: 1.6
+  overlapping_solids_allowed: false
+  stl_files:
+    - path: stl/habitat-base.stl
+      body: base
+      expected_shells: 1
+    - path: stl/habitat-top.stl
+      body: top
+      expected_shells: 1
+    - path: stl/habitat-back.stl
+      body: back-panel
+      expected_shells: 1
+    - path: stl/habitat-left.stl
+      body: left-panel
+      expected_shells: 1
+    - path: stl/habitat-right.stl
+      body: right-panel
+      expected_shells: 1
+    - path: stl/habitat-front.stl
+      body: front-panel
+      expected_shells: 1
+    - path: stl/habitat-door-frame.stl
+      body: door-frame
+      expected_shells: 1
+    - path: stl/habitat-mesh-wall.stl
+      body: mesh-wall
+      expected_shells: 1
+    - path: stl/habitat-mesh-door.stl
+      body: mesh-door
+      expected_shells: 1
+    - path: stl/habitat-mesh-roof.stl
+      body: mesh-roof
+      expected_shells: 1
+
+fit:
+  required: false
+  clearance_per_side_mm: 2.0
+  evidence: none
+
+dimensions:
+  - name: outer_width
+    parameter: outer_width_mm
+    value_mm: 200.0
+    tolerance_mm: 1.0
+    source: from-user
+  - name: outer_depth
+    parameter: outer_depth_mm
+    value_mm: 200.0
+    tolerance_mm: 1.0
+    source: from-user
+  - name: outer_height
+    parameter: outer_height_mm
+    value_mm: 200.0
+    tolerance_mm: 1.0
+    source: from-user
+  - name: wall_thickness
+    parameter: wall_thickness_mm
+    value_mm: 12.0
+    tolerance_mm: 0.4
+    source: assumed
+  - name: panel_thickness
+    parameter: panel_thickness_mm
+    value_mm: 6.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: door_opening_w
+    parameter: door_opening_w_mm
+    value_mm: 170.0
+    tolerance_mm: 1.0
+    source: assumed
+  - name: door_opening_h
+    parameter: door_opening_h_mm
+    value_mm: 180.0
+    tolerance_mm: 1.0
+    source: assumed
+  - name: door_slide_clearance
+    parameter: door_clearance_mm
+    value_mm: 2.0
+    tolerance_mm: 0.5
+    source: assumed
+  - name: rail_width
+    parameter: rail_width_mm
+    value_mm: 4.0
+    tolerance_mm: 0.4
+    source: assumed
+  - name: rail_height
+    parameter: rail_height_mm
+    value_mm: 3.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: mounting_hole_diameter
+    parameter: mounting_hole_diameter_mm
+    value_mm: 3.6
+    tolerance_mm: 0.1
+    source: datasheet
+  - name: cable_hole_diameter
+    parameter: cable_hole_diameter_mm
+    value_mm: 8.0
+    tolerance_mm: 0.5
+    source: assumed
+  - name: drain_slot_width
+    parameter: drain_slot_width_mm
+    value_mm: 4.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: drain_slot_length
+    parameter: drain_slot_length_mm
+    value_mm: 28.0
+    tolerance_mm: 0.5
+    source: assumed
+  - name: mesh_thickness
+    parameter: mesh_thickness_mm
+    value_mm: 2.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: mesh_opening
+    parameter: mesh_opening_mm
+    value_mm: 2.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: mesh_rib
+    parameter: mesh_rib_mm
+    value_mm: 2.0
+    tolerance_mm: 0.2
+    source: assumed
+
+print:
+  orientation: base-on-bed
+  bed_face: bottom
+  up_axis: Z
+  supports: none
+  max_overhang_deg: 45
+
+service:
+  environment: wet
+  drainage: slots
