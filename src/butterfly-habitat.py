@@ -1,7 +1,7 @@
-"""Butterfly habitat. Print flat. Screw the printed grilles on. Stand the frames up.
+"""Butterfly habitat. Print flat. Clamp bought mesh between two plates. Stand the frames up.
 
 Photo is style only. Size is the ~200 mm cube picked for one P1S bed.
-Mesh is a printed 2 mm grille, not tulle. Screws are M3 clearance, not a snap.
+Mesh is bought no-see-um or organza, not a printed grille. Screws are M3 clearance.
 ESP shelf is a cable ledge, not a measured camera pocket.
 """
 from __future__ import annotations
@@ -29,9 +29,7 @@ mounting_hole_diameter_mm = 3.6
 cable_hole_diameter_mm = 8.0
 drain_slot_width_mm = 4.0
 drain_slot_length_mm = 28.0
-mesh_thickness_mm = 2.0
-mesh_opening_mm = 2.0
-mesh_rib_mm = 2.0
+clamp_thickness_mm = 3.0
 
 OVERLAP = 0.6
 
@@ -65,22 +63,13 @@ def _border_holes(w, d, inset):
     ]
 
 
-def _grill(plate, x0, y0, x1, y1, thickness):
-    """Square openings. Through-slots in both directions leave loose posts."""
-    opening = mesh_opening_mm
-    rib = mesh_rib_mm
-    pitch = opening + rib
-    holes = []
-    y = y0 + rib
-    while y + opening <= y1 - rib + 0.01:
-        x = x0 + rib
-        while x + opening <= x1 - rib + 0.01:
-            holes.append(_box(x, y, -0.3, opening, opening, thickness + 0.6))
-            x += pitch
-        y += pitch
-    if not holes:
-        return plate
-    return plate.cut(Part.makeCompound(holes))
+def _clamp_ring(w, d, holes):
+    """Second plate. Bought mesh goes between this and the frame. Same screws."""
+    h = clamp_thickness_mm
+    border = wall_thickness_mm
+    plate = _frame(w, d, h, border)
+    r = mounting_hole_diameter_mm / 2.0
+    return _cut_holes(plate, holes, r, h + 0.6)
 
 
 def _one(shape, name):
@@ -138,7 +127,7 @@ def build_side():
 
 
 def build_top():
-    """Mesh roof. Camera ledge is a solid corner, not a shelf over the hole."""
+    """Mesh roof frame. Camera ledge is a solid corner, not a shelf over the hole."""
     w = outer_width_mm
     d = outer_depth_mm
     h = panel_thickness_mm
@@ -192,7 +181,7 @@ def build_front():
 
 
 def _roof_screw_holes():
-    """Screws that miss the camera ledge. Same list on the roof frame and the roof grille."""
+    """Screws that miss the camera ledge. Same list on the roof frame and the roof clamp."""
     return [
         (6.0, 194.0),
         (100.0, 6.0),
@@ -203,21 +192,16 @@ def _roof_screw_holes():
     ]
 
 
-def build_mesh_wall():
-    """Printed grille. Screws to a side frame. 2 mm openings, 2 mm ribs."""
+def build_clamp_wall():
+    """Clamp ring for a side frame. Print three. Mesh is bought, not this part."""
     w = outer_width_mm
     d = outer_height_mm
-    h = mesh_thickness_mm
     border = wall_thickness_mm
-    plate = _box(0, 0, 0, w, d, h)
-    plate = _grill(plate, border, border, w - border, d - border, h)
-    r = mounting_hole_diameter_mm / 2.0
-    plate = _cut_holes(plate, _border_holes(w, d, border / 2.0), r, h + 0.6)
-    return _one(plate, "mesh-wall")
+    return _one(_clamp_ring(w, d, _border_holes(w, d, border / 2.0)), "clamp-wall")
 
 
 def build_door_frame():
-    """Sliding carrier. Grille screws to this. Loose in the front lips, not a tuned drawer."""
+    """Sliding carrier. Clamp ring screws to this. Loose in the front lips, not a tuned drawer."""
     door_w = door_opening_w_mm
     door_h = door_opening_h_mm
     gap = door_clearance_mm
@@ -231,36 +215,31 @@ def build_door_frame():
     return _one(frame, "door-frame")
 
 
-def build_mesh_door():
-    """Grille that screws to the sliding frame. Same footprint, same holes."""
+def build_clamp_door():
+    """Clamp ring for the sliding frame. Same footprint, same holes."""
     door_w = door_opening_w_mm
     door_h = door_opening_h_mm
     gap = door_clearance_mm
     fw = door_w - 2.0 * gap
     fd = door_h - 2.0 * gap - rail_width_mm
-    h = mesh_thickness_mm
     border = wall_thickness_mm
-    plate = _box(0, 0, 0, fw, fd, h)
-    plate = _grill(plate, border, border, fw - border, fd - border, h)
-    r = mounting_hole_diameter_mm / 2.0
-    plate = _cut_holes(plate, _border_holes(fw, fd, border / 2.0), r, h + 0.6)
-    return _one(plate, "mesh-door")
+    return _one(_clamp_ring(fw, fd, _border_holes(fw, fd, border / 2.0)), "clamp-door")
 
 
-def build_mesh_roof():
-    """Grille for the roof window. Ledge pokes through a loose cutout. Not a camera fit."""
+def build_clamp_roof():
+    """Clamp ring for the roof window. Ledge pokes through a loose cutout. Not a camera fit."""
     w = outer_width_mm
     d = outer_depth_mm
-    h = mesh_thickness_mm
+    h = clamp_thickness_mm
     border = wall_thickness_mm
     ledge_w = 48.0
     ledge_d = 40.0
     plate = _box(0, 0, 0, w, d, h)
     plate = plate.cut(_box(-0.3, -0.3, -0.3, ledge_w + 1.0, ledge_d + 1.0, h + 0.6))
-    plate = _grill(plate, ledge_w, border, w - border, d - border, h)
+    plate = plate.cut(_box(ledge_w, border, -0.3, w - ledge_w - border, d - 2 * border, h + 0.6))
     r = mounting_hole_diameter_mm / 2.0
     plate = _cut_holes(plate, _roof_screw_holes(), r, h + 0.6)
-    return _one(plate, "mesh-roof")
+    return _one(plate, "clamp-roof")
 
 
 def write_stl(shape, path):
@@ -298,24 +277,24 @@ def export_assembly(solids):
     floor_h = panel_thickness_mm
     wall = _stand(solids["habitat-back"])
     wall_h = wall.BoundBox.ZLength
-    mesh = _stand(solids["habitat-mesh-wall"])
+    mesh = _stand(solids["habitat-clamp-wall"])
     side = _yaw(_stand(solids["habitat-left"]), 90)
-    side_mesh = _yaw(_stand(solids["habitat-mesh-wall"]), 90)
+    side_mesh = _yaw(_stand(solids["habitat-clamp-wall"]), 90)
     door = _stand(solids["habitat-door-frame"])
-    door_mesh = _stand(solids["habitat-mesh-door"])
+    door_mesh = _stand(solids["habitat-clamp-door"])
     placed = [
         solids["habitat-base"],
         _at(wall, 0, outer_depth_mm - wall.BoundBox.YLength, floor_h),
-        _at(mesh, 0, outer_depth_mm, floor_h),
+        _at(mesh, 0, outer_depth_mm + 1.0, floor_h),
         _at(_stand(solids["habitat-front"]), 0, 0, floor_h),
         _at(door, (outer_width_mm - door.BoundBox.XLength) / 2.0, -door.BoundBox.YLength, floor_h + 14.0),
-        _at(door_mesh, (outer_width_mm - door_mesh.BoundBox.XLength) / 2.0, -door.BoundBox.YLength - door_mesh.BoundBox.YLength, floor_h + 14.0),
+        _at(door_mesh, (outer_width_mm - door_mesh.BoundBox.XLength) / 2.0, -door.BoundBox.YLength - door_mesh.BoundBox.YLength - 1.0, floor_h + 14.0),
         _at(side, 0, floor_h, floor_h),
-        _at(side_mesh, -side_mesh.BoundBox.XLength, floor_h, floor_h),
+        _at(side_mesh, -side_mesh.BoundBox.XLength - 1.0, floor_h, floor_h),
         _at(side, outer_width_mm - side.BoundBox.XLength, floor_h, floor_h),
-        _at(side_mesh, outer_width_mm, floor_h, floor_h),
+        _at(side_mesh, outer_width_mm + 1.0, floor_h, floor_h),
         _at(solids["habitat-top"], 0, 0, floor_h + wall_h),
-        _at(solids["habitat-mesh-roof"], 0, 0, floor_h + wall_h + solids["habitat-top"].BoundBox.ZLength),
+        _at(solids["habitat-clamp-roof"], 0, 0, floor_h + wall_h + solids["habitat-top"].BoundBox.ZLength + 1.0),
     ]
     out = ROOT / "assembly"
     out.mkdir(parents=True, exist_ok=True)
@@ -337,9 +316,9 @@ def build():
         ("habitat-right", build_side),
         ("habitat-front", build_front),
         ("habitat-door-frame", build_door_frame),
-        ("habitat-mesh-wall", build_mesh_wall),
-        ("habitat-mesh-door", build_mesh_door),
-        ("habitat-mesh-roof", build_mesh_roof),
+        ("habitat-clamp-wall", build_clamp_wall),
+        ("habitat-clamp-door", build_clamp_door),
+        ("habitat-clamp-roof", build_clamp_roof),
     ]
     solids = {}
     results = {}
