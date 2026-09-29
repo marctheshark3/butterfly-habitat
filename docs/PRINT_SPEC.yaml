@@ -1,17 +1,18 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.3.0
+  revision: 0.4.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
     between the frame and a second plate, same M3 clearance bolts. Not a
     printed grille. A hatchling is narrower than a 2 mm printed hole. Slide
-    is a loose lip, not a tested snap. ESP pod is a roof-corner pocket for a
-    XIAO ESP32-S3 Sense stack (21 x 17.8 x 15 mm, datasheet). Lens looks down
-    through the roof. Clearance is assumed, not fit-tested. Screen is a bought
-    sheet, not printed. Photo was style only. Size is the ~200 mm cube
-    that fits one P1S bed. MIT license.
+    is a loose lip, not a tested snap. Roof is Plate A: a 200 mm frame, 12 mm
+    border, 176 mm window, full clamp ring. No shelf. No cable hole. The roof
+    lifts off. That lift is the hatch. The XIAO ESP32-S3 Sense is not cut on
+    this plate. Lens center is not recorded. Plate B is a drawing only.
+    Screen is a bought sheet, not printed. Photo was style only. Size is the
+    ~200 mm cube that fits one P1S bed. MIT license.
 
 manufacturing:
   process: fdm
@@ -128,11 +129,6 @@ dimensions:
     value_mm: 3.6
     tolerance_mm: 0.1
     source: datasheet
-  - name: cable_hole_diameter
-    parameter: cable_hole_diameter_mm
-    value_mm: 8.0
-    tolerance_mm: 0.5
-    source: assumed
   - name: drain_slot_width
     parameter: drain_slot_width_mm
     value_mm: 4.0
