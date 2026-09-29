@@ -9,7 +9,7 @@ The listing photo was a style reference, not a measurement. Do not scale this to
 PETG. 0.4 mm nozzle. 0.2 mm layers. Flat on the bed. No supports.
 
 - `habitat-base` ×1 — solid floor, drain slots
-- `habitat-top` ×1 — roof frame, cable ledge, cable hole
+- `habitat-top` ×1 — roof frame, 12 mm border, no shelf, no cable hole
 - `habitat-back` ×1 — full 200 mm frame
 - `habitat-left`, `habitat-right` ×1 each — 188 mm, stop at the back inside face
 - `habitat-front` ×1 — door opening and loose slide lips
@@ -27,7 +27,7 @@ Do not print the screen. A 0.4 mm nozzle cannot make a hole smaller than a newly
 
 For cloth, cut a sheet bigger than the window and smaller than the outer edge. Lay it on the frame. Screw the clamp plate on top. The screws pierce the fabric. That is the cloth joint.
 
-The inspector draws that cloth cut as a 0.3 mm sheet in the 1 mm gap. The thickness is a stand-in, not a measured fabric, and it is not an STL. It covers the window and the screw holes, and it stops inside the outer edge. The roof sheet leaves the cable ledge open. Wire is not drawn.
+The inspector draws that cloth cut as a 0.3 mm sheet in the 1 mm gap. The thickness is a stand-in, not a measured fabric, and it is not an STL. It covers the window and the screw holes, and it stops inside the outer edge. The roof sheet covers the old photo corner. Wire is not drawn.
 
 For wire, do not pierce the sheet. Cut it larger than the window and smaller than the screw circle. Tuck the raw edge under the clamp. Screws stay plastic-to-plastic.
 
@@ -53,7 +53,7 @@ The side lips are on the inside face. They overlap the door border from 17 mm to
 
 ## Camera
 
-The roof corner is still a cable ledge with an 8 mm hole. It is not a pocket for a measured board. The XIAO ESP32-S3 Sense pod is deferred. The official expansion-board DXF has no lens circle, so the hole was not moved.
+The roof is Plate A. There is no shelf and no cable hole. The XIAO ESP32-S3 Sense is not cut on this plate. The official expansion-board DXF has no lens circle, so Plate B stays a drawing. Do not cut a lens hole from this file.
 
 ## License
 

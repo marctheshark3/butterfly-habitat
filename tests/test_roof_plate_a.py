@@ -36,3 +36,18 @@ def test_source_is_plate_a():
     assert "def build_front" in source
     assert "def build_base" in source
     assert "drain_slot_width_mm = 4.0" in source
+
+
+README = ROOT / "README.md"
+DRAWING = ROOT / "sketches" / "roof-plates" / "index.html"
+
+
+def test_readme_and_drawing_match_plate_a():
+    readme = README.read_text(encoding="utf-8")
+    drawing = DRAWING.read_text(encoding="utf-8")
+    assert "cable ledge" not in readme.lower()
+    assert "8 mm hole" not in readme
+    assert "Plate A" in readme
+    assert "Live model is Plate A." in drawing
+    assert "Live model unchanged" not in drawing
+    assert "Neither is cut into the model." not in drawing
