@@ -21,9 +21,11 @@ STLs are in `stl/`. Editable source is `src/butterfly-habitat.py`. Contract is `
 
 ## Mesh
 
-Do not print the screen. A 0.4 mm nozzle cannot make a hole smaller than a newly hatched caterpillar. A monarch first instar is about 0.5–1.5 mm wide. Buy no-see-um or organza, not craft tulle.
+Do not print the screen. A 0.4 mm nozzle cannot make a hole smaller than a newly hatched caterpillar. A monarch first instar is about 0.5–1.5 mm wide at the body. Buy a sheet. No-see-um or organza still works. Woven wire works only if the listing opening is 0.4 mm or smaller. A photo is not that number. Do not use 1/8 in hardware cloth.
 
-Cut a sheet bigger than the window and smaller than the outer edge. Lay it on the frame. Screw the clamp plate on top. The screws pierce the fabric. That is the joint.
+For cloth, cut a sheet bigger than the window and smaller than the outer edge. Lay it on the frame. Screw the clamp plate on top. The screws pierce the fabric. That is the cloth joint.
+
+For wire, do not pierce the sheet. Cut it larger than the window and smaller than the screw circle. Tuck the raw edge under the clamp. Screws stay plastic-to-plastic.
 
 ## Screws
 
@@ -33,7 +35,7 @@ The door lifts out the open top. Two millimetres of clearance per side, on purpo
 
 ## Camera
 
-The roof corner is a cable ledge with an 8 mm hole. It is not a pocket for a measured board. The roof clamp has a cutout so the ledge still sticks through.
+The roof corner is still a cable ledge with an 8 mm hole. It is not a pocket for a measured board. The XIAO ESP32-S3 Sense pod is deferred. The official expansion-board DXF has no lens circle, so the hole was not moved.
 
 ## License
 
