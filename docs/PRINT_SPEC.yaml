@@ -1,13 +1,14 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.4.0
+  revision: 0.5.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
     between the frame and a second plate, same M3 clearance bolts. Not a
-    printed grille. A hatchling is narrower than a 2 mm printed hole. Slide
-    is a loose lip, not a tested snap. Roof is Plate A: a 200 mm frame, 12 mm
+    printed grille. A hatchling is narrower than a 2 mm printed hole. Door
+    slide is still a loose lip. Cube edges use an untested PETG snap. Mesh
+    screws stay mesh screws. Roof is Plate A: a 200 mm frame, 12 mm
     border, 176 mm window, full clamp ring. No shelf. No cable hole. The roof
     lifts off. That lift is the hatch. The XIAO ESP32-S3 Sense is not cut on
     this plate. Lens center is not recorded. Plate B is a drawing only.
@@ -183,6 +184,56 @@ dimensions:
     parameter: cam_usb_slot_h_mm
     value_mm: 3.5
     tolerance_mm: 0.2
+    source: assumed
+  - name: snap_arm_length
+    parameter: snap_arm_length_mm
+    value_mm: 14.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: snap_arm_thickness
+    parameter: snap_arm_thickness_mm
+    value_mm: 2.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: snap_arm_width
+    parameter: snap_arm_width_mm
+    value_mm: 8.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: snap_root_fillet
+    parameter: snap_root_fillet_mm
+    value_mm: 1.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: snap_undercut
+    parameter: snap_undercut_mm
+    value_mm: 0.8
+    tolerance_mm: 0.1
+    source: assumed
+  - name: snap_lead_angle
+    parameter: snap_lead_angle_deg
+    value_mm: 30.0
+    tolerance_mm: 2.0
+    source: assumed
+  - name: snap_return_angle
+    parameter: snap_return_angle_deg
+    value_mm: 45.0
+    tolerance_mm: 2.0
+    source: assumed
+  - name: snap_clearance_per_side
+    parameter: snap_clearance_per_side_mm
+    value_mm: 0.25
+    tolerance_mm: 0.05
+    source: assumed
+  - name: snap_pocket_depth
+    parameter: snap_pocket_depth_mm
+    value_mm: 3.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: snap_count_per_edge
+    parameter: snap_count_per_edge
+    value_mm: 2.0
+    tolerance_mm: 0.0
     source: assumed
 
 print:

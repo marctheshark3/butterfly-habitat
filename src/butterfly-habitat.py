@@ -47,6 +47,16 @@ cam_usb_on_short_edge = True
 bought_sheet_thickness_mm = 0.3
 bought_sheet_inset_mm = 2.0
 side_span_mm = outer_depth_mm - 2.0 * panel_thickness_mm
+snap_arm_length_mm = 14.0
+snap_arm_thickness_mm = 2.0
+snap_arm_width_mm = 8.0
+snap_root_fillet_mm = 1.0
+snap_undercut_mm = 0.8
+snap_lead_angle_deg = 30.0
+snap_return_angle_deg = 45.0
+snap_clearance_per_side_mm = 0.25
+snap_pocket_depth_mm = 3.0
+snap_count_per_edge = 2
 
 OVERLAP = 0.6
 

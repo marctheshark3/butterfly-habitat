@@ -13,7 +13,7 @@ def test_spec_matches_plate_a():
     assert "Lens looks down" not in spec
     assert "roof-corner pocket" not in spec
     assert "cable_hole_diameter" not in spec
-    assert "revision: 0.4.0" in spec
+    assert "revision: 0.5.0" in spec
     assert "cam_board_l_mm" in spec
     assert "value_mm: 21.0" in spec
 
