@@ -68,6 +68,12 @@ geometry:
     - path: stl/habitat-clamp-roof.stl
       body: clamp-roof
       expected_shells: 1
+    - path: stl/habitat-snap-tongue-coupon.stl
+      body: snap-tongue-coupon
+      expected_shells: 1
+    - path: stl/habitat-snap-pocket-coupon.stl
+      body: snap-pocket-coupon
+      expected_shells: 1
 
 fit:
   required: false

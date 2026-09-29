@@ -247,18 +247,21 @@ def build_clamp_roof():
 def _snap_layout():
     """Coupon pair. Pocket depth is how far the hook sits past the lip, not the floor.
 
-    A 3 mm floor plus a 0.8 mm hook does not fit in the 6 mm plate. The hook
+    A 3 mm floor plus a 0.8 mm hook does not fit in a 6 mm plate, and a 1.6 mm
+    floor plus that hook does not either. The coupon plate is 8 mm. The hook
     points +Z so the coupon prints without supports.
     """
     plate_w = 40.0
     plate_d = 20.0
-    plate_h = panel_thickness_mm
+    # 6 mm cannot keep a 1.6 mm floor, the 0.8 mm hook, and a 1.6 mm roof.
+    plate_h = 8.0
     root = 2.0
     gap = snap_clearance_per_side_mm
+    floor = 2.0
     arm_x0 = plate_w - root
     arm_x1 = arm_x0 + snap_arm_length_mm
     arm_y0 = (plate_d - snap_arm_width_mm) / 2.0
-    arm_z0 = 1.5
+    arm_z0 = floor + gap
     arm_z1 = arm_z0 + snap_arm_thickness_mm
     lead_run = snap_undercut_mm / math.tan(math.radians(snap_lead_angle_deg))
     ret_run = snap_undercut_mm / math.tan(math.radians(snap_return_angle_deg))
@@ -322,10 +325,10 @@ def _fillet_tension_root(shape, x_plane, z_top):
 
 
 def build_snap_tongue_coupon():
-    """40 by 20 by 6 plate plus a flat tongue. Hook points up. One solid."""
+    """40 by 20 by 8 plate plus a flat tongue. Hook points up. One solid."""
     lay = _snap_layout()
     if lay["relief_top"] >= lay["plate_h"]:
-        raise SystemExit("hook breaks the top face of the 6 mm plate")
+        raise SystemExit("hook breaks the top face of the coupon plate")
     plate = _box(0, 0, 0, lay["plate_w"], lay["plate_d"], lay["plate_h"])
     arm = _box(
         lay["arm_x0"],
@@ -356,8 +359,11 @@ def build_snap_pocket_coupon():
         raise SystemExit(
             f"pocket layout lip={lay['lip_inner']:.2f} slot={lay['slot_end']:.2f}"
         )
-    if lay["relief_top"] >= lay["plate_h"]:
-        raise SystemExit("relief breaks the top face")
+    if lay["channel_z0"] < 1.6 or (lay["plate_h"] - lay["relief_top"]) < 1.6:
+        raise SystemExit(
+            f"pocket skin under 1.6 mm floor={lay['channel_z0']:.2f} "
+            f"roof={lay['plate_h'] - lay['relief_top']:.2f}"
+        )
     plate = _box(0, 0, 0, lay["plate_w"], lay["plate_d"], lay["plate_h"])
     channel = _box(
         -0.3,
