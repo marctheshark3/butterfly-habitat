@@ -37,7 +37,7 @@ The door lifts out the open top. Two millimetres of clearance per side, on purpo
 
 ## Door
 
-The door is not screwed to the front. The four holes in the front corners join that wall to the cube. The eight holes in the door match the door clamp only.
+The door is not screwed to the front. The four holes in the front corners do not enter the floor, the sides, or the roof. A screw through one of them comes out the inside face into empty air. The eight holes in the door match the door clamp only. The front itself only touches the floor, the sides, and the roof. It does not snap, and nothing screws it on. The side walls do run through the back wall. That overlap is real.
 
 ![Door seated in the opening. Cream is the front, green is the door, blue is the clamp, tan is the bought sheet. Inspector colors, not filament.](docs/images/door-seat.png)
 
