@@ -9,7 +9,7 @@ The listing photo was a style reference, not a measurement. Do not scale this to
 PETG. 0.4 mm nozzle. 0.2 mm layers. Flat on the bed. No supports.
 
 - `habitat-base` ×1 — solid floor, drain slots
-- `habitat-top` ×1 — roof frame, camera ledge, cable hole
+- `habitat-top` ×1 — roof frame, cable ledge, cable hole
 - `habitat-back`, `habitat-left`, `habitat-right` ×1 each — same frame
 - `habitat-front` ×1 — door opening and loose slide lips
 - `habitat-door-frame` ×1 — sliding carrier
