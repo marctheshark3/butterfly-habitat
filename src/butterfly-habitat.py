@@ -56,7 +56,8 @@ snap_root_fillet_mm = 1.0
 snap_undercut_mm = 0.8
 snap_lead_angle_deg = 30.0
 snap_return_angle_deg = 45.0
-snap_clearance_per_side_mm = 0.25
+# 0.25 is under one 0.4 mm nozzle line. House fit is 0.4 per side.
+snap_clearance_per_side_mm = 0.4
 snap_pocket_depth_mm = 3.0
 snap_count_per_edge = 2
 
@@ -441,7 +442,8 @@ def mill_snap_coupon():
         "habitat-snap-pocket-coupon": build_snap_pocket_coupon(),
     }
     for name, solid in made.items():
-        write_stl(solid, stl_dir / f"{name}.stl")
+        # 0.05 mm chords. A 0.2 mm chord eats a 0.4 mm gap.
+        write_stl(solid, stl_dir / f"{name}.stl", linear=0.05, angular=0.2)
         solid.exportStep(str(step_dir / f"{name}.step"))
         bb = solid.BoundBox
         print(
@@ -492,10 +494,12 @@ def probe_plate_a():
     print("PLATE-A: PASS", flush=True)
 
 
-def write_stl(shape, path):
+def write_stl(shape, path, linear=0.2, angular=0.6):
     import MeshPart
 
-    mesh = MeshPart.meshFromShape(Shape=shape, LinearDeflection=0.2, AngularDeflection=0.6)
+    mesh = MeshPart.meshFromShape(
+        Shape=shape, LinearDeflection=linear, AngularDeflection=angular
+    )
     mesh.write(str(path))
 
 

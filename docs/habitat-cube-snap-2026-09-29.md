@@ -2,7 +2,7 @@
 
 Mesh screws stay mesh screws. This coupon is the cube joint, and it is not cut into the cube.
 
-Print both. PETG. 0.2 mm layers. 4 walls. Flat on the bed. Hook up. No supports.
+Print both. PETG. 0.2 mm layers. 4 walls. Flat on the bed. Hook up. No supports. Clearance is 0.4 mm per side, not 0.25.
 
 - `stl/habitat-snap-tongue-coupon.stl`
 - `stl/habitat-snap-pocket-coupon.stl`
@@ -15,7 +15,7 @@ Push the tongue into the open end of the pocket. Latched, the tongue is straight
 
 One change. Reprint the coupon. Do not reprint the cube.
 
-- Will not start: `snap_lead_angle_deg` to 25, or `snap_clearance_per_side_mm` to 0.30.
+- Will not start: `snap_lead_angle_deg` to 25, or `snap_clearance_per_side_mm` to 0.50. The coupon is already at 0.40 per side.
 - Stays bent when latched: `snap_pocket_depth_mm` up by 0.3. Do not deepen the hook.
 - Straight pull opens it: `snap_return_angle_deg` to 60.
 - Thumb cannot open it: `snap_return_angle_deg` to 40. Do not go to 90.
