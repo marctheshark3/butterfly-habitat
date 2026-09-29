@@ -1,14 +1,16 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.1.0
+  revision: 0.2.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
     between the frame and a second plate, same M3 clearance bolts. Not a
     printed grille. A hatchling is narrower than a 2 mm printed hole. Slide
-    is a loose lip, not a tested snap. ESP shelf is a cable ledge, not a
-    measured camera pocket. Photo was style only. Size is the ~200 mm cube
+    is a loose lip, not a tested snap. ESP pod is a roof-corner pocket for a
+    XIAO ESP32-S3 Sense stack (21 x 17.8 x 15 mm, datasheet). Lens looks down
+    through the roof. Clearance is assumed, not fit-tested. Screen is a bought
+    sheet, not printed. Photo was style only. Size is the ~200 mm cube
     that fits one P1S bed. MIT license.
 
 manufacturing:
@@ -143,6 +145,46 @@ dimensions:
     value_mm: 3.0
     tolerance_mm: 0.2
     source: assumed
+  - name: cam_board_l
+    parameter: cam_board_l_mm
+    value_mm: 21.0
+    tolerance_mm: 0.2
+    source: datasheet
+  - name: cam_board_w
+    parameter: cam_board_w_mm
+    value_mm: 17.8
+    tolerance_mm: 0.2
+    source: datasheet
+  - name: cam_board_h
+    parameter: cam_board_h_mm
+    value_mm: 15.0
+    tolerance_mm: 0.3
+    source: datasheet
+  - name: cam_clearance_per_side
+    parameter: cam_clearance_per_side_mm
+    value_mm: 0.4
+    tolerance_mm: 0.1
+    source: assumed
+  - name: cam_aperture_diameter
+    parameter: cam_aperture_diameter_mm
+    value_mm: 6.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: cam_pod_wall
+    parameter: cam_pod_wall_mm
+    value_mm: 2.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: cam_usb_slot_w
+    parameter: cam_usb_slot_w_mm
+    value_mm: 9.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: cam_usb_slot_h
+    parameter: cam_usb_slot_h_mm
+    value_mm: 3.5
+    tolerance_mm: 0.2
+    source: assumed
 
 print:
   orientation: base-on-bed
@@ -154,3 +196,27 @@ print:
 service:
   environment: wet
   drainage: slots
+
+hardware:
+  components:
+    - id: xiao_sense
+      mpn_or_generic: "Seeed Studio XIAO ESP32-S3 Sense 113991115"
+      role: mcu
+      qty: 1
+      envelope_mm: [21.0, 17.8, 15.0]
+      interfaces:
+        - name: cam_board_l
+          parameter: cam_board_l_mm
+          value_mm: 21.0
+          tolerance_mm: 0.2
+          source: datasheet
+        - name: cam_board_w
+          parameter: cam_board_w_mm
+          value_mm: 17.8
+          tolerance_mm: 0.2
+          source: datasheet
+        - name: cam_board_h
+          parameter: cam_board_h_mm
+          value_mm: 15.0
+          tolerance_mm: 0.3
+          source: datasheet
