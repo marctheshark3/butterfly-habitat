@@ -2,7 +2,9 @@
 
 Mesh screws stay mesh screws. This coupon is the cube joint, and it is not cut into the cube.
 
-Print both. PETG. 0.2 mm layers. 4 walls. Flat on the bed. Hook up. No supports. Clearance is 0.4 mm per side, not 0.25.
+Print both. PETG. 0.2 mm layers. Flat is not required. Use the orientation that needed no supports. Clearance is 0.30 mm per side. The 0.40 pair rattled. Do not reprint that one.
+
+The 0.40 pair started, latched, and needed force to unhook. That force stays. This reprint only closes the rattle. Same orientation as the one that worked. Do not go back to hook-up if that one wanted supports.
 
 - `stl/habitat-snap-tongue-coupon.stl`
 - `stl/habitat-snap-pocket-coupon.stl`
@@ -15,13 +17,20 @@ Push the tongue into the open end of the pocket. Latched, the tongue is straight
 
 One change. Reprint the coupon. Do not reprint the cube.
 
-- Will not start: `snap_lead_angle_deg` to 25, or `snap_clearance_per_side_mm` to 0.50. The coupon is already at 0.40 per side.
+- Still loose: `snap_clearance_per_side_mm` to 0.25. One change.
+- Will not start: `snap_clearance_per_side_mm` back to 0.35. Do not touch the hook.
 - Stays bent when latched: `snap_pocket_depth_mm` up by 0.3. Do not deepen the hook.
 - Straight pull opens it: `snap_return_angle_deg` to 60.
 - Thumb cannot open it: `snap_return_angle_deg` to 40. Do not go to 90.
-- Crack at the root after ten cycles: check that the tongue was printed flat, hook up, before changing thickness.
+- Crack at the root after ten cycles: the tongue was printed in the orientation that worked. Do not thicken it on the first crack.
 
-When the click is right, change those dimension sources in `docs/PRINT_SPEC.yaml` from `assumed` to `fit-tested`. Until then `fit.required` stays false. That block is the door's 2 mm slop. Marking this snap tested before a click would be a lie.
+## Screws, later
+
+Not this reprint. The eight M3 holes stay the mesh pinch. They do not join the cube. The four base holes inset 10 mm come out into air. Do not use them.
+
+When the rattle is gone, the cube gets 4 screws, one at each bottom corner, wall into base. The roof stays snaps only, so it still lifts off. If a vertical seam still rattles, 4 more, one mid-height per corner. Ceiling is 8 cube screws. Not eight per frame.
+
+Source stays `assumed` until that rattle is gone. `fit.required` stays false. That block is the door's 2 mm slop.
 
 ## Leave alone
 

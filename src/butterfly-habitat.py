@@ -56,8 +56,9 @@ snap_root_fillet_mm = 1.0
 snap_undercut_mm = 0.8
 snap_lead_angle_deg = 30.0
 snap_return_angle_deg = 45.0
-# 0.25 is under one 0.4 mm nozzle line. House fit is 0.4 per side.
-snap_clearance_per_side_mm = 0.4
+# Printed 0.4 per side. It started, it latched, it rattled.
+# 0.30 is the one change. Hook stays.
+snap_clearance_per_side_mm = 0.3
 snap_pocket_depth_mm = 3.0
 snap_count_per_edge = 2
 

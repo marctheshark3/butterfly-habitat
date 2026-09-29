@@ -1,7 +1,7 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.6.0
+  revision: 0.7.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
@@ -228,7 +228,7 @@ dimensions:
     source: assumed
   - name: snap_clearance_per_side
     parameter: snap_clearance_per_side_mm
-    value_mm: 0.4
+    value_mm: 0.3
     tolerance_mm: 0.1
     source: assumed
   - name: snap_pocket_depth
