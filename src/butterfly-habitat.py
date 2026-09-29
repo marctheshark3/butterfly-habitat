@@ -30,6 +30,19 @@ cable_hole_diameter_mm = 8.0
 drain_slot_width_mm = 4.0
 drain_slot_length_mm = 28.0
 clamp_thickness_mm = 3.0
+cam_board_l_mm = 21.0
+cam_board_w_mm = 17.8
+cam_board_h_mm = 15.0
+cam_clearance_per_side_mm = 0.4
+cam_aperture_diameter_mm = 6.0
+cam_pod_wall_mm = 2.0
+cam_usb_slot_w_mm = 9.0
+cam_usb_slot_h_mm = 3.5
+# Task 4 fills these from the Seeed DXF. Sentinel stops the pod cut.
+cam_offsets_ready = False
+cam_lens_dx_mm = 0.0
+cam_lens_dy_mm = 0.0
+cam_usb_on_short_edge = True
 
 OVERLAP = 0.6
 
