@@ -43,6 +43,10 @@ cam_offsets_ready = False
 cam_lens_dx_mm = 0.0
 cam_lens_dy_mm = 0.0
 cam_usb_on_short_edge = True
+# Viewer stand-in only. Not a measured fabric. Not an STL. A 0.3 mm
+# sheet is under the print minimum, so it never goes in the parts list.
+bought_sheet_thickness_mm = 0.3
+bought_sheet_inset_mm = 2.0
 
 OVERLAP = 0.6
 
@@ -285,9 +289,23 @@ def _at(shape, x, y, z):
     return s
 
 
+def _cloth_blank(span_x, span_y):
+    """Cloth rule. Past the window, over the screws, inside the outer edge."""
+    inset = bought_sheet_inset_mm
+    return _box(0, 0, 0, span_x - 2 * inset, span_y - 2 * inset, bought_sheet_thickness_mm)
+
+
+def _gap_center(near, far):
+    return (near + far) / 2.0 - bought_sheet_thickness_mm / 2.0
+
+
 def export_assembly(solids):
-    """Viewer compound only. Not a print body. Not an occupancy proof."""
+    """Viewer compound only. Not a print body. Not an occupancy proof.
+
+    Bought sheets sit in the 1 mm clamp gaps. They are not STLs.
+    """
     floor_h = panel_thickness_mm
+    inset = bought_sheet_inset_mm
     wall = _stand(solids["habitat-back"])
     wall_h = wall.BoundBox.ZLength
     mesh = _stand(solids["habitat-clamp-wall"])
@@ -295,25 +313,80 @@ def export_assembly(solids):
     side_mesh = _yaw(_stand(solids["habitat-clamp-wall"]), 90)
     door = _stand(solids["habitat-door-frame"])
     door_mesh = _stand(solids["habitat-clamp-door"])
+    door_x = (outer_width_mm - door.BoundBox.XLength) / 2.0
+    door_z = floor_h + 14.0
+    top = solids["habitat-top"]
+    top_z = floor_h + wall_h
+    top_face = top_z + top.BoundBox.ZLength
+    back_outer = outer_depth_mm
+    side_sheet = _yaw(_stand(_cloth_blank(outer_width_mm, outer_height_mm)), 90)
+    wall_sheet = _stand(_cloth_blank(outer_width_mm, outer_height_mm))
+    door_sheet = _stand(_cloth_blank(door.BoundBox.XLength, door.BoundBox.ZLength))
+    roof_sheet = _cloth_blank(outer_width_mm, outer_depth_mm)
+    roof_sheet = roof_sheet.cut(_box(-0.2, -0.2, -0.2, 49.0, 41.0, bought_sheet_thickness_mm + 0.4))
+    sheets = [
+        _at(wall_sheet, inset, _gap_center(back_outer, back_outer + 1.0), floor_h + inset),
+        _at(door_sheet, door_x + inset, _gap_center(-1.0, 0.0), door_z + inset),
+        _at(side_sheet, _gap_center(-1.0, 0.0), floor_h + inset, floor_h + inset),
+        _at(side_sheet, _gap_center(outer_width_mm, outer_width_mm + 1.0), floor_h + inset, floor_h + inset),
+        _at(roof_sheet, inset, inset, _gap_center(top_face, top_face + 1.0)),
+    ]
     placed = [
         solids["habitat-base"],
         _at(wall, 0, outer_depth_mm - wall.BoundBox.YLength, floor_h),
         _at(mesh, 0, outer_depth_mm + 1.0, floor_h),
         _at(_stand(solids["habitat-front"]), 0, 0, floor_h),
-        _at(door, (outer_width_mm - door.BoundBox.XLength) / 2.0, -door.BoundBox.YLength, floor_h + 14.0),
-        _at(door_mesh, (outer_width_mm - door_mesh.BoundBox.XLength) / 2.0, -door.BoundBox.YLength - door_mesh.BoundBox.YLength - 1.0, floor_h + 14.0),
+        _at(door, door_x, 0, door_z),
+        _at(door_mesh, door_x, -4.0, door_z),
         _at(side, 0, floor_h, floor_h),
         _at(side_mesh, -side_mesh.BoundBox.XLength - 1.0, floor_h, floor_h),
         _at(side, outer_width_mm - side.BoundBox.XLength, floor_h, floor_h),
         _at(side_mesh, outer_width_mm + 1.0, floor_h, floor_h),
-        _at(solids["habitat-top"], 0, 0, floor_h + wall_h),
-        _at(solids["habitat-clamp-roof"], 0, 0, floor_h + wall_h + solids["habitat-top"].BoundBox.ZLength + 1.0),
+        _at(top, 0, 0, top_z),
+        _at(solids["habitat-clamp-roof"], 0, 0, top_face + 1.0),
+        *sheets,
     ]
+    def _clear(sheet, other):
+        bb = sheet.BoundBox
+        point = App.Vector(bb.Center.x, bb.Center.y, bb.Center.z)
+        return not other.isInside(point, 0.05, True)
+
+    for sheet in sheets:
+        for solid in placed[:12]:
+            if not _clear(sheet, solid):
+                raise SystemExit("bought sheet center is inside a printed solid")
+    lip_point = App.Vector(door_x + 1.0, 3.0, door_z + 40.0)
+    if placed[3].isInside(lip_point, 0.05, True):
+        raise SystemExit("seated door border is inside the front lip")
     out = ROOT / "assembly"
     out.mkdir(parents=True, exist_ok=True)
     compound = Part.makeCompound(placed)
     compound.exportStep(str(out / "habitat-assembly.step"))
-    print(f"assembly: {out / 'habitat-assembly.step'}", flush=True)
+    print(f"assembly: {out / 'habitat-assembly.step'} sheets={len(sheets)}", flush=True)
+
+
+def export_door_seat(solids):
+    """Seated door plus a cloth stand-in. Viewer only. Same seat as the assembly view."""
+    floor_h = panel_thickness_mm
+    inset = bought_sheet_inset_mm
+    door = _stand(solids["habitat-door-frame"])
+    door_x = (outer_width_mm - door.BoundBox.XLength) / 2.0
+    door_z = 20.0
+    sheet = _stand(_cloth_blank(door.BoundBox.XLength, door.BoundBox.ZLength))
+    placed = [
+        _at(_stand(solids["habitat-front"]), 0, 0, floor_h),
+        _at(door, door_x, 0, door_z),
+        _at(_stand(solids["habitat-clamp-door"]), door_x, -4.0, door_z),
+        _at(sheet, door_x + inset, _gap_center(-1.0, 0.0), door_z + inset),
+    ]
+    center = placed[3].BoundBox.Center
+    for solid in placed[:3]:
+        if solid.isInside(App.Vector(center.x, center.y, center.z), 0.05, True):
+            raise SystemExit("door sheet center is inside a printed solid")
+    out = ROOT / "renders"
+    out.mkdir(parents=True, exist_ok=True)
+    Part.makeCompound(placed).exportStep(str(out / "door-seat.step"))
+    print(f"door-seat: {out / 'door-seat.step'}", flush=True)
 
 
 def build():
@@ -352,4 +425,28 @@ def build():
     return results
 
 
-build()
+def load_printed():
+    solids = {}
+    names = [
+        "habitat-base",
+        "habitat-top",
+        "habitat-back",
+        "habitat-left",
+        "habitat-right",
+        "habitat-front",
+        "habitat-door-frame",
+        "habitat-clamp-wall",
+        "habitat-clamp-door",
+        "habitat-clamp-roof",
+    ]
+    for name in names:
+        solids[name] = Part.read(str(ROOT / "step" / f"{name}.step"))
+    return solids
+
+
+if os.environ.get("HABITAT_ASSEMBLY_ONLY") == "1":
+    loaded = load_printed()
+    export_assembly(loaded)
+    export_door_seat(loaded)
+else:
+    build()

@@ -25,6 +25,8 @@ Do not print the screen. A 0.4 mm nozzle cannot make a hole smaller than a newly
 
 For cloth, cut a sheet bigger than the window and smaller than the outer edge. Lay it on the frame. Screw the clamp plate on top. The screws pierce the fabric. That is the cloth joint.
 
+The inspector draws that cloth cut as a 0.3 mm sheet in the 1 mm gap. The thickness is a stand-in, not a measured fabric, and it is not an STL. It covers the window and the screw holes, and it stops inside the outer edge. The roof sheet leaves the cable ledge open. Wire is not drawn.
+
 For wire, do not pierce the sheet. Cut it larger than the window and smaller than the screw circle. Tuck the raw edge under the clamp. Screws stay plastic-to-plastic.
 
 ## Screws
@@ -37,13 +39,13 @@ The door lifts out the open top. Two millimetres of clearance per side, on purpo
 
 The door is not screwed to the front. The four holes in the front corners join that wall to the cube. The eight holes in the door match the door clamp only.
 
-![Door seated in the opening. Cream is the front, green is the door, blue is the clamp. Inspector colors, not filament.](docs/images/door-seat.png)
+![Door seated in the opening. Cream is the front, green is the door, blue is the clamp, tan is the bought sheet. Inspector colors, not filament.](docs/images/door-seat.png)
 
-The green frame sits in the opening. The blue plate is the clamp, 1 mm off the outside face. Those two share a hole pattern. The cream front does not.
+The green frame sits in the opening. The tan sheet is the cloth cut, in the 1 mm gap. The blue plate is the clamp. Those two share a hole pattern. The cream front does not. The screws would pierce the sheet.
 
 ![A front-corner screw beside the door clamp. That hole does not enter the green or blue plate.](docs/images/door-screws.png)
 
-This is a seated view of the mill parts. It is not a print approval. The assembly file still parks the door outside the opening, which is why that view looked disconnected.
+This is a seated view of the mill parts. It is not a print approval. The assembly view seats the door the same way.
 
 The side lips are on the inside face. They overlap the door border from 17 mm to 19 mm in X. The door sits in the 6 mm plate. The lip starts about 0.4 mm past the inner face, so the solids do not intersect. In this stand the cross lip is at the top of the opening, not under the door.
 
