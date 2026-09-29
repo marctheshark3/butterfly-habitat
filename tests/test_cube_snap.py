@@ -27,3 +27,12 @@ def test_snap_parameters_present():
     ):
         assert name in source
         assert name.split(" = ")[0] in spec
+
+
+def test_snap_stays_off_the_cube():
+    source = SOURCE.read_text(encoding="utf-8")
+    top = source.split("def build_top", 1)[1].split("def build_front", 1)[0]
+    assert "snap_" not in top
+    assert "def build_snap_tongue_coupon" in source
+    assert "HABITAT_SNAP_PROBE" in source
+    assert "HABITAT_SNAP_ONLY" in source

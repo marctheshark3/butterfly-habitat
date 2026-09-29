@@ -3,9 +3,11 @@
 Photo is style only. Size is the ~200 mm cube picked for one P1S bed.
 Mesh is bought no-see-um or organza, not a printed grille. Screws are M3 clearance.
 Roof is Plate A. No shelf. No cable hole. The XIAO pod is not cut.
+Cube snap is a coupon only. It is not cut into the cube yet.
 """
 from __future__ import annotations
 
+import math
 import os
 from pathlib import Path
 
@@ -240,6 +242,207 @@ def build_clamp_roof():
     d = outer_depth_mm
     border = wall_thickness_mm
     return _one(_clamp_ring(w, d, _border_holes(w, d, border / 2.0)), "clamp-roof")
+
+
+def _snap_layout():
+    """Coupon pair. Pocket depth is how far the hook sits past the lip, not the floor.
+
+    A 3 mm floor plus a 0.8 mm hook does not fit in the 6 mm plate. The hook
+    points +Z so the coupon prints without supports.
+    """
+    plate_w = 40.0
+    plate_d = 20.0
+    plate_h = panel_thickness_mm
+    root = 2.0
+    gap = snap_clearance_per_side_mm
+    arm_x0 = plate_w - root
+    arm_x1 = arm_x0 + snap_arm_length_mm
+    arm_y0 = (plate_d - snap_arm_width_mm) / 2.0
+    arm_z0 = 1.5
+    arm_z1 = arm_z0 + snap_arm_thickness_mm
+    lead_run = snap_undercut_mm / math.tan(math.radians(snap_lead_angle_deg))
+    ret_run = snap_undercut_mm / math.tan(math.radians(snap_return_angle_deg))
+    hook_peak_x = arm_x1 - lead_run
+    hook_back_x = hook_peak_x - ret_run
+    hook_peak_z = arm_z1 + snap_undercut_mm
+    lip_inner = (hook_back_x - plate_w) - snap_pocket_depth_mm
+    slot_end = (arm_x1 - plate_w) + 0.6
+    relief_top = hook_peak_z + gap
+    return {
+        "plate_w": plate_w,
+        "plate_d": plate_d,
+        "plate_h": plate_h,
+        "arm_x0": arm_x0,
+        "arm_x1": arm_x1,
+        "arm_y0": arm_y0,
+        "arm_z0": arm_z0,
+        "arm_z1": arm_z1,
+        "hook_peak_x": hook_peak_x,
+        "hook_back_x": hook_back_x,
+        "hook_peak_z": hook_peak_z,
+        "lead_run": lead_run,
+        "ret_run": ret_run,
+        "lip_inner": lip_inner,
+        "slot_end": slot_end,
+        "relief_top": relief_top,
+        "channel_y0": arm_y0 - gap,
+        "channel_z0": arm_z0 - gap,
+        "channel_w": snap_arm_width_mm + 2.0 * gap,
+        "channel_h": snap_arm_thickness_mm + 2.0 * gap,
+    }
+
+
+def _hook_wedge(x_tip, y0, z_top, width, rise, lead_run, ret_run):
+    """Triangular hook. Base bites into the arm so the fuse is one solid."""
+    z_base = z_top - OVERLAP
+    p0 = App.Vector(x_tip, y0, z_base)
+    p1 = App.Vector(x_tip - lead_run, y0, z_top + rise)
+    p2 = App.Vector(x_tip - lead_run - ret_run, y0, z_base)
+    wire = Part.makePolygon([p0, p1, p2, p0])
+    face = Part.Face(wire)
+    return face.extrude(App.Vector(0, width, 0))
+
+
+def _fillet_tension_root(shape, x_plane, z_top):
+    """Fillet the tension-side root. Bend is +Z, so the top edge carries it."""
+    picked = []
+    for edge in shape.Edges:
+        bb = edge.BoundBox
+        on_plane = abs(bb.Center.x - x_plane) < 0.2 and bb.XLength < 0.4
+        at_top = abs(bb.Center.z - z_top) < 0.2
+        long = bb.YLength > 4.0
+        if on_plane and at_top and long:
+            picked.append(edge)
+    if not picked:
+        raise SystemExit("snap fillet: no tension root edge")
+    try:
+        return shape.makeFillet(snap_root_fillet_mm, picked)
+    except Exception as exc:
+        raise SystemExit(f"snap fillet failed: {exc}") from exc
+
+
+def build_snap_tongue_coupon():
+    """40 by 20 by 6 plate plus a flat tongue. Hook points up. One solid."""
+    lay = _snap_layout()
+    if lay["relief_top"] >= lay["plate_h"]:
+        raise SystemExit("hook breaks the top face of the 6 mm plate")
+    plate = _box(0, 0, 0, lay["plate_w"], lay["plate_d"], lay["plate_h"])
+    arm = _box(
+        lay["arm_x0"],
+        lay["arm_y0"],
+        lay["arm_z0"],
+        snap_arm_length_mm,
+        snap_arm_width_mm,
+        snap_arm_thickness_mm,
+    )
+    hook = _hook_wedge(
+        lay["arm_x1"],
+        lay["arm_y0"],
+        lay["arm_z1"],
+        snap_arm_width_mm,
+        snap_undercut_mm,
+        lay["lead_run"],
+        lay["ret_run"],
+    )
+    shape = plate.fuse(arm).fuse(hook)
+    shape = _fillet_tension_root(shape, lay["plate_w"], lay["arm_z1"])
+    return _one(shape, "snap-tongue-coupon")
+
+
+def build_snap_pocket_coupon():
+    """Matching plate. Slot open on -X. Lip blocks the hook. Far face stays closed."""
+    lay = _snap_layout()
+    if lay["lip_inner"] < 1.0 or lay["slot_end"] > lay["plate_w"] - 4.0:
+        raise SystemExit(
+            f"pocket layout lip={lay['lip_inner']:.2f} slot={lay['slot_end']:.2f}"
+        )
+    if lay["relief_top"] >= lay["plate_h"]:
+        raise SystemExit("relief breaks the top face")
+    plate = _box(0, 0, 0, lay["plate_w"], lay["plate_d"], lay["plate_h"])
+    channel = _box(
+        -0.3,
+        lay["channel_y0"],
+        lay["channel_z0"],
+        lay["slot_end"] + 0.3,
+        lay["channel_w"],
+        lay["channel_h"],
+    )
+    relief = _box(
+        lay["lip_inner"],
+        lay["channel_y0"],
+        lay["channel_z0"],
+        lay["slot_end"] - lay["lip_inner"] + 0.3,
+        lay["channel_w"],
+        lay["relief_top"] - lay["channel_z0"],
+    )
+    plate = plate.cut(channel).cut(relief)
+    return _one(plate, "snap-pocket-coupon")
+
+
+def probe_snap_coupon():
+    """Latched pose. Tongue straight. Hook in the relief. Lip blocks the pull-out."""
+    tongue = build_snap_tongue_coupon()
+    pocket = build_snap_pocket_coupon()
+    lay = _snap_layout()
+    errors = []
+    if len(tongue.Solids) != 1 or len(pocket.Solids) != 1:
+        errors.append("expected 1 solid on each coupon")
+
+    def inside(shape, x, y, z):
+        return shape.isInside(App.Vector(x, y, z), 0.05, True)
+
+    if not inside(pocket, 39.0, 10.0, 3.0):
+        errors.append("pocket far point 39,10,3 is open")
+    if inside(pocket, 1.0, 10.0, lay["arm_z0"] + 0.5):
+        errors.append("entrance channel is solid")
+    if not inside(pocket, 1.0, 10.0, lay["plate_h"] - 0.8):
+        errors.append("lip above the entrance is missing")
+    if not inside(tongue, lay["hook_peak_x"], 10.0, lay["hook_peak_z"] - 0.05):
+        errors.append("hook peak is missing on the tongue")
+
+    placed = pocket.copy()
+    placed.translate(App.Vector(lay["plate_w"], 0, 0))
+    plates = _box(0, 0, 0, lay["plate_w"], lay["plate_d"], lay["plate_h"]).common(
+        _box(lay["plate_w"], 0, 0, lay["plate_w"], lay["plate_d"], lay["plate_h"])
+    )
+    if plates.Volume > 0.01:
+        errors.append(f"plates intersect {plates.Volume:.3f} mm3")
+    hit = tongue.common(placed).Volume
+    if hit > 1.0:
+        errors.append(f"latched solids intersect {hit:.2f} mm3")
+    peak = App.Vector(lay["hook_peak_x"], 10.0, lay["hook_peak_z"] - 0.05)
+    if placed.isInside(peak, 0.05, True):
+        errors.append("hook peak is crushed in the pocket")
+    lip = App.Vector(lay["plate_w"] + lay["lip_inner"] / 2.0, 10.0, lay["hook_peak_z"] - 0.15)
+    if not placed.isInside(lip, 0.05, True):
+        errors.append("lip does not block the hook height")
+    if errors:
+        print("SNAP-COUPON: FAIL", flush=True)
+        for item in errors:
+            print(f"SNAP-COUPON: {item}", flush=True)
+        raise SystemExit(1)
+    print("SNAP-COUPON: PASS", flush=True)
+
+
+def mill_snap_coupon():
+    """Write the coupon pair only. Leave the cube STLs alone."""
+    stl_dir = ROOT / "stl"
+    step_dir = ROOT / "step"
+    stl_dir.mkdir(parents=True, exist_ok=True)
+    step_dir.mkdir(parents=True, exist_ok=True)
+    made = {
+        "habitat-snap-tongue-coupon": build_snap_tongue_coupon(),
+        "habitat-snap-pocket-coupon": build_snap_pocket_coupon(),
+    }
+    for name, solid in made.items():
+        write_stl(solid, stl_dir / f"{name}.stl")
+        solid.exportStep(str(step_dir / f"{name}.step"))
+        bb = solid.BoundBox
+        print(
+            f"{name}: {[round(bb.XLength, 2), round(bb.YLength, 2), round(bb.ZLength, 2)]}",
+            flush=True,
+        )
+    print("SNAP-COUPON: MILLED", flush=True)
 
 
 def probe_plate_a():
@@ -550,5 +753,9 @@ elif os.environ.get("HABITAT_ROOF_PROBE") == "1":
     probe_plate_a()
 elif os.environ.get("HABITAT_ROOF_ONLY") == "1":
     mill_roof()
+elif os.environ.get("HABITAT_SNAP_PROBE") == "1":
+    probe_snap_coupon()
+elif os.environ.get("HABITAT_SNAP_ONLY") == "1":
+    mill_snap_coupon()
 else:
     build()
