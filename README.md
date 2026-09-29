@@ -10,10 +10,12 @@ PETG. 0.4 mm nozzle. 0.2 mm layers. Flat on the bed. No supports.
 
 - `habitat-base` ×1 — solid floor, drain slots
 - `habitat-top` ×1 — roof frame, cable ledge, cable hole
-- `habitat-back`, `habitat-left`, `habitat-right` ×1 each — same frame
+- `habitat-back` ×1 — full 200 mm frame
+- `habitat-left`, `habitat-right` ×1 each — 188 mm, stop at the back inside face
 - `habitat-front` ×1 — door opening and loose slide lips
 - `habitat-door-frame` ×1 — sliding carrier
-- `habitat-clamp-wall` ×3 — second plate, screws to the three side frames
+- `habitat-clamp-wall` ×1 — second plate, screws to the back frame
+- `habitat-clamp-side` ×2 — second plate, screws to the side frames
 - `habitat-clamp-door` ×1 — second plate, screws to the door frame
 - `habitat-clamp-roof` ×1 — second plate, screws to the roof
 
@@ -37,7 +39,7 @@ The door lifts out the open top. Two millimetres of clearance per side, on purpo
 
 ## Door
 
-The door is not screwed to the front. The four holes in the front corners do not enter the floor, the sides, or the roof. A screw through one of them comes out the inside face into empty air. The eight holes in the door match the door clamp only. The front itself only touches the floor, the sides, and the roof. It does not snap, and nothing screws it on. The side walls do run through the back wall. That overlap is real.
+The door is not screwed to the front. The four holes in the front corners do not enter the floor, the sides, or the roof. A screw through one of them comes out the inside face into empty air. The eight holes in the door match the door clamp only. The front itself only touches the floor, the sides, and the roof. It does not snap, and nothing screws it on. The side walls are 188 mm. They stop at the inside face of the back. They do not run through it.
 
 ![Door seated in the opening. Cream is the front, green is the door, blue is the clamp, tan is the bought sheet. Inspector colors, not filament.](docs/images/door-seat.png)
 

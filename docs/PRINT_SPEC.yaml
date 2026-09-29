@@ -1,7 +1,7 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.2.0
+  revision: 0.3.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
@@ -56,6 +56,9 @@ geometry:
       expected_shells: 1
     - path: stl/habitat-clamp-wall.stl
       body: clamp-wall
+      expected_shells: 1
+    - path: stl/habitat-clamp-side.stl
+      body: clamp-side
       expected_shells: 1
     - path: stl/habitat-clamp-door.stl
       body: clamp-door

@@ -47,6 +47,7 @@ cam_usb_on_short_edge = True
 # sheet is under the print minimum, so it never goes in the parts list.
 bought_sheet_thickness_mm = 0.3
 bought_sheet_inset_mm = 2.0
+side_span_mm = outer_depth_mm - 2.0 * panel_thickness_mm
 
 OVERLAP = 0.6
 
@@ -131,10 +132,10 @@ def build_base():
     return _one(plate, "base")
 
 
-def build_side():
-    """Frame. Printed grille screws to the border. Mesh is not zip-tied."""
-    w = outer_width_mm
-    d = outer_height_mm
+def build_side(span_x=None, span_y=None):
+    """Frame. span_x is the print-flat width. Sides are shorter than the back."""
+    w = outer_width_mm if span_x is None else span_x
+    d = outer_height_mm if span_y is None else span_y
     h = panel_thickness_mm
     border = wall_thickness_mm
     frame = _frame(w, d, h, border)
@@ -209,10 +210,10 @@ def _roof_screw_holes():
     ]
 
 
-def build_clamp_wall():
-    """Clamp ring for a side frame. Print three. Mesh is bought, not this part."""
-    w = outer_width_mm
-    d = outer_height_mm
+def build_clamp_wall(span_x=None, span_y=None):
+    """Clamp ring. Back uses the full frame. Sides use the shorter span."""
+    w = outer_width_mm if span_x is None else span_x
+    d = outer_height_mm if span_y is None else span_y
     border = wall_thickness_mm
     return _one(_clamp_ring(w, d, _border_holes(w, d, border / 2.0)), "clamp-wall")
 
@@ -310,7 +311,7 @@ def export_assembly(solids):
     wall_h = wall.BoundBox.ZLength
     mesh = _stand(solids["habitat-clamp-wall"])
     side = _yaw(_stand(solids["habitat-left"]), 90)
-    side_mesh = _yaw(_stand(solids["habitat-clamp-wall"]), 90)
+    side_mesh = _yaw(_stand(solids["habitat-clamp-side"]), 90)
     door = _stand(solids["habitat-door-frame"])
     door_mesh = _stand(solids["habitat-clamp-door"])
     door_x = (outer_width_mm - door.BoundBox.XLength) / 2.0
@@ -319,7 +320,7 @@ def export_assembly(solids):
     top_z = floor_h + wall_h
     top_face = top_z + top.BoundBox.ZLength
     back_outer = outer_depth_mm
-    side_sheet = _yaw(_stand(_cloth_blank(outer_width_mm, outer_height_mm)), 90)
+    side_sheet = _yaw(_stand(_cloth_blank(side_span_mm, outer_height_mm)), 90)
     wall_sheet = _stand(_cloth_blank(outer_width_mm, outer_height_mm))
     door_sheet = _stand(_cloth_blank(door.BoundBox.XLength, door.BoundBox.ZLength))
     roof_sheet = _cloth_blank(outer_width_mm, outer_depth_mm)
@@ -331,16 +332,23 @@ def export_assembly(solids):
         _at(side_sheet, _gap_center(outer_width_mm, outer_width_mm + 1.0), floor_h + inset, floor_h + inset),
         _at(roof_sheet, inset, inset, _gap_center(top_face, top_face + 1.0)),
     ]
+    back_placed = _at(wall, 0, outer_depth_mm - wall.BoundBox.YLength, floor_h)
+    left_placed = _at(side, 0, floor_h, floor_h)
+    right_placed = _at(side, outer_width_mm - side.BoundBox.XLength, floor_h, floor_h)
+    for name, shape in (("left", left_placed), ("right", right_placed)):
+        hit = shape.common(back_placed).Volume
+        if hit > 0.01:
+            raise SystemExit(f"{name} intersects the back: {hit:.1f} mm3")
     placed = [
         solids["habitat-base"],
-        _at(wall, 0, outer_depth_mm - wall.BoundBox.YLength, floor_h),
+        back_placed,
         _at(mesh, 0, outer_depth_mm + 1.0, floor_h),
         _at(_stand(solids["habitat-front"]), 0, 0, floor_h),
         _at(door, door_x, 0, door_z),
         _at(door_mesh, door_x, -4.0, door_z),
-        _at(side, 0, floor_h, floor_h),
+        left_placed,
         _at(side_mesh, -side_mesh.BoundBox.XLength - 1.0, floor_h, floor_h),
-        _at(side, outer_width_mm - side.BoundBox.XLength, floor_h, floor_h),
+        right_placed,
         _at(side_mesh, outer_width_mm + 1.0, floor_h, floor_h),
         _at(top, 0, 0, top_z),
         _at(solids["habitat-clamp-roof"], 0, 0, top_face + 1.0),
@@ -398,11 +406,12 @@ def build():
         ("habitat-base", build_base),
         ("habitat-top", build_top),
         ("habitat-back", build_side),
-        ("habitat-left", build_side),
-        ("habitat-right", build_side),
+        ("habitat-left", lambda: build_side(side_span_mm, outer_height_mm)),
+        ("habitat-right", lambda: build_side(side_span_mm, outer_height_mm)),
         ("habitat-front", build_front),
         ("habitat-door-frame", build_door_frame),
         ("habitat-clamp-wall", build_clamp_wall),
+        ("habitat-clamp-side", lambda: build_clamp_wall(side_span_mm, outer_height_mm)),
         ("habitat-clamp-door", build_clamp_door),
         ("habitat-clamp-roof", build_clamp_roof),
     ]
@@ -436,6 +445,7 @@ def load_printed():
         "habitat-front",
         "habitat-door-frame",
         "habitat-clamp-wall",
+        "habitat-clamp-side",
         "habitat-clamp-door",
         "habitat-clamp-roof",
     ]
@@ -444,7 +454,41 @@ def load_printed():
     return solids
 
 
-if os.environ.get("HABITAT_ASSEMBLY_ONLY") == "1":
+def mill_sides():
+    """Rewrite only the shorter sides and their clamp. Leave the other STLs."""
+    stl_dir = ROOT / "stl"
+    step_dir = ROOT / "step"
+    made = {
+        "habitat-left": build_side(side_span_mm, outer_height_mm),
+        "habitat-right": build_side(side_span_mm, outer_height_mm),
+        "habitat-clamp-side": build_clamp_wall(side_span_mm, outer_height_mm),
+    }
+    for name, solid in made.items():
+        write_stl(solid, stl_dir / f"{name}.stl")
+        solid.exportStep(str(step_dir / f"{name}.step"))
+        bb = solid.BoundBox
+        print(
+            f"{name}: {[round(bb.XLength, 2), round(bb.YLength, 2), round(bb.ZLength, 2)]}",
+            flush=True,
+        )
+    others = [
+        "habitat-base",
+        "habitat-top",
+        "habitat-back",
+        "habitat-front",
+        "habitat-door-frame",
+        "habitat-clamp-wall",
+        "habitat-clamp-door",
+        "habitat-clamp-roof",
+    ]
+    solids = {name: Part.read(str(step_dir / f"{name}.step")) for name in others}
+    solids.update(made)
+    export_assembly(solids)
+
+
+if os.environ.get("HABITAT_SIDES_ONLY") == "1":
+    mill_sides()
+elif os.environ.get("HABITAT_ASSEMBLY_ONLY") == "1":
     loaded = load_printed()
     export_assembly(loaded)
     export_door_seat(loaded)
