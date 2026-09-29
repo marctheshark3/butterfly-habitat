@@ -2,7 +2,7 @@
 
 Photo is style only. Size is the ~200 mm cube picked for one P1S bed.
 Mesh is bought no-see-um or organza, not a printed grille. Screws are M3 clearance.
-ESP shelf is a cable ledge, not a measured camera pocket.
+Roof is Plate A. No shelf. No cable hole. The XIAO pod is not cut.
 """
 from __future__ import annotations
 
@@ -26,7 +26,6 @@ door_clearance_mm = 2.0
 rail_width_mm = 4.0
 rail_height_mm = 3.0
 mounting_hole_diameter_mm = 3.6
-cable_hole_diameter_mm = 8.0
 drain_slot_width_mm = 4.0
 drain_slot_length_mm = 28.0
 clamp_thickness_mm = 3.0
@@ -145,24 +144,17 @@ def build_side(span_x=None, span_y=None):
 
 
 def build_top():
-    """Mesh roof frame. Camera ledge is a solid corner, not a shelf over the hole."""
+    """Mesh roof. Full frame. No shelf. No cable hole. Lift-off is the hatch."""
+    if cam_offsets_ready:
+        raise SystemExit("Plate A has no lens hole. cam_offsets_ready must stay false.")
     w = outer_width_mm
     d = outer_depth_mm
     h = panel_thickness_mm
     border = wall_thickness_mm
-    ledge_w = 48.0
-    ledge_d = 40.0
-    plate = _box(0, 0, 0, w, d, h)
-    ledge = _box(0, 0, h - OVERLAP, ledge_w, ledge_d, 4.0)
-    plate = plate.fuse(ledge)
-    # Window starts clear of the ledge so nothing bridges the opening.
-    inner = _box(ledge_w, border, -0.3, w - ledge_w - border, d - 2 * border, h + 0.6)
-    plate = plate.cut(inner)
+    frame = _frame(w, d, h, border)
     r = mounting_hole_diameter_mm / 2.0
-    plate = _cut_holes(plate, _roof_screw_holes(), r, h + 5.0)
-    cable_r = cable_hole_diameter_mm / 2.0
-    plate = plate.cut(_hole(ledge_w / 2.0, ledge_d / 2.0, cable_r, h + 5.0))
-    return _one(plate, "top")
+    frame = _cut_holes(frame, _border_holes(w, d, border / 2.0), r, h + 0.6)
+    return _one(frame, "top")
 
 
 def build_front():
@@ -196,18 +188,6 @@ def build_front():
     holes = [(8.0, 5.0), (w - 8.0, 5.0), (8.0, d - 5.0), (w - 8.0, d - 5.0)]
     plate = _cut_holes(plate, holes, r, h + lip_h + 1.0)
     return _one(plate, "front")
-
-
-def _roof_screw_holes():
-    """Screws that miss the camera ledge. Same list on the roof frame and the roof clamp."""
-    return [
-        (6.0, 194.0),
-        (100.0, 6.0),
-        (100.0, 194.0),
-        (194.0, 6.0),
-        (194.0, 100.0),
-        (194.0, 194.0),
-    ]
 
 
 def build_clamp_wall(span_x=None, span_y=None):
@@ -245,19 +225,52 @@ def build_clamp_door():
 
 
 def build_clamp_roof():
-    """Clamp ring for the roof window. Ledge pokes through a loose cutout. Not a camera fit."""
+    """Clamp ring for the roof. Closed. No notch. Same screws as the roof frame."""
     w = outer_width_mm
     d = outer_depth_mm
-    h = clamp_thickness_mm
     border = wall_thickness_mm
-    ledge_w = 48.0
-    ledge_d = 40.0
-    plate = _box(0, 0, 0, w, d, h)
-    plate = plate.cut(_box(-0.3, -0.3, -0.3, ledge_w + 1.0, ledge_d + 1.0, h + 0.6))
-    plate = plate.cut(_box(ledge_w, border, -0.3, w - ledge_w - border, d - 2 * border, h + 0.6))
-    r = mounting_hole_diameter_mm / 2.0
-    plate = _cut_holes(plate, _roof_screw_holes(), r, h + 0.6)
-    return _one(plate, "clamp-roof")
+    return _one(_clamp_ring(w, d, _border_holes(w, d, border / 2.0)), "clamp-roof")
+
+
+def probe_plate_a():
+    """Plate A checks. No STL write. The shelf bug fails closed."""
+    top = build_top()
+    clamp = build_clamp_roof()
+    errors = []
+    if cam_offsets_ready:
+        errors.append("cam_offsets_ready must stay false on Plate A")
+    tb = top.BoundBox
+    cb = clamp.BoundBox
+    if [round(tb.XLength, 2), round(tb.YLength, 2), round(tb.ZLength, 2)] != [200.0, 200.0, 6.0]:
+        errors.append(f"top bbox {[tb.XLength, tb.YLength, tb.ZLength]}")
+    if [round(cb.XLength, 2), round(cb.YLength, 2), round(cb.ZLength, 2)] != [200.0, 200.0, 3.0]:
+        errors.append(f"clamp bbox {[cb.XLength, cb.YLength, cb.ZLength]}")
+    if len(top.Solids) != 1 or len(clamp.Solids) != 1:
+        errors.append("expected 1 solid on top and on clamp-roof")
+
+    def inside(shape, x, y, z):
+        return shape.isInside(App.Vector(x, y, z), 0.05, True)
+
+    if inside(top, 30.0, 20.0, 3.0):
+        errors.append("window point 30,20,3 is solid")
+    if inside(top, 6.0, 6.0, 8.0):
+        errors.append("shelf still stands at 6,6,8")
+    if not inside(top, 6.0, 2.0, 3.0):
+        errors.append("border point 6,2,3 is missing")
+    if not inside(clamp, 6.0, 2.0, 1.0):
+        errors.append("clamp corner 6,2,1 is open")
+    if inside(clamp, 100.0, 100.0, 1.0):
+        errors.append("clamp window 100,100,1 is solid")
+    if abs(top.Volume - 53655.42) > 1.0:
+        errors.append(f"top volume {top.Volume:.2f}")
+    if abs(clamp.Volume - 26827.71) > 1.0:
+        errors.append(f"clamp volume {clamp.Volume:.2f}")
+    if errors:
+        print("PLATE-A: FAIL", flush=True)
+        for item in errors:
+            print(f"PLATE-A: {item}", flush=True)
+        raise SystemExit(1)
+    print("PLATE-A: PASS", flush=True)
 
 
 def write_stl(shape, path):
@@ -324,7 +337,6 @@ def export_assembly(solids):
     wall_sheet = _stand(_cloth_blank(outer_width_mm, outer_height_mm))
     door_sheet = _stand(_cloth_blank(door.BoundBox.XLength, door.BoundBox.ZLength))
     roof_sheet = _cloth_blank(outer_width_mm, outer_depth_mm)
-    roof_sheet = roof_sheet.cut(_box(-0.2, -0.2, -0.2, 49.0, 41.0, bought_sheet_thickness_mm + 0.4))
     sheets = [
         _at(wall_sheet, inset, _gap_center(back_outer, back_outer + 1.0), floor_h + inset),
         _at(door_sheet, door_x + inset, _gap_center(-1.0, 0.0), door_z + inset),
@@ -486,11 +498,47 @@ def mill_sides():
     export_assembly(solids)
 
 
+def mill_roof():
+    """Rewrite only the roof frame and its clamp. Leave hinge, floor, and sides."""
+    stl_dir = ROOT / "stl"
+    step_dir = ROOT / "step"
+    made = {
+        "habitat-top": build_top(),
+        "habitat-clamp-roof": build_clamp_roof(),
+    }
+    for name, solid in made.items():
+        write_stl(solid, stl_dir / f"{name}.stl")
+        solid.exportStep(str(step_dir / f"{name}.step"))
+        bb = solid.BoundBox
+        print(
+            f"{name}: {[round(bb.XLength, 2), round(bb.YLength, 2), round(bb.ZLength, 2)]}",
+            flush=True,
+        )
+    others = [
+        "habitat-base",
+        "habitat-back",
+        "habitat-left",
+        "habitat-right",
+        "habitat-front",
+        "habitat-door-frame",
+        "habitat-clamp-wall",
+        "habitat-clamp-side",
+        "habitat-clamp-door",
+    ]
+    solids = {name: Part.read(str(step_dir / f"{name}.step")) for name in others}
+    solids.update(made)
+    export_assembly(solids)
+
+
 if os.environ.get("HABITAT_SIDES_ONLY") == "1":
     mill_sides()
 elif os.environ.get("HABITAT_ASSEMBLY_ONLY") == "1":
     loaded = load_printed()
     export_assembly(loaded)
     export_door_seat(loaded)
+elif os.environ.get("HABITAT_ROOF_PROBE") == "1":
+    probe_plate_a()
+elif os.environ.get("HABITAT_ROOF_ONLY") == "1":
+    mill_roof()
 else:
     build()

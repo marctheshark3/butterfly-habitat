@@ -16,3 +16,23 @@ def test_spec_matches_plate_a():
     assert "revision: 0.4.0" in spec
     assert "cam_board_l_mm" in spec
     assert "value_mm: 21.0" in spec
+
+SOURCE = ROOT / "src" / "butterfly-habitat.py"
+
+
+def test_source_is_plate_a():
+    source = SOURCE.read_text(encoding="utf-8")
+    assert "ledge_w = 48.0" not in source
+    assert "49.0, 41.0" not in source
+    assert "cable_hole_diameter_mm" not in source
+    assert "def _roof_screw_holes" not in source
+    assert "cam_offsets_ready = False" in source
+    assert "cam_lens_dx_mm = 0.0" in source
+    assert "cam_lens_dy_mm = 0.0" in source
+    assert "cam_board_l_mm = 21.0" in source
+    assert "cam_aperture_diameter_mm /" not in source
+    assert "HABITAT_ROOF_PROBE" in source
+    assert "HABITAT_ROOF_ONLY" in source
+    assert "def build_front" in source
+    assert "def build_base" in source
+    assert "drain_slot_width_mm = 4.0" in source
