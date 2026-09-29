@@ -33,6 +33,20 @@ M3 clearance holes are 3.6 mm (ISO 273 coarse). Use M3 bolts and nylock nuts. Th
 
 The door lifts out the open top. Two millimetres of clearance per side, on purpose.
 
+## Door
+
+The door is not screwed to the front. The four holes in the front corners join that wall to the cube. The eight holes in the door match the door clamp only.
+
+![Door seated in the opening. Cream is the front, green is the door, blue is the clamp. Inspector colors, not filament.](docs/images/door-seat.png)
+
+The green frame sits in the opening. The blue plate is the clamp, 1 mm off the outside face. Those two share a hole pattern. The cream front does not.
+
+![A front-corner screw beside the door clamp. That hole does not enter the green or blue plate.](docs/images/door-screws.png)
+
+This is a seated view of the mill parts. It is not a print approval. The assembly file still parks the door outside the opening, which is why that view looked disconnected.
+
+The side lips are on the inside face. They overlap the door border from 17 mm to 19 mm in X. The door sits in the 6 mm plate. The lip starts about 0.4 mm past the inner face, so the solids do not intersect. In this stand the cross lip is at the top of the opening, not under the door.
+
 ## Camera
 
 The roof corner is still a cable ledge with an 8 mm hole. It is not a pocket for a measured board. The XIAO ESP32-S3 Sense pod is deferred. The official expansion-board DXF has no lens circle, so the hole was not moved.
