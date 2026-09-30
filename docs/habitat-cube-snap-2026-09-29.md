@@ -1,8 +1,8 @@
 # Cube snap coupon
 
-Mesh screws stay mesh screws. This coupon is the cube joint, and it is not cut into the cube.
+Mesh screws stay mesh screws. The snap coupon is parked. Do not print another pair. Both printed pairs opened a gap after the click. The tighter one was only harder to start.
 
-Print both. PETG. 0.2 mm layers. Same orientation that needed no supports. Clearance is back to 0.40 mm per side. Pocket depth is 0.5 mm, not 3.0. The plates should sit together. A pull should stop at the hook, not open a gap.
+The next joint is a drop-in groove, inspector only. Model id `drop-groove`. It is not cut into the cube STLs.
 
 The 0.30 pair was tougher to start and still wiggled. The 0.40 pair started easier and wiggled the same way. Side clearance was not the wiggle. The hook was sitting 3 mm past the lip, so the plates could pull apart that far after they clicked.
 

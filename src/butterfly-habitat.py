@@ -3,7 +3,7 @@
 Photo is style only. Size is the ~200 mm cube picked for one P1S bed.
 Mesh is bought no-see-um or organza, not a printed grille. Screws are M3 clearance.
 Roof is Plate A. No shelf. No cable hole. The XIAO pod is not cut.
-Cube snap is a coupon only. It is not cut into the cube yet.
+Cube snap is a coupon only. It is not cut into the cube. Drop-in grooves are a viewer section, not a print.
 """
 from __future__ import annotations
 
@@ -609,6 +609,83 @@ def export_assembly(solids):
     print(f"assembly: {out / 'habitat-assembly.step'} sheets={len(sheets)}", flush=True)
 
 
+def build_drop_groove_section():
+    """Corner section. Walls drop in. Roof lip stops the lift. Not a print body."""
+    play = 0.5
+    panel = panel_thickness_mm
+    groove_w = panel + play
+    fence = 3.0
+    depth = 4.0
+    span = 80.0
+    floor_z = panel - depth
+    gap = play / 2.0
+    side_x = fence + gap
+    side_y = fence + gap
+    side_z = floor_z + gap
+    side_top = 46.75
+    side_y1 = span - fence - groove_w - gap
+    tongue_y1 = span - fence - gap - 0.25
+
+    base = _box(0, 0, 0, span, span, panel)
+    base = base.cut(_box(fence, fence, floor_z, groove_w, span - 2 * fence, depth + 0.4))
+    base = base.cut(_box(fence, span - fence - groove_w, floor_z, span - 2 * fence, groove_w, depth + 0.4))
+    base = _one(base, "drop-base")
+
+    body = _box(side_x, side_y, side_z, panel, side_y1 - side_y, side_top - side_z)
+    tongue = _box(side_x, side_y1 - 0.4, 8.0, panel, tongue_y1 - (side_y1 - 0.4), 34.0)
+    side = _one(body.fuse(tongue), "drop-side")
+
+    back_y = span - fence - groove_w + gap
+    back = _box(side_x, back_y, side_z, span - fence - gap - side_x, panel, side_top - side_z)
+    slot = _box(fence - 0.2, back_y - 0.4, 7.5, groove_w + 0.4, panel + 1.2, 35.2)
+    back = _one(back.cut(slot), "drop-back")
+
+    roof_z = 44.0
+    roof = _box(0, 0, roof_z, span, span, panel)
+    roof = roof.cut(_box(fence, fence, roof_z - 0.2, groove_w, side_y1 - fence + 0.6, 3.2))
+    roof = roof.cut(_box(fence, span - fence - groove_w, roof_z - 0.2, span - 2 * fence, groove_w, 3.2))
+    roof = _one(roof, "drop-roof")
+    return base, side, back, roof
+
+
+def _inside(shape, x, y, z):
+    return shape.isInside(App.Vector(x, y, z), 0.05, True)
+
+
+def mill_drop_groove_view():
+    """Inspector section only. Does not write a cube STL."""
+    base, side, back, roof = build_drop_groove_section()
+    if _inside(base, 6.25, 20.0, 4.0):
+        raise SystemExit("side foot is inside the base")
+    if not _inside(base, 6.25, 20.0, 1.0):
+        raise SystemExit("groove cut the 2 mm floor")
+    if not _inside(side, 6.25, 20.0, 4.0):
+        raise SystemExit("side foot is not the side wall")
+    if _inside(base, 40.0, 73.75, 4.0):
+        raise SystemExit("back foot is inside the base")
+    if not _inside(back, 40.0, 73.75, 4.0):
+        raise SystemExit("back foot missed its groove")
+    if _inside(back, 6.25, 73.75, 20.0):
+        raise SystemExit("side tongue is inside the back wall")
+    if not _inside(side, 6.25, 73.75, 20.0):
+        raise SystemExit("side tongue missed the slot")
+    if not _inside(back, 20.0, 73.75, 20.0):
+        raise SystemExit("slot ate the back wall")
+    if _inside(roof, 6.25, 20.0, 46.75):
+        raise SystemExit("wall top is inside the roof")
+    if not _inside(roof, 6.25, 20.0, 48.5):
+        raise SystemExit("roof lip does not stop the lift")
+    pairs = (("base", "side", base, side), ("base", "back", base, back), ("side", "back", side, back), ("side", "roof", side, roof), ("back", "roof", back, roof))
+    for name_a, name_b, shape_a, shape_b in pairs:
+        hit = shape_a.common(shape_b).Volume
+        if hit > 1.0:
+            raise SystemExit(f"{name_a} intersects {name_b}: {hit:.1f} mm3")
+    out = ROOT / "renders" / "groove-view"
+    out.mkdir(parents=True, exist_ok=True)
+    Part.makeCompound([base, side, back, roof]).exportStep(str(out / "habitat-drop-groove.step"))
+    print("GROOVE-VIEW: PASS play=0.5 depth=4 floor=2", flush=True)
+
+
 def export_door_seat(solids):
     """Seated door plus a cloth stand-in. Viewer only. Same seat as the assembly view."""
     floor_h = panel_thickness_mm
@@ -768,5 +845,7 @@ elif os.environ.get("HABITAT_SNAP_PROBE") == "1":
     probe_snap_coupon()
 elif os.environ.get("HABITAT_SNAP_ONLY") == "1":
     mill_snap_coupon()
+elif os.environ.get("HABITAT_GROOVE_VIEW") == "1":
+    mill_drop_groove_view()
 else:
     build()

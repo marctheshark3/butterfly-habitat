@@ -36,3 +36,7 @@ def test_snap_stays_off_the_cube():
     assert "def build_snap_tongue_coupon" in source
     assert "HABITAT_SNAP_PROBE" in source
     assert "HABITAT_SNAP_ONLY" in source
+    base = source.split("def build_base", 1)[1].split("def build_side", 1)[0]
+    assert "slide_play" not in base
+    assert "def mill_drop_groove_view" in source
+    assert "HABITAT_GROOVE_VIEW" in source
