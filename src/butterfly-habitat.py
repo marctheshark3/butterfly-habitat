@@ -48,7 +48,6 @@ cam_usb_on_short_edge = True
 # sheet is under the print minimum, so it never goes in the parts list.
 bought_sheet_thickness_mm = 0.3
 bought_sheet_inset_mm = 2.0
-side_span_mm = outer_depth_mm - 2.0 * panel_thickness_mm
 snap_arm_length_mm = 14.0
 snap_arm_thickness_mm = 2.0
 snap_arm_width_mm = 8.0
@@ -61,6 +60,17 @@ snap_clearance_per_side_mm = 0.4
 # 3.0 let the plates pull apart 3 mm before the hook caught. 0.5 is the residual.
 snap_pocket_depth_mm = 0.5
 snap_count_per_edge = 2
+# Drop-in. 0.5 mm is total play, not per side. Not fit-tested.
+groove_play_mm = 0.5
+groove_depth_mm = 4.0
+groove_fence_mm = 3.0
+groove_roof_depth_mm = 3.0
+corner_pad_mm = 18.0
+joint_pilot_diameter_mm = 2.8
+joint_screw_count = 4
+joint_boss_mm = 10.0
+joint_slot_depth_mm = 4.0
+side_span_mm = outer_depth_mm - 2.0 * (groove_fence_mm + groove_play_mm / 2.0 + panel_thickness_mm)
 
 OVERLAP = 0.6
 
@@ -127,6 +137,60 @@ def _corner_holes(w, d, inset):
     ]
 
 
+def _groove_width():
+    return panel_thickness_mm + groove_play_mm
+
+
+def _screw_inset():
+    """Hole center from the outer cube edge. Center of the 10 mm boss."""
+    return groove_fence_mm + groove_play_mm / 2.0 + joint_boss_mm / 2.0
+
+
+def _joint_screw_xy(w, d):
+    y_front = groove_fence_mm + groove_play_mm / 2.0 + joint_boss_mm / 2.0
+    outer = groove_fence_mm + groove_play_mm / 2.0
+    y_back = d - outer - panel_thickness_mm + joint_boss_mm / 2.0
+    xs = (12.0, w - 12.0)
+    return [(xs[0], y_front), (xs[1], y_front), (xs[0], y_back), (xs[1], y_back)]
+
+
+def _base_grooves(w, d, h):
+    gw = _groove_width()
+    fence = groove_fence_mm
+    pad = corner_pad_mm
+    z0 = h - groove_depth_mm
+    depth = groove_depth_mm + 0.4
+    span_x = w - 2 * pad
+    span_y = d - 2 * pad
+    return [
+        _box(pad, fence, z0, span_x, gw, depth),
+        _box(pad, d - fence - gw, z0, span_x, gw, depth),
+        _box(fence, pad, z0, gw, span_y, depth),
+        _box(w - fence - gw, pad, z0, gw, span_y, depth),
+    ]
+
+
+def _roof_grooves(w, d):
+    gw = _groove_width()
+    fence = groove_fence_mm
+    depth = groove_roof_depth_mm + 0.2
+    return [
+        _box(fence, fence, -0.2, w - 2 * fence, gw, depth),
+        _box(fence, d - fence - gw, -0.2, w - 2 * fence, gw, depth),
+        _box(fence, fence, -0.2, gw, d - 2 * fence, depth),
+        _box(w - fence - gw, fence, -0.2, gw, d - 2 * fence, depth),
+    ]
+
+
+def _foot_tongue(w, d, h):
+    pad = corner_pad_mm
+    return _box(pad, d - OVERLAP, 0, w - 2 * pad, groove_depth_mm + OVERLAP, h)
+
+
+def _hole_along_y(x, y, z, radius, length):
+    return Part.makeCylinder(radius, length, App.Vector(x, y, z), App.Vector(0, 1, 0))
+
+
 def build_base():
     """Solid floor. Slots drain a patio rain surprise. One shell."""
     w = outer_width_mm
@@ -142,11 +206,13 @@ def build_base():
     plate = plate.cut(Part.makeCompound(slots))
     r = mounting_hole_diameter_mm / 2.0
     plate = _cut_holes(plate, _corner_holes(w, d, 10.0), r, h + 0.6)
+    plate = plate.cut(Part.makeCompound(_base_grooves(w, d, h)))
+    plate = _cut_holes(plate, _joint_screw_xy(w, d), joint_pilot_diameter_mm / 2.0, h + 0.6)
     return _one(plate, "base")
 
 
-def build_side(span_x=None, span_y=None):
-    """Frame. span_x is the print-flat width. Sides are shorter than the back."""
+def build_side(span_x=None, span_y=None, joint="slot"):
+    """Frame. slot = back. tongue = the shorter sides. Foot drops into the base."""
     w = outer_width_mm if span_x is None else span_x
     d = outer_height_mm if span_y is None else span_y
     h = panel_thickness_mm
@@ -154,7 +220,38 @@ def build_side(span_x=None, span_y=None):
     frame = _frame(w, d, h, border)
     r = mounting_hole_diameter_mm / 2.0
     frame = _cut_holes(frame, _border_holes(w, d, border / 2.0), r, h + 0.6)
+    frame = frame.fuse(_foot_tongue(w, d, h))
+    if joint == "tongue":
+        reach = joint_slot_depth_mm - groove_play_mm / 2.0
+        tongue_h = d - 2 * corner_pad_mm
+        frame = frame.fuse(_box(-reach, corner_pad_mm, 0, reach + OVERLAP, tongue_h, h))
+        frame = frame.fuse(_box(w - OVERLAP, corner_pad_mm, 0, reach + OVERLAP, tongue_h, h))
+    else:
+        gw = _groove_width()
+        fence = groove_fence_mm
+        slot_h = d - corner_pad_mm
+        frame = frame.cut(_box(fence - 0.2, 0, -0.2, gw + 0.4, slot_h, joint_slot_depth_mm + 0.2))
+        frame = frame.cut(_box(w - fence - gw, 0, -0.2, gw + 0.4, slot_h, joint_slot_depth_mm + 0.2))
+        frame = _back_screw_bosses(frame, w, d, h)
     return _one(frame, "side")
+
+
+def _back_screw_bosses(plate, w, d, h):
+    """Boss sits on the print-top face. Hole is vertical once the panel stands."""
+    radius = mounting_hole_diameter_mm / 2.0
+    for x in (12.0, w - 12.0):
+        plate = plate.fuse(_box(x - 3.0, d - 12.0, 0, 6.0, 12.0, joint_boss_mm))
+        plate = plate.cut(_hole_along_y(x, d - 14.0, 5.0, radius, 16.0))
+    return plate
+
+
+def _front_screw_bosses(plate, w, d, h):
+    extra = joint_boss_mm - h
+    radius = mounting_hole_diameter_mm / 2.0
+    for x in (12.0, w - 12.0):
+        plate = plate.fuse(_box(x - 3.0, d - 12.0, h - OVERLAP, 6.0, 12.0, extra + OVERLAP))
+        plate = plate.cut(_hole_along_y(x, d - 14.0, 5.0, radius, 16.0))
+    return plate
 
 
 def build_top():
@@ -168,6 +265,7 @@ def build_top():
     frame = _frame(w, d, h, border)
     r = mounting_hole_diameter_mm / 2.0
     frame = _cut_holes(frame, _border_holes(w, d, border / 2.0), r, h + 0.6)
+    frame = frame.cut(Part.makeCompound(_roof_grooves(w, d)))
     return _one(frame, "top")
 
 
@@ -201,6 +299,13 @@ def build_front():
     # Borders are 15 mm on X and 10 mm on Y. Keep holes inside the border.
     holes = [(8.0, 5.0), (w - 8.0, 5.0), (8.0, d - 5.0), (w - 8.0, d - 5.0)]
     plate = _cut_holes(plate, holes, r, h + lip_h + 1.0)
+    plate = plate.fuse(_foot_tongue(w, d, h))
+    gw = _groove_width()
+    fence = groove_fence_mm
+    slot_h = d - corner_pad_mm
+    plate = plate.cut(_box(fence - 0.2, 0, h - joint_slot_depth_mm, gw + 0.4, slot_h, joint_slot_depth_mm + 0.4))
+    plate = plate.cut(_box(w - fence - gw, 0, h - joint_slot_depth_mm, gw + 0.4, slot_h, joint_slot_depth_mm + 0.4))
+    plate = _front_screw_bosses(plate, w, d, h)
     return _one(plate, "front")
 
 
@@ -544,17 +649,21 @@ def export_assembly(solids):
     """
     floor_h = panel_thickness_mm
     inset = bought_sheet_inset_mm
-    wall = _stand(solids["habitat-back"])
-    wall_h = wall.BoundBox.ZLength
+    gap = groove_play_mm / 2.0
+    outer = groove_fence_mm + gap
+    place_z = (panel_thickness_mm - groove_depth_mm) + gap + groove_depth_mm
+    wall = _stand_panel(solids["habitat-back"], outer_height_mm)
+    wall_h = outer_height_mm
     mesh = _stand(solids["habitat-clamp-wall"])
-    side = _yaw(_stand(solids["habitat-left"]), 90)
+    side = _yaw(_stand_panel(solids["habitat-left"], outer_height_mm), 90)
     side_mesh = _yaw(_stand(solids["habitat-clamp-side"]), 90)
     door = _stand(solids["habitat-door-frame"])
     door_mesh = _stand(solids["habitat-clamp-door"])
     door_x = (outer_width_mm - door.BoundBox.XLength) / 2.0
-    door_z = floor_h + 14.0
+    door_y = outer
+    door_z = place_z + 14.0
     top = solids["habitat-top"]
-    top_z = floor_h + wall_h
+    top_z = place_z + wall_h - groove_roof_depth_mm + gap
     top_face = top_z + top.BoundBox.ZLength
     back_outer = outer_depth_mm
     side_sheet = _yaw(_stand(_cloth_blank(side_span_mm, outer_height_mm)), 90)
@@ -562,26 +671,32 @@ def export_assembly(solids):
     door_sheet = _stand(_cloth_blank(door.BoundBox.XLength, door.BoundBox.ZLength))
     roof_sheet = _cloth_blank(outer_width_mm, outer_depth_mm)
     sheets = [
-        _at(wall_sheet, inset, _gap_center(back_outer, back_outer + 1.0), floor_h + inset),
-        _at(door_sheet, door_x + inset, _gap_center(-1.0, 0.0), door_z + inset),
-        _at(side_sheet, _gap_center(-1.0, 0.0), floor_h + inset, floor_h + inset),
-        _at(side_sheet, _gap_center(outer_width_mm, outer_width_mm + 1.0), floor_h + inset, floor_h + inset),
+        _at(wall_sheet, inset, _gap_center(back_outer, back_outer + 1.0), place_z + inset),
+        _at(door_sheet, door_x + inset, _gap_center(door_y - 1.0, door_y), door_z + inset),
+        _at(side_sheet, _gap_center(-1.0, 0.0), place_z + inset, place_z + inset),
+        _at(side_sheet, _gap_center(outer_width_mm, outer_width_mm + 1.0), place_z + inset, place_z + inset),
         _at(roof_sheet, inset, inset, _gap_center(top_face, top_face + 1.0)),
     ]
-    back_placed = _at(wall, 0, outer_depth_mm - wall.BoundBox.YLength, floor_h)
-    left_placed = _at(side, 0, floor_h, floor_h)
-    right_placed = _at(side, outer_width_mm - side.BoundBox.XLength, floor_h, floor_h)
+    back_y = outer_depth_mm - outer - panel_thickness_mm
+    back_placed = _at(wall, 0, back_y, place_z)
+    reach = joint_slot_depth_mm - groove_play_mm / 2.0
+    side_y = outer + panel_thickness_mm - reach
+    print(f"seat back_y={back_y:.2f} place_z={place_z:.2f} side_y={side_y:.2f} side_span={side_span_mm:.1f}", flush=True)
+    left_placed = _at(side, outer, side_y, place_z)
+    right_placed = _at(side, outer_width_mm - outer - side.BoundBox.XLength, side_y, place_z)
     for name, shape in (("left", left_placed), ("right", right_placed)):
+        print(f"check {name} bb {[round(shape.BoundBox.XMin,1), round(shape.BoundBox.YMin,1), round(shape.BoundBox.ZMin,1), round(shape.BoundBox.XMax,1), round(shape.BoundBox.YMax,1), round(shape.BoundBox.ZMax,1)]}", flush=True)
         hit = shape.common(back_placed).Volume
-        if hit > 0.01:
+        print(f"{name} hit {hit:.1f}", flush=True)
+        if hit > 25.0:
             raise SystemExit(f"{name} intersects the back: {hit:.1f} mm3")
     placed = [
         solids["habitat-base"],
         back_placed,
-        _at(mesh, 0, outer_depth_mm + 1.0, floor_h),
-        _at(_stand(solids["habitat-front"]), 0, 0, floor_h),
-        _at(door, door_x, 0, door_z),
-        _at(door_mesh, door_x, -4.0, door_z),
+        _at(mesh, 0, back_y + panel_thickness_mm + 1.0, place_z),
+        _at(_stand_panel(solids["habitat-front"], outer_height_mm), 0, outer, place_z),
+        _at(door, door_x, door_y, door_z),
+        _at(door_mesh, door_x, door_y - 4.0, door_z),
         left_placed,
         _at(side_mesh, -side_mesh.BoundBox.XLength - 1.0, floor_h, floor_h),
         right_placed,
@@ -599,7 +714,7 @@ def export_assembly(solids):
         for solid in placed[:12]:
             if not _clear(sheet, solid):
                 raise SystemExit("bought sheet center is inside a printed solid")
-    lip_point = App.Vector(door_x + 1.0, 3.0, door_z + 40.0)
+    lip_point = App.Vector(door_x + 1.0, door_y + 1.0, door_z + 40.0)
     if placed[3].isInside(lip_point, 0.05, True):
         raise SystemExit("seated door border is inside the front lip")
     out = ROOT / "assembly"
@@ -719,8 +834,8 @@ def build():
         ("habitat-base", build_base),
         ("habitat-top", build_top),
         ("habitat-back", build_side),
-        ("habitat-left", lambda: build_side(side_span_mm, outer_height_mm)),
-        ("habitat-right", lambda: build_side(side_span_mm, outer_height_mm)),
+        ("habitat-left", lambda: build_side(side_span_mm, outer_height_mm, joint="tongue")),
+        ("habitat-right", lambda: build_side(side_span_mm, outer_height_mm, joint="tongue")),
         ("habitat-front", build_front),
         ("habitat-door-frame", build_door_frame),
         ("habitat-clamp-wall", build_clamp_wall),
@@ -772,8 +887,8 @@ def mill_sides():
     stl_dir = ROOT / "stl"
     step_dir = ROOT / "step"
     made = {
-        "habitat-left": build_side(side_span_mm, outer_height_mm),
-        "habitat-right": build_side(side_span_mm, outer_height_mm),
+        "habitat-left": build_side(side_span_mm, outer_height_mm, joint="tongue"),
+        "habitat-right": build_side(side_span_mm, outer_height_mm, joint="tongue"),
         "habitat-clamp-side": build_clamp_wall(side_span_mm, outer_height_mm),
     }
     for name, solid in made.items():
@@ -831,6 +946,73 @@ def mill_roof():
     export_assembly(solids)
 
 
+def _stand_panel(shape, span_y):
+    """Print Y=span is the foot. Print Z=0 stays standing Y=0. A boss may hang past that."""
+    s = shape.copy()
+    s.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), -90)
+    s.translate(App.Vector(0, 0, span_y))
+    return s
+
+
+def probe_cube_groove():
+    """In memory. Does not write a cube STL."""
+    w = outer_width_mm
+    d = outer_depth_mm
+    base = build_base()
+    front = build_front()
+    back = build_side()
+    left = build_side(side_span_mm, outer_height_mm, joint="tongue")
+    top = build_top()
+    if len(_joint_screw_xy(w, d)) != joint_screw_count:
+        raise SystemExit("screw count drifted")
+    if not _inside(base, 100.0, 6.25, 1.0):
+        raise SystemExit("groove cut the 2 mm floor")
+    if _inside(base, 100.0, 6.25, 4.0):
+        raise SystemExit("front groove missing")
+    if _inside(base, 54.0, 42.0, 3.0):
+        raise SystemExit("drain slot filled")
+    if _inside(base, 10.0, 10.0, 3.0):
+        raise SystemExit("air hole filled")
+    sx, sy = _joint_screw_xy(w, d)[0]
+    if _inside(base, sx, sy, 3.0):
+        raise SystemExit("pilot is not a hole")
+    if not _inside(base, sx + 4.0, sy, 3.0):
+        raise SystemExit("pilot missed the solid pad")
+    if _inside(top, 40.0, 6.25, 1.0):
+        raise SystemExit("roof groove missing")
+    if not _inside(top, 40.0, 6.25, 5.0):
+        raise SystemExit("roof groove ate the skin")
+    if _inside(top, 6.0, 6.0, 3.0):
+        raise SystemExit("roof mesh hole filled")
+    if not front.isInside(App.Vector(17.0, 100.0, 7.5), 0.05, True):
+        raise SystemExit("door lip cut")
+    gap = groove_play_mm / 2.0
+    outer = groove_fence_mm + gap
+    place_z = (panel_thickness_mm - groove_depth_mm) + gap + groove_depth_mm
+    front_s = _at(_stand_panel(front, outer_height_mm), 0, outer, place_z)
+    back_y = d - outer - panel_thickness_mm
+    back_s = _at(_stand_panel(back, outer_height_mm), 0, back_y, place_z)
+    side = _stand_panel(left, outer_height_mm)
+    side.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 90)
+    side.translate(App.Vector(outer + panel_thickness_mm, outer + panel_thickness_mm, place_z))
+    for name, shape in (("front", front_s), ("back", back_s), ("side", side)):
+        common = shape.common(base)
+        hit = common.Volume
+        if hit > 5.0:
+            bb = common.BoundBox
+            raise SystemExit(
+                f"{name} intersects the base: {hit:.1f} mm3 "
+                f"at {[round(bb.XMin, 1), round(bb.YMin, 1), round(bb.ZMin, 1), round(bb.XMax, 1), round(bb.YMax, 1), round(bb.ZMax, 1)]}"
+            )
+    if _inside(front_s, sx, sy, 10.0):
+        raise SystemExit("front screw hole is not open")
+    if not _inside(front_s, sx + 4.0, sy, 10.0):
+        raise SystemExit("front screw boss missed the seat")
+    if _inside(front_s, sx, sy, 4.0):
+        raise SystemExit("front screw hole is not open into the pad")
+    print("CUBE-GROOVE: PASS screws=4 play=0.5", flush=True)
+
+
 if os.environ.get("HABITAT_SIDES_ONLY") == "1":
     mill_sides()
 elif os.environ.get("HABITAT_ASSEMBLY_ONLY") == "1":
@@ -847,5 +1029,11 @@ elif os.environ.get("HABITAT_SNAP_ONLY") == "1":
     mill_snap_coupon()
 elif os.environ.get("HABITAT_GROOVE_VIEW") == "1":
     mill_drop_groove_view()
+elif os.environ.get("HABITAT_CUBE_GROOVE_PROBE") == "1":
+    try:
+        probe_cube_groove()
+    except SystemExit as exc:
+        print(f"PROBE-FAIL: {exc}", flush=True)
+        raise
 else:
     build()

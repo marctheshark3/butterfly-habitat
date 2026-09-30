@@ -40,3 +40,6 @@ def test_snap_stays_off_the_cube():
     assert "slide_play" not in base
     assert "def mill_drop_groove_view" in source
     assert "HABITAT_GROOVE_VIEW" in source
+    assert "groove_play_mm = 0.5" in source
+    assert "joint_screw_count = 4" in source
+    assert "def probe_cube_groove" in source

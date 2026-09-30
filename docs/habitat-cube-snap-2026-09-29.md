@@ -2,7 +2,7 @@
 
 Mesh screws stay mesh screws. The snap coupon is parked. Do not print another pair. Both printed pairs opened a gap after the click. The tighter one was only harder to start.
 
-The next joint is a drop-in groove, inspector only. Model id `drop-groove`. It is not cut into the cube STLs.
+The drop-in is now in the cube CAD. Spec 0.9.0. Four screws, front and back, into solid corner pads. Not a print. Not fit-tested.
 
 The 0.30 pair was tougher to start and still wiggled. The 0.40 pair started easier and wiggled the same way. Side clearance was not the wiggle. The hook was sitting 3 mm past the lip, so the plates could pull apart that far after they clicked.
 

@@ -1,13 +1,16 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.8.0
+  revision: 0.9.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
     between the frame and a second plate, same M3 clearance bolts. Not a
     printed grille. A hatchling is narrower than a 2 mm printed hole. Door
-    slide is still a loose lip. Cube edges use an untested PETG snap. Mesh
+    slide is still a loose lip. Cube walls drop into base grooves and into
+    slots on the front and back. The roof lip stops the lift. Four screws pin
+    the front and back into solid corner pads. Not the mesh screws. Not the
+    air holes. The snap coupon stays parked. Not fit-tested. Mesh
     screws stay mesh screws. Roof is Plate A: a 200 mm frame, 12 mm
     border, 176 mm window, full clamp ring. No shelf. No cable hole. The roof
     lifts off. That lift is the hatch. The XIAO ESP32-S3 Sense is not cut on
@@ -104,6 +107,46 @@ dimensions:
   - name: panel_thickness
     parameter: panel_thickness_mm
     value_mm: 6.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: groove_play
+    parameter: groove_play_mm
+    value_mm: 0.5
+    tolerance_mm: 0.2
+    source: assumed
+  - name: groove_depth
+    parameter: groove_depth_mm
+    value_mm: 4.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: groove_fence
+    parameter: groove_fence_mm
+    value_mm: 3.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: groove_roof_depth
+    parameter: groove_roof_depth_mm
+    value_mm: 3.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: corner_pad
+    parameter: corner_pad_mm
+    value_mm: 18.0
+    tolerance_mm: 0.4
+    source: assumed
+  - name: joint_pilot_diameter
+    parameter: joint_pilot_diameter_mm
+    value_mm: 2.8
+    tolerance_mm: 0.1
+    source: assumed
+  - name: joint_boss
+    parameter: joint_boss_mm
+    value_mm: 10.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: joint_slot_depth
+    parameter: joint_slot_depth_mm
+    value_mm: 4.0
     tolerance_mm: 0.2
     source: assumed
   - name: door_opening_w
