@@ -22,7 +22,7 @@ def test_snap_parameters_present():
         "snap_arm_thickness_mm = 2.0",
         "snap_arm_width_mm = 8.0",
         "snap_undercut_mm = 0.8",
-        "snap_clearance_per_side_mm = 0.3",
+        "snap_clearance_per_side_mm = 0.4",
         "snap_return_angle_deg = 45.0",
     ):
         assert name in source

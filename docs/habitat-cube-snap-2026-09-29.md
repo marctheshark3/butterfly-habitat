@@ -2,9 +2,9 @@
 
 Mesh screws stay mesh screws. This coupon is the cube joint, and it is not cut into the cube.
 
-Print both. PETG. 0.2 mm layers. Flat is not required. Use the orientation that needed no supports. Clearance is 0.30 mm per side. The 0.40 pair rattled. Do not reprint that one.
+Print both. PETG. 0.2 mm layers. Same orientation that needed no supports. Clearance is back to 0.40 mm per side. Pocket depth is 0.5 mm, not 3.0. The plates should sit together. A pull should stop at the hook, not open a gap.
 
-The 0.40 pair started, latched, and needed force to unhook. That force stays. This reprint only closes the rattle. Same orientation as the one that worked. Do not go back to hook-up if that one wanted supports.
+The 0.30 pair was tougher to start and still wiggled. The 0.40 pair started easier and wiggled the same way. Side clearance was not the wiggle. The hook was sitting 3 mm past the lip, so the plates could pull apart that far after they clicked.
 
 - `stl/habitat-snap-tongue-coupon.stl`
 - `stl/habitat-snap-pocket-coupon.stl`
@@ -15,11 +15,11 @@ Push the tongue into the open end of the pocket. Latched, the tongue is straight
 
 ## If the click is wrong
 
-One change. Reprint the coupon. Do not reprint the cube.
+Two numbers changed because the last reprint proved the side gap was the wrong knob. Do not reprint the cube.
 
-- Still loose: `snap_clearance_per_side_mm` to 0.25. One change.
-- Will not start: `snap_clearance_per_side_mm` back to 0.35. Do not touch the hook.
-- Stays bent when latched: `snap_pocket_depth_mm` up by 0.3. Do not deepen the hook.
+- Still opens a gap once in: `snap_pocket_depth_mm` to 0.3. Do not tighten the side gap.
+- Arm stays bent when the plates are together: `snap_pocket_depth_mm` to 0.8. Do not deepen the hook.
+- Will not start: `snap_clearance_per_side_mm` to 0.45. One change.
 - Straight pull opens it: `snap_return_angle_deg` to 60.
 - Thumb cannot open it: `snap_return_angle_deg` to 40. Do not go to 90.
 - Crack at the root after ten cycles: the tongue was printed in the orientation that worked. Do not thicken it on the first crack.

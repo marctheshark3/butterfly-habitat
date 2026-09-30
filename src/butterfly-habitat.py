@@ -56,10 +56,10 @@ snap_root_fillet_mm = 1.0
 snap_undercut_mm = 0.8
 snap_lead_angle_deg = 30.0
 snap_return_angle_deg = 45.0
-# Printed 0.4 per side. It started, it latched, it rattled.
-# 0.30 is the one change. Hook stays.
-snap_clearance_per_side_mm = 0.3
-snap_pocket_depth_mm = 3.0
+# 0.30 started harder and still wiggled. 0.40 integrated. The wiggle was not the side gap.
+snap_clearance_per_side_mm = 0.4
+# 3.0 let the plates pull apart 3 mm before the hook caught. 0.5 is the residual.
+snap_pocket_depth_mm = 0.5
 snap_count_per_edge = 2
 
 OVERLAP = 0.6
