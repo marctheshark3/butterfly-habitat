@@ -1,16 +1,17 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.9.0
+  revision: 0.10.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
     between the frame and a second plate, same M3 clearance bolts. Not a
     printed grille. A hatchling is narrower than a 2 mm printed hole. Door
     slide is still a loose lip. Cube walls drop into base grooves and into
-    slots on the front and back. The roof lip stops the lift. Four screws pin
-    the front and back into solid corner pads. Not the mesh screws. Not the
-    air holes. The snap coupon stays parked. Not fit-tested. Mesh
+    slots on the front and back. Roof grooves run the full wall width, including
+    the corners. Screws sit at x=17. Front door margin is 24 mm, so the opening
+    is 152 mm and still a slide. Back frame border is 24 mm. Back mesh holes
+    stay at inset 6. Snap stays parked. Not fit-tested. Mesh
     screws stay mesh screws. Roof is Plate A: a 200 mm frame, 12 mm
     border, 176 mm window, full clamp ring. No shelf. No cable hole. The roof
     lifts off. That lift is the hatch. The XIAO ESP32-S3 Sense is not cut on
@@ -131,8 +132,33 @@ dimensions:
     source: assumed
   - name: corner_pad
     parameter: corner_pad_mm
-    value_mm: 18.0
+    value_mm: 24.0
     tolerance_mm: 0.4
+    source: assumed
+  - name: joint_screw_x
+    parameter: joint_screw_x_mm
+    value_mm: 17.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: front_border_x
+    parameter: front_border_x_mm
+    value_mm: 24.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: back_border_x
+    parameter: back_border_x_mm
+    value_mm: 24.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: back_hole_inset
+    parameter: back_hole_inset_mm
+    value_mm: 6.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: joint_boss_span
+    parameter: joint_boss_span_mm
+    value_mm: 10.0
+    tolerance_mm: 0.2
     source: assumed
   - name: joint_pilot_diameter
     parameter: joint_pilot_diameter_mm
@@ -151,7 +177,7 @@ dimensions:
     source: assumed
   - name: door_opening_w
     parameter: door_opening_w_mm
-    value_mm: 170.0
+    value_mm: 152.0
     tolerance_mm: 1.0
     source: assumed
   - name: door_opening_h
