@@ -173,14 +173,15 @@ def _base_grooves(w, d, h):
 
 
 def _roof_grooves(w, d):
+    """Grooves run the full wall width. A fence stop at x=3 hits the wall tops."""
     gw = _groove_width()
     fence = groove_fence_mm
     depth = groove_roof_depth_mm + 0.2
     return [
-        _box(fence, fence, -0.2, w - 2 * fence, gw, depth),
-        _box(fence, d - fence - gw, -0.2, w - 2 * fence, gw, depth),
-        _box(fence, fence, -0.2, gw, d - 2 * fence, depth),
-        _box(w - fence - gw, fence, -0.2, gw, d - 2 * fence, depth),
+        _box(-0.2, fence, -0.2, w + 0.4, gw, depth),
+        _box(-0.2, d - fence - gw, -0.2, w + 0.4, gw, depth),
+        _box(fence, -0.2, -0.2, gw, d + 0.4, depth),
+        _box(w - fence - gw, -0.2, -0.2, gw, d + 0.4, depth),
     ]
 
 
