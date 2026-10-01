@@ -22,7 +22,7 @@ outer_depth_mm = 200.0
 outer_height_mm = 200.0
 wall_thickness_mm = 12.0
 panel_thickness_mm = 6.0
-door_opening_w_mm = 170.0
+door_opening_w_mm = 152.0
 door_opening_h_mm = 180.0
 door_clearance_mm = 2.0
 rail_width_mm = 4.0
@@ -65,7 +65,12 @@ groove_play_mm = 0.5
 groove_depth_mm = 4.0
 groove_fence_mm = 3.0
 groove_roof_depth_mm = 3.0
-corner_pad_mm = 18.0
+corner_pad_mm = 24.0
+joint_screw_x_mm = 17.0
+front_border_x_mm = 24.0
+back_border_x_mm = 24.0
+back_hole_inset_mm = 6.0
+joint_boss_span_mm = 10.0
 joint_pilot_diameter_mm = 2.8
 joint_screw_count = 4
 joint_boss_mm = 10.0
@@ -141,17 +146,14 @@ def _groove_width():
     return panel_thickness_mm + groove_play_mm
 
 
-def _screw_inset():
-    """Hole center from the outer cube edge. Center of the 10 mm boss."""
-    return groove_fence_mm + groove_play_mm / 2.0 + joint_boss_mm / 2.0
-
-
 def _joint_screw_xy(w, d):
-    y_front = groove_fence_mm + groove_play_mm / 2.0 + joint_boss_mm / 2.0
-    outer = groove_fence_mm + groove_play_mm / 2.0
-    y_back = d - outer - panel_thickness_mm + joint_boss_mm / 2.0
-    xs = (12.0, w - 12.0)
-    return [(xs[0], y_front), (xs[1], y_front), (xs[0], y_back), (xs[1], y_back)]
+    layout = seat_layout()
+    y_front = layout["y_front"]
+    y_back = layout["y_back"]
+    x = layout["screw_x"]
+    if x != joint_screw_x_mm:
+        raise SystemExit("screw x drifted from joint_screw_x_mm")
+    return [(x, y_front), (w - x, y_front), (x, y_back), (w - x, y_back)]
 
 
 def _base_grooves(w, d, h):
@@ -642,6 +644,31 @@ def _gap_center(near, far):
     return (near + far) / 2.0 - bought_sheet_thickness_mm / 2.0
 
 
+def seat_layout():
+    """The only seat. Assembly and both probes call this. Do not copy it."""
+    gap = groove_play_mm / 2.0
+    outer = groove_fence_mm + gap
+    place_z = (panel_thickness_mm - groove_depth_mm) + gap + groove_depth_mm
+    reach = joint_slot_depth_mm - gap
+    return {
+        "gap": gap,
+        "outer": outer,
+        "place_z": place_z,
+        "y_front": outer + joint_boss_mm / 2.0,
+        "y_back": outer_depth_mm - outer - panel_thickness_mm + joint_boss_mm / 2.0,
+        "back_y": outer_depth_mm - outer - panel_thickness_mm,
+        "reach": reach,
+        "side_y": outer + panel_thickness_mm - reach,
+        "top_z": place_z + outer_height_mm - groove_roof_depth_mm + gap,
+        "screw_x": joint_screw_x_mm,
+        "front_border_x": front_border_x_mm,
+        "back_border_x": back_border_x_mm,
+        "pad": corner_pad_mm,
+        "boss_span": joint_boss_span_mm,
+        "opening_w": door_opening_w_mm,
+    }
+
+
 def export_assembly(solids):
     """Viewer compound only. Not a print body. Not an occupancy proof.
 
@@ -649,9 +676,12 @@ def export_assembly(solids):
     """
     floor_h = panel_thickness_mm
     inset = bought_sheet_inset_mm
-    gap = groove_play_mm / 2.0
-    outer = groove_fence_mm + gap
-    place_z = (panel_thickness_mm - groove_depth_mm) + gap + groove_depth_mm
+    layout = seat_layout()
+    outer = layout["outer"]
+    place_z = layout["place_z"]
+    back_y = layout["back_y"]
+    side_y = layout["side_y"]
+    top_z = layout["top_z"]
     wall = _stand_panel(solids["habitat-back"], outer_height_mm)
     wall_h = outer_height_mm
     mesh = _stand(solids["habitat-clamp-wall"])
@@ -663,7 +693,6 @@ def export_assembly(solids):
     door_y = outer
     door_z = place_z + 14.0
     top = solids["habitat-top"]
-    top_z = place_z + wall_h - groove_roof_depth_mm + gap
     top_face = top_z + top.BoundBox.ZLength
     back_outer = outer_depth_mm
     side_sheet = _yaw(_stand(_cloth_blank(side_span_mm, outer_height_mm)), 90)
@@ -677,18 +706,12 @@ def export_assembly(solids):
         _at(side_sheet, _gap_center(outer_width_mm, outer_width_mm + 1.0), place_z + inset, place_z + inset),
         _at(roof_sheet, inset, inset, _gap_center(top_face, top_face + 1.0)),
     ]
-    back_y = outer_depth_mm - outer - panel_thickness_mm
     back_placed = _at(wall, 0, back_y, place_z)
-    reach = joint_slot_depth_mm - groove_play_mm / 2.0
-    side_y = outer + panel_thickness_mm - reach
-    print(f"seat back_y={back_y:.2f} place_z={place_z:.2f} side_y={side_y:.2f} side_span={side_span_mm:.1f}", flush=True)
     left_placed = _at(side, outer, side_y, place_z)
     right_placed = _at(side, outer_width_mm - outer - side.BoundBox.XLength, side_y, place_z)
     for name, shape in (("left", left_placed), ("right", right_placed)):
-        print(f"check {name} bb {[round(shape.BoundBox.XMin,1), round(shape.BoundBox.YMin,1), round(shape.BoundBox.ZMin,1), round(shape.BoundBox.XMax,1), round(shape.BoundBox.YMax,1), round(shape.BoundBox.ZMax,1)]}", flush=True)
         hit = shape.common(back_placed).Volume
-        print(f"{name} hit {hit:.1f}", flush=True)
-        if hit > 25.0:
+        if hit > 1.0:
             raise SystemExit(f"{name} intersects the back: {hit:.1f} mm3")
     placed = [
         solids["habitat-base"],
@@ -984,17 +1007,15 @@ def probe_cube_groove():
         raise SystemExit("roof groove ate the skin")
     if _inside(top, 6.0, 6.0, 3.0):
         raise SystemExit("roof mesh hole filled")
-    if not front.isInside(App.Vector(17.0, 100.0, 7.5), 0.05, True):
+    if not front.isInside(App.Vector(26.0, 100.0, 7.5), 0.05, True):
         raise SystemExit("door lip cut")
-    gap = groove_play_mm / 2.0
-    outer = groove_fence_mm + gap
-    place_z = (panel_thickness_mm - groove_depth_mm) + gap + groove_depth_mm
+    layout = seat_layout()
+    outer = layout["outer"]
+    place_z = layout["place_z"]
     front_s = _at(_stand_panel(front, outer_height_mm), 0, outer, place_z)
-    back_y = d - outer - panel_thickness_mm
+    back_y = layout["back_y"]
     back_s = _at(_stand_panel(back, outer_height_mm), 0, back_y, place_z)
-    side = _stand_panel(left, outer_height_mm)
-    side.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 90)
-    side.translate(App.Vector(outer + panel_thickness_mm, outer + panel_thickness_mm, place_z))
+    side = _at(_yaw(_stand_panel(left, outer_height_mm), 90), outer, layout["side_y"], place_z)
     for name, shape in (("front", front_s), ("back", back_s), ("side", side)):
         common = shape.common(base)
         hit = common.Volume
