@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 37,
+    "plate_index": 0,
+    "prepare_time": 6,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFG99",
+                    "id": 1,
+                    "main_used_g": 32.1923828125,
+                    "total_used_g": 32.1923828125
+                }
+            ],
+            "generate_support_material_time": 6,
+            "id": 1,
+            "infill_time": 123,
+            "layer_filament_change": 0,
+            "main_predication": 3601.997314453125,
+            "make_perimeters_time": 23,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 170.0,
+                        "height": 11.5,
+                        "width": 164.0,
+                        "x": 46.0000114440918,
+                        "y": 42.9999885559082,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-door-clamp.stl",
+                    "triangle_count": 2096
+                }
+            ],
+            "sliced_time": 242,
+            "sliced_time_with_cache": 67,
+            "total_predication": 4120.845703125,
+            "triangle_count": 2096,
+            "warning_message": ""
+        }
+    ]
+}

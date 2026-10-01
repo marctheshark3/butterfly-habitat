@@ -1,0 +1,11 @@
+{
+  "source_sha256": "b3a97ae213a8eade62f6b420ef8844b4601364d7c43c2d2b25380711151e7f93",
+  "mesh_compressed_mm": 0.2,
+  "mesh_measurement_confirmed": false,
+  "slicer_review_pass": true,
+  "wall_thickness_review_pass": true,
+  "physical_fit_pass": false,
+  "reviewer": "Codex \u2014 digital inspection only",
+  "review_date": "2026-10-01",
+  "notes": "Reviewed all 15 first-layer and bridge previews, plus door nut-pocket closure, roof grooves, rail seats and keeper-hook layers. Front/back/left/right require normal build-plate supports beneath locating tongues; all four sliced projects contain support paths. Critical webs range from 1.8 mm upward at the provisional 0.20 mm fabric stack. Cut and pocket dimensions and slice perimeters were reviewed; this is not a general medial-axis thickness proof. Layer-centre checks found no disconnected unsupported islands. Hardware and fabric contact, nut/head bearing seats, continuous motion and insertion paths pass. Actual PETG bridging, support removal, hand fit, mesh retention and 50 door cycles remain physical acceptance tests. Fabric thickness has NOT been measured."
+}

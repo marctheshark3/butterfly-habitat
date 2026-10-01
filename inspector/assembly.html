@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Habitat assembly guide</title><style>body{font:18px/1.6 system-ui,sans-serif;color:#253c34;background:#f7f4ec;max-width:880px;margin:auto;padding:28px}a{color:#176b55}h1,h2{line-height:1.2}section{background:white;border:1px solid #d7dbd3;border-radius:12px;padding:24px;margin:24px 0}li{margin:14px 0}img{width:100%;height:auto}.hardware{font-weight:600;color:#176b55}@media print{section{break-inside:avoid}nav{display:none}}</style><nav><a href="/">← CAD inspector</a> · <button onclick="print()">Print guide</button></nav><h1>Build the butterfly habitat</h1><p>Revision 0.11 engineering candidate. Digital geometry and slicing checks pass. Physical assembly, fabric retention and 50 door cycles still need testing. The model assumes 0.20 mm compressed mesh; measure your fabric and regenerate before final printing.</p><h2>Before assembly</h2><ul>
+<li>Print and test the fit coupons first, then a complete door panel and representative corner. Remove supports and brim before checking fit. The four wall panels require the documented build-plate supports.</li>
+<li>Identify all 15 printed parts: base, front, back, left, right, roof, door, back-clamp, left-clamp, right-clamp, roof-clamp, door-clamp, rail-left, rail-right and keeper. Use parts from one revision.</li>
+<li>Lay out 45 stainless M3 × 10 socket-head screws, six M3 × 16 socket-head screws, 51 M3 nyloc nuts (5.5 mm flats, 4 mm overall height), and a 2.5 mm hex driver. Screw length is measured beneath the head.</li>
+<li>Cut five mesh sheets using the matching 1:1 templates: back 198 × 185.75 mm; left and right each 181.5 × 185.75 mm; door 162 × 168 mm; roof 198 × 198 mm. Check the printed scale. Make the eight screw openings in each sheet; only the roof also needs two larger retention-access openings.</li>
+</ul><p><a href="templates/part-labels.svg">Part labels</a> · Mesh templates: <a href="templates/back-mesh.svg">back</a> · <a href="templates/left-mesh.svg">left</a> · <a href="templates/right-mesh.svg">right</a> · <a href="templates/door-mesh.svg">door</a> · <a href="templates/roof-mesh.svg">roof</a></p><h2>Build order</h2><p>Mesh panels → preload remaining nuts → rails and keeper → base and front/back → sides → door → roof → checks.</p>
+<section id="step-1"><h2>1. Prepare the five mesh panels</h2><p class="hardware">40 M3 × 10 screws + 40 M3 nyloc nuts</p><ol>
+<li>Pair each frame with its matching clamp: back, left, right, door and roof. The front is the open doorway and has no mesh clamp.</li>
+<li>On each frame, put eight nuts in the hex pockets opposite the clamp face. Point each nut’s nylon end away from the clamp. Hold loose nuts with temporary tape until the screws engage.</li>
+<li>Lay the matching mesh sheet on the frame, place the clamp over it, and insert eight 10 mm screws from the clamp side. Start all eight before tightening gradually around the border. Remove temporary tape.</li>
+<li>Check that the fabric is held around the entire opening, the clamp stays flat and screw tips remain recessed. Set the five completed panels aside.</li>
+</ol>
+<figure><img src="views/exploded.png" alt="CAD reference view; separated parts show orientation, not an installation sequence."><figcaption>CAD reference view; separated parts show orientation, not an installation sequence.</figcaption></figure>
+</section>
+<section id="step-2"><h2>2. Load the remaining nuts while the parts are accessible</h2><p class="hardware">11 M3 nyloc nuts</p><ol>
+<li>Front frame: insert two nuts in the lower inward-facing boss slots for the base, two in the upper inward-facing boss slots for the roof, and four in the inside-face hex pockets for the rails. Total: eight nuts.</li>
+<li>Back panel: insert two nuts in the lower inward-facing boss slots for the base.</li>
+<li>Rail-left: insert one nut in the inside-face pocket behind the keeper pivot before mounting the rail.</li>
+<li>Base nuts have nylon ends upward; roof nuts have nylon ends downward. Rail and keeper nuts have nylon ends toward the inside of the enclosure. Temporarily retain any loose nuts until their screws engage.</li>
+</ol>
+</section>
+<section id="step-3"><h2>3. Attach the rails and keeper to the front frame on the bench</h2><p class="hardware">5 M3 × 10 screws; nuts loaded in step 2</p><ol>
+<li>Place the front frame with its outside face accessible. Put rail-left and rail-right on the outside, with their stops at the bottom and their open track ends at the top. Left and right are as viewed from outside the front.</li>
+<li>Insert two 10 mm screws through each rail’s deep counterbores into the front frame nuts. Seat the heads; keep the running channels clear.</li>
+<li>Attach the keeper to the top of rail-left using the fifth 10 mm screw. Adjust the pivot so the keeper moves by hand and stays where placed. Swing its arm clear of the door path.</li>
+</ol>
+</section>
+<section id="step-4"><h2>4. Fasten the front and back to the base</h2><p class="hardware">4 M3 × 16 screws; nuts loaded in step 2</p><ol>
+<li>The grooved face of the base goes up; the recessed screw-head pockets go underneath. Place it on two supports so you can reach the underside without turning loose walls over.</li>
+<li>Seat the front frame’s bottom tongue in the front groove, with rails outside and nut bosses inside. Hold it upright and insert two 16 mm screws from below.</li>
+<li>Seat the back panel in the opposite groove, with its mesh clamp outside. Hold it upright and insert the remaining two 16 mm screws from below.</li>
+<li>Check that both walls sit fully down and all four heads sit within their underside recesses. Remove temporary nut-retaining tape.</li>
+</ol>
+</section>
+<section id="step-5"><h2>5. Slide in the side panels</h2><p class="hardware">No additional hardware</p><ol>
+<li>Keep the roof off. Hold the left panel with its mesh clamp facing out. Align both vertical edge tongues with the open slots on the inside faces of the front and back.</li>
+<li>Lower the panel straight down until its bottom tongue seats in the base. Repeat for the right panel.</li>
+<li>Check that all four wall tops are level. Keep the enclosure upright; the side panels can still lift out until the roof is secured.</li>
+</ol>
+</section>
+<section id="step-6"><h2>6. Insert the door and check the keeper</h2><p class="hardware">Completed door panel; no additional hardware</p><ol>
+<li>With the keeper swung clear, hold the completed door above the rail openings. Its clamp and projecting finger grip face outward; the grip is at the bottom.</li>
+<li>Lower both door edges into the tracks together until the door rests on both bottom stops. Do not force a tight track.</li>
+<li>Swing the keeper across the top of the closed door so its hook prevents the door lifting. Swing it clear again and check that the door slides freely.</li>
+</ol>
+<figure><img src="views/door-removal.png" alt="Insert the door and check the keeper"><figcaption>Insert the door and check the keeper</figcaption></figure>
+</section>
+<section id="step-7"><h2>7. Attach the complete roof</h2><p class="hardware">2 M3 × 16 screws; nuts loaded in step 2</p><ol>
+<li>Place the completed roof with its locating grooves down and mesh clamp up. Its two larger retention-access holes go toward the front, over the two upper front-frame bosses.</li>
+<li>Lower it onto all four wall tops. Insert one 16 mm screw through each large access hole into the front-frame nuts. These two screws seat on the roof frame.</li>
+<li>Leave the eight short mesh screws assembled. To remove the roof later, remove only the two long retention screws and lift the entire roof assembly. Keep the enclosure upright while the roof is off.</li>
+</ol>
+<figure><img src="views/roof-removal.png" alt="Attach the complete roof"><figcaption>Attach the complete roof</figcaption></figure>
+</section>
+<section id="step-8"><h2>8. Check the completed enclosure</h2><p class="hardware">Physical acceptance checks</p><ol>
+<li>Confirm all nuts engage their nylon locking section, screw tips are recessed, the base sits flat and the mesh has no loose border or escape gaps.</li>
+<li>With the roof installed, swing the keeper clear and raise the door through its full travel. It should lift completely out; allow about 190 mm of upward travel. Reinsert it and close the keeper.</li>
+<li>Complete and record 50 door cycles without binding or damage. Require hand assembly without drilling or sanding. Record failed fits for correction before calling the design fit verified.</li>
+</ol>
+<figure><img src="views/assembled.png" alt="Check the completed enclosure"><figcaption>Check the completed enclosure</figcaption></figure>
+</section>
+</html>

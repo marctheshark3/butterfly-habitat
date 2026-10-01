@@ -1,20 +1,20 @@
+> Historical reference. Superseded for printing and assembly by [revision 0.11](../README.md).
+
 # Habitat roof plates, plain and camera, 2026-09-29
 
 Point a session at this file for the roof only. The hinge and the floor slits are a different brief.
 
-`/home/marctheshark/Documents/butterfly-habitat/docs/habitat-roof-plates-cam-and-plain-2026-09-29.md`
+[This roof-plate brief](habitat-roof-plates-cam-and-plain-2026-09-29.md)
 
 Sibling, do not merge them into one cut:
 
-`/home/marctheshark/Documents/butterfly-habitat/docs/habitat-front-hinge-floor-slits-2026-09-29.md`
+[Front hinge and floor brief](habitat-front-hinge-floor-slits-2026-09-29.md)
 
 Drawing, both plates:
 
-`/home/marctheshark/Documents/butterfly-habitat/sketches/roof-plates/index.html`
+[Roof-plate drawing](../sketches/roof-plates/index.html)
 
-Same drawing on the inspector:
-
-`http://spark-adb4.tailf9bab6.ts.net:8118/roof-plates.html`
+For the current local inspector, see the [README](../README.md#local-cad-inspector).
 
 Not a print approval. Pick is Plate A. The live roof is the full mesh frame. Do not send it to the printer from this brief.
 

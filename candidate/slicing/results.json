@@ -1,0 +1,182 @@
+[
+  {
+    "part": "habitat-back-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "00b9934aef9dc32e8aebb7c6cddf1947586d83f8debad3958d451cef96f9a5d4",
+    "warnings": [
+      "[2026-10-01 10:26:00.590768] [0x0000704d1e7d8400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:00.835386] [0x0000704d1e7d8400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:00.835413] [0x0000704d1e7d8400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-back",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "3ca343303de5bfa98f524623d549eff86d77af59f1e98e07926b101ac7e59018",
+    "warnings": [
+      "[2026-10-01 10:26:01.255247] [0x0000724397bfd400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:01.742411] [0x0000724397bfd400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:01.742437] [0x0000724397bfd400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-base",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "9cb22c12ac0b2fba78bb363e12d36fef2989c91cba7bb853f02d7412666f4eb8",
+    "warnings": [
+      "[2026-10-01 10:26:02.219251] [0x000070729ab0a400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:02.592173] [0x000070729ab0a400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:02.592191] [0x000070729ab0a400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-door-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "485e1ce110b3eaa0a6d6be557751c94409f1f206154979c77970b740bd16acde",
+    "warnings": [
+      "[2026-10-01 10:26:03.038612] [0x000078ac3a35f400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:03.284141] [0x000078ac3a35f400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:03.284159] [0x000078ac3a35f400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-door",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "e7802e9ac18883f43b632da451c0852fdca86ee9009fdafbbd2fa60a3b6f3931",
+    "warnings": [
+      "[2026-10-01 10:26:03.697134] [0x00007e7c7692e400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:03.989706] [0x00007e7c7692e400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:03.989725] [0x00007e7c7692e400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-front",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "74574449a5dc9f584f9c36f74e352e25e8768fcc49fea0e3ca565fc642471e9b",
+    "warnings": [
+      "[2026-10-01 10:26:04.428987] [0x00007797d3146400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:04.853059] [0x00007797d3146400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:04.853095] [0x00007797d3146400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-keeper",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "b1b2c6c0171097c775dddaa912e57d075beef373bab39de05f397997acc03e98",
+    "warnings": [
+      "[2026-10-01 10:26:05.347071] [0x000079935febc400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:05.402611] [0x000079935febc400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:05.402635] [0x000079935febc400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-left-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "b8d694111d04b2ffffa1f0d274076429864efd9efe9e35f31e884316ff1bd8d3",
+    "warnings": [
+      "[2026-10-01 10:26:05.805138] [0x000075eb5b24d400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:06.038141] [0x000075eb5b24d400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:06.038157] [0x000075eb5b24d400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-left",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "2a69cf7deeaa93ebe41ac7d2e3ae79010e261893f83ecc68e014137d72a2026d",
+    "warnings": [
+      "[2026-10-01 10:26:06.472814] [0x00007e656d189400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:06.834850] [0x00007e656d189400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:06.834871] [0x00007e656d189400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-rail-left",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "f90618338ab356c5bd1d028720e0d4a36403622b7952903daed603182a556a60",
+    "warnings": [
+      "[2026-10-01 10:26:07.282185] [0x000072051c097400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:07.501881] [0x000072051c097400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:07.501904] [0x000072051c097400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-rail-right",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "d1e22ffebae9becfb090bc7228eee44aada54fdfdc0f4fb1022f91c91d964f6e",
+    "warnings": [
+      "[2026-10-01 10:26:07.905395] [0x0000712e3b420400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:08.095763] [0x0000712e3b420400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:08.095784] [0x0000712e3b420400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-right-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "5ebd03a9127c8afdc98f28adc41712dd8d3978691107301a7d16a3a40a4a0b12",
+    "warnings": [
+      "[2026-10-01 10:26:08.519042] [0x000070d5f1ab0400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:08.760535] [0x000070d5f1ab0400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:08.760549] [0x000070d5f1ab0400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-right",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "b9cfa963c835cb210a2f29d0600d3cdeedb43b7a2ffe9c749bd4a3465c394ee8",
+    "warnings": [
+      "[2026-10-01 10:26:09.193944] [0x0000756329134400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:09.594532] [0x0000756329134400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:09.594552] [0x0000756329134400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-roof-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "7b5cfc3ee80fc9248567f61e6cfd3ac0b715f6c0607b2c48b3d48fac004a9585",
+    "warnings": [
+      "[2026-10-01 10:26:10.070696] [0x00007bd40ed74400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:10.369351] [0x00007bd40ed74400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:10.369375] [0x00007bd40ed74400] [error]   glfwInit return error, code 65544"
+    ]
+  },
+  {
+    "part": "habitat-roof",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "90b9141e3e2a23116db06f24649d42c1872bf7489c1197a4a09ad9b05fe8f32c",
+    "warnings": [
+      "[2026-10-01 10:26:10.780725] [0x000071843bb72400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-01 10:26:11.211387] [0x000071843bb72400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-01 10:26:11.211408] [0x000071843bb72400] [error]   glfwInit return error, code 65544"
+    ]
+  }
+]

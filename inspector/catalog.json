@@ -1,0 +1,9 @@
+{
+  "default": "habitat-v011",
+  "models": [
+    {
+      "id": "habitat-v011",
+      "name": "Butterfly habitat 0.11.0"
+    }
+  ]
+}

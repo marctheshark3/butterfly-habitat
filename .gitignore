@@ -1,3 +1,10 @@
 __pycache__/
 renders/
 *.pyc
+
+# Local credentials and printer connection details
+.env
+.env.*
+*.pem
+*.key
+secrets/

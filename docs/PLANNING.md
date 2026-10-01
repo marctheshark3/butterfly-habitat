@@ -1,3 +1,5 @@
+> Historical reference. Superseded for printing and assembly by [revision 0.11](../README.md).
+
 # Planning notes
 
 For the next session. Not a print approval. Camera pod stays off.

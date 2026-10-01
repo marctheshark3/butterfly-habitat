@@ -1,60 +1,172 @@
 # Butterfly habitat
 
-Printable observation box for kids. About 200 mm on a side. Fits a 256 mm bed.
+A roughly 200 mm enclosure with a washable floor, drop-in walls, an external
+sliding mesh door, and a removable mesh roof. PETG; indoor or sheltered use.
 
-The listing photo was a style reference, not a measurement. Do not scale this to that box.
+**Revision 0.11 is an engineering candidate.** Fabric thickness is provisionally
+0.20 mm. Measure your compressed fabric before final release. Geometry and slicing checks pass with the documented wall supports. Physical fit,
+mesh retention, and 50 door cycles remain untested. No support-free claim is made.
 
-## What you print
+![Assembled habitat](candidate/views/assembled.png)
 
-PETG. 0.4 mm nozzle. 0.2 mm layers. Flat on the bed. No supports.
+## Start with a small mesh test
 
-- `habitat-base` ×1 — solid floor, drain slots
-- `habitat-top` ×1 — roof frame, 12 mm border, no shelf, no cable hole
-- `habitat-back` ×1 — full 200 mm frame
-- `habitat-left`, `habitat-right` ×1 each — 188 mm, stop at the back inside face
-- `habitat-front` ×1 — door opening and loose slide lips
-- `habitat-door-frame` ×1 — sliding carrier
-- `habitat-clamp-wall` ×1 — second plate, screws to the back frame
-- `habitat-clamp-side` ×2 — second plate, screws to the side frames
-- `habitat-clamp-door` ×1 — second plate, screws to the door frame
-- `habitat-clamp-roof` ×1 — second plate, screws to the roof
+Print one of each in PETG:
 
-STLs are in `stl/`. Editable source is `src/butterfly-habitat.py`. Contract is `docs/PRINT_SPEC.yaml`.
+1. [Mesh-fastener frame coupon](candidate/coupons/mesh-fastener-back.stl).
+2. [Matching clamp coupon](candidate/coupons/mesh-fastener-back-clamp.stl).
 
-## Mesh
+Import them as **separate objects** in Bambu Studio and keep their supplied
+orientations. Test with your actual mesh, M3 × 10 socket-head screws and M3
+nyloc nuts. Check nut fit, full engagement through the nylon locking section,
+recessed screw tips and firm fabric retention without cracking the clamp.
 
-Do not print the screen. A 0.4 mm nozzle cannot make a hole smaller than a newly hatched caterpillar. A monarch first instar is about 0.5–1.5 mm wide at the body. Buy a sheet. No-see-um or organza still works. Woven wire works only if the listing opening is 0.4 mm or smaller. A photo is not that number. Do not use 1/8 in hardware cloth.
+If that passes, print the [door](candidate/stl/habitat-door.stl) and
+[door clamp](candidate/stl/habitat-door-clamp.stl). This tests a complete mesh
+border using eight screws and eight nuts, and can become the finished door.
+Then test the [rail and corner coupons](candidate/coupons/) before printing the
+large panels. The full door-cycle test also needs the front frame, both rails
+and keeper. Physical results have **not yet been recorded**.
 
-For cloth, cut a sheet bigger than the window and smaller than the outer edge. Lay it on the frame. Screw the clamp plate on top. The screws pierce the fabric. That is the cloth joint.
+## P1S print setup
 
-The inspector draws that cloth cut as a 0.3 mm sheet in the 1 mm gap. The thickness is a stand-in, not a measured fabric, and it is not an STL. It covers the window and the screw holes, and it stops inside the outer edge. The roof sheet covers the old photo corner. Wire is not drawn.
+| Setting | Candidate configuration |
+| --- | --- |
+| Printer / nozzle | Bambu Lab P1S / 0.4 mm |
+| Material | PETG; current slices use Generic PETG |
+| Build plate | Textured PEI |
+| Layer height | 0.20 mm |
+| Walls / infill | 4 walls / 20% |
+| Brim | 5 mm outer brim |
+| Supports | Build-plate-only normal supports on front, back, left and right |
+| Orientation | Already applied to STLs; keep it when importing |
 
-For wire, do not pierce the sheet. Cut it larger than the window and smaller than the screw circle. Tuck the raw edge under the clamp. Screws stay plastic-to-plastic.
+Match the slicer’s filament and plate selections to what is actually installed.
+The 15 production parts need multiple plates. The existing
+[sliced projects](candidate/slicing/) document the candidate settings; inspect
+your arranged plate and slice preview before sending a job to the printer.
+See the [print specification](docs/PRINT_SPEC.yaml) for part-by-part orientation.
 
-## Screws
+## Assembly at a glance
 
-M3 clearance holes are 3.6 mm (ISO 273 coarse). Use M3 bolts and nylock nuts. This is not a snap fit and it is not a tested press.
+![Exploded CAD reference showing the habitat parts](candidate/views/exploded.png)
 
-The door lifts out the open top. Two millimetres of clearance per side, on purpose.
+*Exploded reference view. Offsets show the parts; they are not installation paths.*
 
-## Door
+1. Clamp mesh to the back, left, right, door and roof frames on the bench.
+2. Preload the remaining nuts in the front, back and left rail.
+3. Attach the two rails and rotating keeper to the front frame.
+4. Seat front and back in the base; secure with four screws from underneath.
+5. Lower the side panels into the open wall joints and base grooves.
+6. Slide the door down the outside tracks and check the keeper.
+7. Seat the roof and install its two separate retention screws from above.
+8. Check the fabric, hardware and joints; complete 50 door cycles.
 
-The door is not screwed to the front. The four holes in the front corners do not enter the floor, the sides, or the roof. A screw through one of them comes out the inside face into empty air. The eight holes in the door match the door clamp only. The front itself only touches the floor, the sides, and the roof. It does not snap, and nothing screws it on. The side walls are 188 mm. They stop at the inside face of the back. They do not run through it.
+The [illustrated assembly guide](docs/ASSEMBLY.md) gives the hardware counts,
+nut directions and checks for each step. Cut mesh using the
+[1:1 templates](candidate/templates/) and identify parts with the
+[paper labels](candidate/templates/part-labels.svg).
 
-![Door seated in the opening. Cream is the front, green is the door, blue is the clamp, tan is the bought sheet. Inspector colors, not filament.](docs/images/door-seat.png)
+| Hardware | Quantity |
+| --- | ---: |
+| Stainless M3 × 10 socket-head screw | 45 |
+| Stainless M3 × 16 socket-head screw | 6 |
+| M3 nyloc nut, 5.5 mm flats × 4 mm overall height | 51 |
 
-The green frame sits in the opening. The tan sheet is the cloth cut, in the 1 mm gap. The blue plate is the clamp. Those two share a hole pattern. The cream front does not. The screws would pierce the sheet.
+Use a 2.5 mm hex driver. The five mesh rings each use eight short screws.
+The remaining five short screws attach the rails and keeper. Four long screws
+retain the base and two retain the roof. See the [hardware list](candidate/hardware.csv).
 
-![A front-corner screw beside the door clamp. That hole does not enter the green or blue plate.](docs/images/door-screws.png)
+### Door and roof access
 
-This is a seated view of the mill parts. It is not a print approval. The assembly view seats the door the same way.
+| Door lifts out with the roof installed | Roof lifts off as one assembly |
+| --- | --- |
+| ![Door removal CAD view](candidate/views/door-removal.png) | ![Roof removal CAD view](candidate/views/roof-removal.png) |
 
-The side lips are on the inside face. They overlap the door border from 17 mm to 19 mm in X. The door sits in the 6 mm plate. The lip starts about 0.4 mm past the inner face, so the solids do not intersect. In this stand the cross lip is at the top of the opening, not under the door.
+Swing the keeper clear before lifting the door; allow about 190 mm upward
+travel. Remove only the roof’s **two long retention screws** to lift it off.
+Its eight mesh screws stay assembled. Keep the walls upright while the roof is off.
 
-## Camera
+## Files
 
-The roof is Plate A. There is no shelf and no cable hole. The XIAO ESP32-S3 Sense is not cut on this plate. The official expansion-board DXF has no lens circle, so Plate B stays a drawing. Do not cut a lens hole from this file.
+- [Candidate STLs](candidate/stl/) — 15 printed parts, one of each file.
+- [STEP parts](candidate/step/) and [complete assembly](candidate/assembly/habitat-assembly.step).
+- [Assembly guide](docs/ASSEMBLY.md), [hardware list](candidate/hardware.csv), and [mesh templates](candidate/templates/).
+- [Fit coupons](candidate/coupons/) — start here before a complete panel or habitat.
+- [Print specification](docs/PRINT_SPEC.yaml) and [validation evidence](candidate/validation.json).
+- [Sliced projects](candidate/slicing/) — inspection evidence; review before printing.
 
-## License
+Old STLs, snap coupons, source and tests are under `archive/`. Do not mix
+revisions. Historical planning notes and camera sketches describe earlier work.
 
-MIT. See `LICENSE`.
+## Local CAD inspector
+
+From the repository root:
+
+```sh
+python3 -m http.server 8118 --bind 127.0.0.1 --directory inspector
+```
+
+Open [localhost:8118](http://127.0.0.1:8118/). The inspector contains all
+122 components: 15 prints, five mesh sheets, 51 screws and 51 nuts.
+Drag to orbit, scroll to zoom, click parts to inspect, or use the translucent,
+exploded and section views.
+
+The **Instructions** button generates a printable 12-step booklet inside the
+inspector, with CAD illustrations, hardware counts and assembly directions.
+It shows the five mesh subassemblies separately before the enclosure steps.
+The header also links to the written guide.
+
+To refresh the viewer after changing CAD, export its model with FreeCAD and
+regenerate the instructions:
+
+```sh
+APPIMAGE_EXTRACT_AND_RUN=1 VibeCADCmd scripts/export-inspector.py
+python3 scripts/assembly-guide.py
+```
+
+Edit `scripts/assembly-guide.py` to update the shared sequence used by the
+Markdown guide, browser guide and inspector booklet.
+
+## Build and check
+
+The generator needs FreeCAD's Python modules (`FreeCAD`, `Part`, `MeshPart`).
+On this workstation VibeCADCmd provides them. It does not set `__main__` when
+loading a script, so use the entry point:
+
+```sh
+APPIMAGE_EXTRACT_AND_RUN=1 VibeCADCmd scripts/cad-entry.py
+APPIMAGE_EXTRACT_AND_RUN=1 HABITAT_ACTION=export VibeCADCmd scripts/cad-entry.py
+```
+
+The first command checks in memory. It cannot overwrite STL or STEP files.
+The second checks and exports the complete candidate set, manifest, hardware
+list, cutting templates, coupons and inspection views. Direct module imports
+also have no export side effects. The entry point returns nonzero on validation
+failure. Require `geometry_pass: true` and a fresh manifest matching the source hash.
+
+Set `HABITAT_MESH_MM` to your measured compressed thickness and
+`HABITAT_MESH_MEASURED=1` only after measuring it. The supported stack range is
+0.05–0.40 mm. A thicker material requires a fastening redesign.
+
+```sh
+python3 scripts/slice.py --profiles /path/to/BambuStudio/resources/profiles/BBL
+python3 scripts/labels.py
+python3 -m unittest discover -s tests
+# Optional PNG inspection views; needs numpy and Pillow:
+python3 scripts/render-views.py
+```
+
+## Validation status
+
+Geometry checks cover all 7,381 assembly pairs, fastener alignment, intended
+contacts, door/roof motion and installation access. The 15 production parts
+have sliced successfully using the documented P1S PETG settings.
+
+Fabric thickness is still an **unmeasured 0.20 mm assumption**. Coupon fit,
+full-panel mesh retention and the 50-cycle door test remain pending. This is
+an engineering candidate, not a fit-verified release.
+[Verification and release](docs/VERIFICATION.md) describes the checks,
+limitations and evidence needed for release.
+
+MIT. See [LICENSE](LICENSE).

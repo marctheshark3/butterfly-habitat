@@ -1,3 +1,5 @@
+> Historical reference. Superseded for printing and assembly by [revision 0.11](../README.md).
+
 # XIAO ESP32-S3 Sense lens datum
 
 The lens circle is not identifiable in the official Seeed DXF. Offsets were not recorded. `cam_offsets_ready` stays false. The pod was not cut.

@@ -1,3 +1,5 @@
+> Historical reference. Superseded for printing and assembly by [revision 0.11](../README.md).
+
 # Cube snap coupon
 
 Mesh screws stay mesh screws. The snap coupon is parked. Do not print another pair. Both printed pairs opened a gap after the click. The tighter one was only harder to start.

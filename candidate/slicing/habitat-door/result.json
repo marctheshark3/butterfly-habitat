@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 56,
+    "plate_index": 0,
+    "prepare_time": 6,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFG99",
+                    "id": 1,
+                    "main_used_g": 56.36494064331055,
+                    "total_used_g": 56.36494064331055
+                }
+            ],
+            "generate_support_material_time": 11,
+            "id": 1,
+            "infill_time": 132,
+            "layer_filament_change": 0,
+            "main_predication": 5298.40185546875,
+            "make_perimeters_time": 28,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 170.0,
+                        "height": 8.0,
+                        "width": 164.0,
+                        "x": 46.0000114440918,
+                        "y": 42.9999885559082,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-door.stl",
+                    "triangle_count": 2272
+                }
+            ],
+            "sliced_time": 289,
+            "sliced_time_with_cache": 100,
+            "total_predication": 5817.25,
+            "triangle_count": 2272,
+            "warning_message": ""
+        }
+    ]
+}

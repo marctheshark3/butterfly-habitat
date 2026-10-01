@@ -1,0 +1,239 @@
+{
+  "revision": "0.11.0",
+  "status": "engineering candidate",
+  "parts": {
+    "back": {
+      "bbox": [
+        200.0,
+        190.75,
+        22.000000000000004
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3408,
+      "first_layer_area_mm2": 16226.569918419029
+    },
+    "back-clamp": {
+      "bbox": [
+        200.0,
+        187.75,
+        3.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2080,
+      "first_layer_area_mm2": 16226.569918418101
+    },
+    "left": {
+      "bbox": [
+        191.5000000000001,
+        190.7500000000001,
+        8.000000000000083
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2352,
+      "first_layer_area_mm2": 13168.569918416248
+    },
+    "left-clamp": {
+      "bbox": [
+        183.5,
+        187.75,
+        3.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2080,
+      "first_layer_area_mm2": 13168.56991841897
+    },
+    "right": {
+      "bbox": [
+        191.5000000000001,
+        190.75000000000009,
+        8.000000000000083
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2352,
+      "first_layer_area_mm2": 13168.569918415142
+    },
+    "right-clamp": {
+      "bbox": [
+        183.5,
+        187.75,
+        3.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2080,
+      "first_layer_area_mm2": 13168.569918418265
+    },
+    "roof": {
+      "bbox": [
+        200.0,
+        200.0,
+        8.000000000000028
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2800,
+      "first_layer_area_mm2": 19162.212398022602
+    },
+    "roof-clamp": {
+      "bbox": [
+        200.0,
+        200.0,
+        3.0000000000000107
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2592,
+      "first_layer_area_mm2": 19114.146030422755
+    },
+    "front": {
+      "bbox": [
+        200.0,
+        190.75,
+        22.000000000000004
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3368,
+      "first_layer_area_mm2": 13493.284959209563
+    },
+    "base": {
+      "bbox": [
+        200.0,
+        200.0,
+        8.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2108,
+      "first_layer_area_mm2": 39871.320364908956
+    },
+    "door": {
+      "bbox": [
+        164.0,
+        170.0,
+        8.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2272,
+      "first_layer_area_mm2": 11518.829245554083
+    },
+    "door-clamp": {
+      "bbox": [
+        164.0,
+        170.0,
+        11.5
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2096,
+      "first_layer_area_mm2": 11678.569918418962
+    },
+    "rail-left": {
+      "bbox": [
+        29.000000000000014,
+        184.00000000000003,
+        14.800000000000058
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 1336,
+      "first_layer_area_mm2": 3096.3680889232623
+    },
+    "rail-right": {
+      "bbox": [
+        29.000000000000018,
+        184.00000000000003,
+        14.800000000000058
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 1056,
+      "first_layer_area_mm2": 3106.546849120862
+    },
+    "keeper": {
+      "bbox": [
+        28.5,
+        9.0,
+        9.000000000000004
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 284,
+      "first_layer_area_mm2": 246.32123980236634
+    }
+  },
+  "pairs_checked": 7381,
+  "collisions": [],
+  "motion": [
+    {
+      "name": "door removal",
+      "travel_mm": 190,
+      "collisions": []
+    },
+    {
+      "name": "roof removal",
+      "travel_mm": 20,
+      "collisions": []
+    },
+    {
+      "name": "left installation",
+      "travel_mm": 200,
+      "collisions": []
+    },
+    {
+      "name": "right installation",
+      "travel_mm": 200,
+      "collisions": []
+    },
+    {
+      "name": "front installation",
+      "travel_mm": 200,
+      "collisions": []
+    },
+    {
+      "name": "back installation",
+      "travel_mm": 200,
+      "collisions": []
+    }
+  ],
+  "fasteners": 51,
+  "mesh_measured": false,
+  "motion_checked": true,
+  "slicing": "candidate slice review passed; four walls require build-plate supports",
+  "physical": "pending",
+  "critical_webs_mm": {
+    "mesh_nut_seat": 1.8,
+    "base_under_head_seat": 4.8,
+    "structural_boss_slot_sides": 3.05,
+    "base_screw_tip_cap": 2.8000000000000007,
+    "roof_screw_tip_cap": 3,
+    "rail_screw_pocket_to_wall_slot": 2.3000000000000007,
+    "rail_lip": 3,
+    "keeper_pivot_edge": 2.2,
+    "wall_tongue": 4,
+    "front_above_aperture": 15.75,
+    "roof_above_groove": 5
+  },
+  "joint_clearances_mm": {
+    "left-front": 0.24999999999995914,
+    "left-back": 0.2499999999999991,
+    "right-front": 0.24999999999995914,
+    "right-back": 0.24999999999997158,
+    "door-rear": 0.30000000000000177,
+    "rail-left": 0.3000000000000007,
+    "rail-right": 0.30000000000001137
+  },
+  "errors": [],
+  "geometry_pass": true,
+  "thickness_review": "critical dimensions and slicer features reviewed; excludes intentional edge tapers",
+  "release_blockers": [
+    "compressed fabric measurement",
+    "physical tests before full-set printing"
+  ]
+}

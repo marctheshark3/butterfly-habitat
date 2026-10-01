@@ -1,0 +1,107 @@
+{
+  "habitat-back": {
+    "layers": 114,
+    "bridge_segments": 5660,
+    "longest_bridge_extrusion_mm": 140.671,
+    "arc_moves_tessellated": 2090,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-back-clamp": {
+    "layers": 15,
+    "bridge_segments": 2803,
+    "longest_bridge_extrusion_mm": 57.747,
+    "arc_moves_tessellated": 2230,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-base": {
+    "layers": 40,
+    "bridge_segments": 3774,
+    "longest_bridge_extrusion_mm": 277.341,
+    "arc_moves_tessellated": 2767,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-door": {
+    "layers": 40,
+    "bridge_segments": 3580,
+    "longest_bridge_extrusion_mm": 46.621,
+    "arc_moves_tessellated": 1651,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-door-clamp": {
+    "layers": 58,
+    "bridge_segments": 2561,
+    "longest_bridge_extrusion_mm": 46.622,
+    "arc_moves_tessellated": 2219,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-front": {
+    "layers": 114,
+    "bridge_segments": 5609,
+    "longest_bridge_extrusion_mm": 140.671,
+    "arc_moves_tessellated": 1073,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-keeper": {
+    "layers": 45,
+    "bridge_segments": 90,
+    "longest_bridge_extrusion_mm": 7.677,
+    "arc_moves_tessellated": 149,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-left": {
+    "layers": 44,
+    "bridge_segments": 5230,
+    "longest_bridge_extrusion_mm": 167.871,
+    "arc_moves_tessellated": 2133,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-left-clamp": {
+    "layers": 15,
+    "bridge_segments": 2776,
+    "longest_bridge_extrusion_mm": 46.949,
+    "arc_moves_tessellated": 2389,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-rail-left": {
+    "layers": 74,
+    "bridge_segments": 1623,
+    "longest_bridge_extrusion_mm": 13.447,
+    "arc_moves_tessellated": 2886,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-rail-right": {
+    "layers": 74,
+    "bridge_segments": 1467,
+    "longest_bridge_extrusion_mm": 13.196,
+    "arc_moves_tessellated": 2494,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-right": {
+    "layers": 44,
+    "bridge_segments": 5230,
+    "longest_bridge_extrusion_mm": 167.871,
+    "arc_moves_tessellated": 2133,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-right-clamp": {
+    "layers": 15,
+    "bridge_segments": 2776,
+    "longest_bridge_extrusion_mm": 46.949,
+    "arc_moves_tessellated": 2378,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-roof": {
+    "layers": 40,
+    "bridge_segments": 6003,
+    "longest_bridge_extrusion_mm": 45.754,
+    "arc_moves_tessellated": 3382,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "habitat-roof-clamp": {
+    "layers": 15,
+    "bridge_segments": 3059,
+    "longest_bridge_extrusion_mm": 69.196,
+    "arc_moves_tessellated": 2843,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  }
+}

@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 55,
+    "plate_index": 0,
+    "prepare_time": 7,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFG99",
+                    "id": 1,
+                    "main_used_g": 155.26266479492188,
+                    "total_used_g": 155.26266479492188
+                }
+            ],
+            "generate_support_material_time": 8,
+            "id": 1,
+            "infill_time": 228,
+            "layer_filament_change": 0,
+            "main_predication": 12842.6552734375,
+            "make_perimeters_time": 23,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 200.0,
+                        "height": 8.0,
+                        "width": 200.0,
+                        "x": 28.0,
+                        "y": 27.999990463256836,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-base.stl",
+                    "triangle_count": 2108
+                }
+            ],
+            "sliced_time": 369,
+            "sliced_time_with_cache": 84,
+            "total_predication": 13361.4541015625,
+            "triangle_count": 2108,
+            "warning_message": ""
+        }
+    ]
+}

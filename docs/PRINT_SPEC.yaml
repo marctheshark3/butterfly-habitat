@@ -1,24 +1,11 @@
-schema_version: 1
+schema_version: 2
 part:
   name: butterfly-habitat
-  revision: 0.10.0
-  product_class: enclosure
-  purpose: >
-    Observation habitat for the girls. Bought no-see-um or organza is clamped
-    between the frame and a second plate, same M3 clearance bolts. Not a
-    printed grille. A hatchling is narrower than a 2 mm printed hole. Door
-    slide is still a loose lip. Cube walls drop into base grooves and into
-    slots on the front and back. Roof grooves run the full wall width, including
-    the corners. Screws sit at x=17. Front door margin is 24 mm, so the opening
-    is 152 mm and still a slide. Back frame border is 24 mm. Back mesh holes
-    stay at inset 6. Snap stays parked. Not fit-tested. Mesh
-    screws stay mesh screws. Roof is Plate A: a 200 mm frame, 12 mm
-    border, 176 mm window, full clamp ring. No shelf. No cable hole. The roof
-    lifts off. That lift is the hatch. The XIAO ESP32-S3 Sense is not cut on
-    this plate. Lens center is not recorded. Plate B is a drawing only.
-    Screen is a bought sheet, not printed. Photo was style only. Size is the
-    ~200 mm cube that fits one P1S bed. MIT license.
-
+  revision: 0.11.0
+  status: engineering-candidate
+  body_envelope_mm: [200, 200, 201]
+  envelope_note: Exterior clamps, heads, rails and finger grip extend beyond body.
+  purpose: Bought-mesh enclosure with washable floor and removable door/roof.
 manufacturing:
   process: fdm
   printer: bambu-lab-p1s
@@ -26,322 +13,122 @@ manufacturing:
   material: PETG
   nozzle_mm: 0.4
   layer_height_mm: 0.2
-
+  walls: 4
+  infill_percent: 20
+  brim_mm: 5
+  bed: textured-PEI
+  support_free_verified: false
+  support_required_parts: [front, back, left, right]
+  support_type: normal-auto-build-plate-only
+  support_angle_deg: 45
 cad:
-  backend: vibecad
-  parametric: true
-  units: mm
-  source_files:
-    - src/butterfly-habitat.py
-
+  backend: FreeCAD-Part
+  source: src/butterfly-habitat.py
+  entry_point: scripts/cad-entry.py
+  assembly_manifest: candidate/assembly/manifest.json
+  validation_report: candidate/validation.json
+  import_writes_files: false
+  default_action: check
 geometry:
-  min_wall_mm: 1.6
-  min_feature_mm: 1.6
-  overlapping_solids_allowed: false
-  stl_files:
-    - path: stl/habitat-base.stl
-      body: base
-      expected_shells: 1
-    - path: stl/habitat-top.stl
-      body: top
-      expected_shells: 1
-    - path: stl/habitat-back.stl
-      body: back-panel
-      expected_shells: 1
-    - path: stl/habitat-left.stl
-      body: left-panel
-      expected_shells: 1
-    - path: stl/habitat-right.stl
-      body: right-panel
-      expected_shells: 1
-    - path: stl/habitat-front.stl
-      body: front-panel
-      expected_shells: 1
-    - path: stl/habitat-door-frame.stl
-      body: door-frame
-      expected_shells: 1
-    - path: stl/habitat-clamp-wall.stl
-      body: clamp-wall
-      expected_shells: 1
-    - path: stl/habitat-clamp-side.stl
-      body: clamp-side
-      expected_shells: 1
-    - path: stl/habitat-clamp-door.stl
-      body: clamp-door
-      expected_shells: 1
-    - path: stl/habitat-clamp-roof.stl
-      body: clamp-roof
-      expected_shells: 1
-    - path: stl/habitat-snap-tongue-coupon.stl
-      body: snap-tongue-coupon
-      expected_shells: 1
-    - path: stl/habitat-snap-pocket-coupon.stl
-      body: snap-pocket-coupon
-      expected_shells: 1
-
+  nominal_min_wall_mm: 1.6
+  structural_boss_width_mm: 12
+  panel_mm: 8
+  clamp_mm: 3
+  intersection_tolerance_mm3: 0.001
+  collision_exemptions: []
+  intended_contact: [head-seats, nut-seats, wall-shoulders, door-bottom-stops, fabric-lands]
+  edge_tapers: 0.4 mm entry chamfers on locating tongues and rail entries
+  thickness_validation: Critical dimensions and slice features reviewed; intentional edge tapers excluded.
 fit:
-  required: false
-  clearance_per_side_mm: 2.0
-  evidence: none
-
-dimensions:
-  - name: outer_width
-    parameter: outer_width_mm
-    value_mm: 200.0
-    tolerance_mm: 1.0
-    source: from-user
-  - name: outer_depth
-    parameter: outer_depth_mm
-    value_mm: 200.0
-    tolerance_mm: 1.0
-    source: from-user
-  - name: outer_height
-    parameter: outer_height_mm
-    value_mm: 200.0
-    tolerance_mm: 1.0
-    source: from-user
-  - name: wall_thickness
-    parameter: wall_thickness_mm
-    value_mm: 12.0
-    tolerance_mm: 0.4
-    source: assumed
-  - name: panel_thickness
-    parameter: panel_thickness_mm
-    value_mm: 6.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: groove_play
-    parameter: groove_play_mm
-    value_mm: 0.5
-    tolerance_mm: 0.2
-    source: assumed
-  - name: groove_depth
-    parameter: groove_depth_mm
-    value_mm: 4.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: groove_fence
-    parameter: groove_fence_mm
-    value_mm: 3.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: groove_roof_depth
-    parameter: groove_roof_depth_mm
-    value_mm: 3.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: corner_pad
-    parameter: corner_pad_mm
-    value_mm: 24.0
-    tolerance_mm: 0.4
-    source: assumed
-  - name: joint_screw_x
-    parameter: joint_screw_x_mm
-    value_mm: 17.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: front_border_x
-    parameter: front_border_x_mm
-    value_mm: 24.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: back_border_x
-    parameter: back_border_x_mm
-    value_mm: 24.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: back_hole_inset
-    parameter: back_hole_inset_mm
-    value_mm: 6.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: joint_boss_span
-    parameter: joint_boss_span_mm
-    value_mm: 10.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: joint_pilot_diameter
-    parameter: joint_pilot_diameter_mm
-    value_mm: 2.8
-    tolerance_mm: 0.1
-    source: assumed
-  - name: joint_boss
-    parameter: joint_boss_mm
-    value_mm: 10.0
-    tolerance_mm: 0.3
-    source: assumed
-  - name: joint_slot_depth
-    parameter: joint_slot_depth_mm
-    value_mm: 4.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: door_opening_w
-    parameter: door_opening_w_mm
-    value_mm: 152.0
-    tolerance_mm: 1.0
-    source: assumed
-  - name: door_opening_h
-    parameter: door_opening_h_mm
-    value_mm: 180.0
-    tolerance_mm: 1.0
-    source: assumed
-  - name: door_slide_clearance
-    parameter: door_clearance_mm
-    value_mm: 2.0
-    tolerance_mm: 0.5
-    source: assumed
-  - name: rail_width
-    parameter: rail_width_mm
-    value_mm: 4.0
-    tolerance_mm: 0.4
-    source: assumed
-  - name: rail_height
-    parameter: rail_height_mm
-    value_mm: 3.0
-    tolerance_mm: 0.3
-    source: assumed
-  - name: mounting_hole_diameter
-    parameter: mounting_hole_diameter_mm
-    value_mm: 3.6
-    tolerance_mm: 0.1
-    source: datasheet
-  - name: drain_slot_width
-    parameter: drain_slot_width_mm
-    value_mm: 4.0
-    tolerance_mm: 0.3
-    source: assumed
-  - name: drain_slot_length
-    parameter: drain_slot_length_mm
-    value_mm: 28.0
-    tolerance_mm: 0.5
-    source: assumed
-  - name: clamp_thickness
-    parameter: clamp_thickness_mm
-    value_mm: 3.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: cam_board_l
-    parameter: cam_board_l_mm
-    value_mm: 21.0
-    tolerance_mm: 0.2
-    source: datasheet
-  - name: cam_board_w
-    parameter: cam_board_w_mm
-    value_mm: 17.8
-    tolerance_mm: 0.2
-    source: datasheet
-  - name: cam_board_h
-    parameter: cam_board_h_mm
-    value_mm: 15.0
-    tolerance_mm: 0.3
-    source: datasheet
-  - name: cam_clearance_per_side
-    parameter: cam_clearance_per_side_mm
-    value_mm: 0.4
-    tolerance_mm: 0.1
-    source: assumed
-  - name: cam_aperture_diameter
-    parameter: cam_aperture_diameter_mm
-    value_mm: 6.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: cam_pod_wall
-    parameter: cam_pod_wall_mm
-    value_mm: 2.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: cam_usb_slot_w
-    parameter: cam_usb_slot_w_mm
-    value_mm: 9.0
-    tolerance_mm: 0.3
-    source: assumed
-  - name: cam_usb_slot_h
-    parameter: cam_usb_slot_h_mm
-    value_mm: 3.5
-    tolerance_mm: 0.2
-    source: assumed
-  - name: snap_arm_length
-    parameter: snap_arm_length_mm
-    value_mm: 14.0
-    tolerance_mm: 0.3
-    source: assumed
-  - name: snap_arm_thickness
-    parameter: snap_arm_thickness_mm
-    value_mm: 2.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: snap_arm_width
-    parameter: snap_arm_width_mm
-    value_mm: 8.0
-    tolerance_mm: 0.3
-    source: assumed
-  - name: snap_root_fillet
-    parameter: snap_root_fillet_mm
-    value_mm: 1.0
-    tolerance_mm: 0.2
-    source: assumed
-  - name: snap_undercut
-    parameter: snap_undercut_mm
-    value_mm: 0.8
-    tolerance_mm: 0.1
-    source: assumed
-  - name: snap_lead_angle
-    parameter: snap_lead_angle_deg
-    value_mm: 30.0
-    tolerance_mm: 2.0
-    source: assumed
-  - name: snap_return_angle
-    parameter: snap_return_angle_deg
-    value_mm: 45.0
-    tolerance_mm: 2.0
-    source: assumed
-  - name: snap_clearance_per_side
-    parameter: snap_clearance_per_side_mm
-    value_mm: 0.4
-    tolerance_mm: 0.1
-    source: assumed
-  - name: snap_pocket_depth
-    parameter: snap_pocket_depth_mm
-    value_mm: 0.5
-    tolerance_mm: 0.2
-    source: assumed
-  - name: snap_count_per_edge
-    parameter: snap_count_per_edge
-    value_mm: 2.0
-    tolerance_mm: 0.0
-    source: assumed
-
-print:
-  orientation: base-on-bed
-  bed_face: bottom
-  up_axis: Z
-  supports: none
-  max_overhang_deg: 45
-
-service:
-  environment: wet
-  drainage: slots
-
+  required: true
+  wall_joints:
+    clearance_per_side_mm: 0.25
+    parameter: WALL_FIT
+    coupon: candidate/coupons/corner-base.stl
+  door:
+    running_face_clearance_mm: 0.30
+    parameter: DOOR_FIT
+    closed_overlap_mm: 6
+    opening_mm: [152, 158]
+    carrier_mm: [164, 170]
+    removal_travel_mm: 190
+    coupon: candidate/coupons/rail-rail-left.stl
+  hardware:
+    radial_clearance_mm: 0.30
+    parameter: HARDWARE_RADIAL_FIT
+    hole_diameter_mm: 3.6
+    nut_flat_clearance_per_side_mm: 0.20
+    nut_parameter: NUT_FIT
+    coupon: candidate/coupons/mesh-fastener-back.stl
+  evidence: Physical coupons and 50-cycle test pending.
+mesh:
+  sheets: 5
+  screws_per_ring: 8
+  compressed_thickness_mm: 0.20
+  thickness_measured: false
+  accepted_stack_range_mm: [0.05, 0.40]
+  continuous_contact_band_mm: 3
+  templates: candidate/templates/
 hardware:
-  components:
-    - id: xiao_sense
-      mpn_or_generic: "Seeed Studio XIAO ESP32-S3 Sense 113991115"
-      role: mcu
-      qty: 1
-      envelope_mm: [21.0, 17.8, 15.0]
-      interfaces:
-        - name: cam_board_l
-          parameter: cam_board_l_mm
-          value_mm: 21.0
-          tolerance_mm: 0.2
-          source: datasheet
-        - name: cam_board_w
-          parameter: cam_board_w_mm
-          value_mm: 17.8
-          tolerance_mm: 0.2
-          source: datasheet
-        - name: cam_board_h
-          parameter: cam_board_h_mm
-          value_mm: 15.0
-          tolerance_mm: 0.3
-          source: datasheet
+  material: stainless-A2
+  screws:
+    head_type: socket-head-DIN912
+    diameter_mm: 3
+    pitch_mm: 0.5
+    head_diameter_mm: 5.5
+    head_height_mm: 3
+    driver_mm: 2.5
+    quantities:
+      - {length_mm: 10, quantity: 45, use: '40 mesh + 4 rails + 1 keeper'}
+      - {length_mm: 16, quantity: 6, use: '4 base + 2 roof'}
+    source: https://belmetric.com/content/A-PDF_Drawings/BSH3X10SS.pdf
+  nuts:
+    type: M3-nyloc-DIN985
+    supplier_part: NN3SS
+    quantity: 51
+    across_flats_mm: 5.5
+    overall_height_including_nylon_mm: 4
+    engagement_mm: 4
+    tip_beyond_nut_mm: 1
+    source: https://belmetric.com/content/A-PDF_Drawings/NN3SS.pdf
+  modeled_as: Conservative hardware envelopes with cleared thread bores.
+  tool_access_envelope_mm: {diameter: 5, shaft_length: 40}
+print:
+  stl_directory: candidate/stl/
+  quantity_each: 1
+  orientations_already_applied_to_stl: true
+  parts:
+    - {id: base, file: habitat-base.stl, bed_face: underside}
+    - {id: front, file: habitat-front.stl, bed_face: exterior, up: inward-bosses}
+    - {id: back, file: habitat-back.stl, bed_face: exterior-mesh-land, up: inward-bosses}
+    - {id: left, file: habitat-left.stl, bed_face: exterior-mesh-land}
+    - {id: right, file: habitat-right.stl, bed_face: exterior-mesh-land}
+    - {id: roof, file: habitat-roof.stl, bed_face: exterior-mesh-land, up: grooves}
+    - {id: door, file: habitat-door.stl, bed_face: rear}
+    - {id: back-clamp, file: habitat-back-clamp.stl, bed_face: mesh-contact-land}
+    - {id: left-clamp, file: habitat-left-clamp.stl, bed_face: mesh-contact-land}
+    - {id: right-clamp, file: habitat-right-clamp.stl, bed_face: mesh-contact-land}
+    - {id: roof-clamp, file: habitat-roof-clamp.stl, bed_face: mesh-contact-land}
+    - {id: door-clamp, file: habitat-door-clamp.stl, bed_face: mesh-contact-land, up: finger-grip}
+    - {id: rail-left, file: habitat-rail-left.stl, bed_face: broad-retaining-face}
+    - {id: rail-right, file: habitat-rail-right.stl, bed_face: broad-retaining-face}
+    - {id: keeper, file: habitat-keeper.stl, bed_face: broad-outer-face}
+  excluded: [archive, sketches, experimental-snap-coupons]
+service:
+  environment: indoor-or-sheltered
+  floor: solid-washable
+  drainage: none
+  camera: none
+validation:
+  cad_solids: see-generated-report
+  stl_manifold_and_components: see-generated-report
+  assembly_pairs_and_motion: see-generated-report
+  fastener_and_mesh_paths: see-generated-report
+  slicing_execution: see-candidate-slicing-results
+  slicer_visual_review: passed-with-wall-supports
+  whole_part_thickness_review: cut-dimensions-and-slice-features-reviewed
+  compressed_mesh_measurement: pending
+  physical_fit: pending
+  door_50_cycles: pending
+  digitally_verified: false
+  fit_verified: false

@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 30,
+    "plate_index": 0,
+    "prepare_time": 6,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFG99",
+                    "id": 1,
+                    "main_used_g": 25.300535202026367,
+                    "total_used_g": 25.300535202026367
+                }
+            ],
+            "generate_support_material_time": 7,
+            "id": 1,
+            "infill_time": 35,
+            "layer_filament_change": 0,
+            "main_predication": 2414.84521484375,
+            "make_perimeters_time": 27,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 184.0,
+                        "height": 14.800000190734863,
+                        "width": 29.000001907348633,
+                        "x": 113.50000762939453,
+                        "y": 36.0,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-rail-right.stl",
+                    "triangle_count": 1056
+                }
+            ],
+            "sliced_time": 187,
+            "sliced_time_with_cache": 98,
+            "total_predication": 2933.82177734375,
+            "triangle_count": 1056,
+            "warning_message": ""
+        }
+    ]
+}

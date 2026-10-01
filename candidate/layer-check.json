@@ -1,0 +1,77 @@
+{
+  "habitat-back-clamp": {
+    "layers": 15,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 3.3306690738754696e-16
+  },
+  "habitat-back": {
+    "layers": 110,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.06443280908830418
+  },
+  "habitat-base": {
+    "layers": 40,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.0022013555645528093
+  },
+  "habitat-door-clamp": {
+    "layers": 58,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 4.440892098500626e-16
+  },
+  "habitat-door": {
+    "layers": 40,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.013678102197493547
+  },
+  "habitat-front": {
+    "layers": 110,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.06443280908830429
+  },
+  "habitat-keeper": {
+    "layers": 45,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.0
+  },
+  "habitat-left-clamp": {
+    "layers": 15,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.0
+  },
+  "habitat-left": {
+    "layers": 40,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.11640763782485997
+  },
+  "habitat-rail-left": {
+    "layers": 74,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.018705235925220887
+  },
+  "habitat-rail-right": {
+    "layers": 74,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.01846845296026045
+  },
+  "habitat-right-clamp": {
+    "layers": 15,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.0
+  },
+  "habitat-right": {
+    "layers": 40,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 0.11640763782486474
+  },
+  "habitat-roof-clamp": {
+    "layers": 15,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 5.551115123125783e-16
+  },
+  "habitat-roof": {
+    "layers": 40,
+    "unsupported_islands": [],
+    "max_new_area_fraction": 3.3306690738754696e-16
+  }
+}
