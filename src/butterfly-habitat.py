@@ -109,10 +109,11 @@ def _border_holes(w, d, inset):
     ]
 
 
-def _clamp_ring(w, d, holes):
+def _clamp_ring(w, d, holes, border=None):
     """Second plate. Bought mesh goes between this and the frame. Same screws."""
     h = clamp_thickness_mm
-    border = wall_thickness_mm
+    if border is None:
+        border = wall_thickness_mm
     plate = _frame(w, d, h, border)
     r = mounting_hole_diameter_mm / 2.0
     return _cut_holes(plate, holes, r, h + 0.6)
@@ -214,15 +215,18 @@ def build_base():
     return _one(plate, "base")
 
 
-def build_side(span_x=None, span_y=None, joint="slot"):
+def build_side(span_x=None, span_y=None, joint="slot", border=None, hole_inset=None):
     """Frame. slot = back. tongue = the shorter sides. Foot drops into the base."""
     w = outer_width_mm if span_x is None else span_x
     d = outer_height_mm if span_y is None else span_y
     h = panel_thickness_mm
-    border = wall_thickness_mm
+    if border is None:
+        border = wall_thickness_mm
+    if hole_inset is None:
+        hole_inset = border / 2.0
     frame = _frame(w, d, h, border)
     r = mounting_hole_diameter_mm / 2.0
-    frame = _cut_holes(frame, _border_holes(w, d, border / 2.0), r, h + 0.6)
+    frame = _cut_holes(frame, _border_holes(w, d, hole_inset), r, h + 0.6)
     frame = frame.fuse(_foot_tongue(w, d, h))
     if joint == "tongue":
         reach = joint_slot_depth_mm - groove_play_mm / 2.0
@@ -316,12 +320,15 @@ def build_front():
     return _one(plate, "front")
 
 
-def build_clamp_wall(span_x=None, span_y=None):
+def build_clamp_wall(span_x=None, span_y=None, border=None, hole_inset=None):
     """Clamp ring. Back uses the full frame. Sides use the shorter span."""
     w = outer_width_mm if span_x is None else span_x
     d = outer_height_mm if span_y is None else span_y
-    border = wall_thickness_mm
-    return _one(_clamp_ring(w, d, _border_holes(w, d, border / 2.0)), "clamp-wall")
+    if border is None:
+        border = wall_thickness_mm
+    if hole_inset is None:
+        hole_inset = border / 2.0
+    return _one(_clamp_ring(w, d, _border_holes(w, d, hole_inset), border), "clamp-wall")
 
 
 def build_door_frame():
@@ -861,12 +868,12 @@ def build():
     parts = [
         ("habitat-base", build_base),
         ("habitat-top", build_top),
-        ("habitat-back", build_side),
+        ("habitat-back", lambda: build_side(border=back_border_x_mm, hole_inset=back_hole_inset_mm)),
         ("habitat-left", lambda: build_side(side_span_mm, outer_height_mm, joint="tongue")),
         ("habitat-right", lambda: build_side(side_span_mm, outer_height_mm, joint="tongue")),
         ("habitat-front", build_front),
         ("habitat-door-frame", build_door_frame),
-        ("habitat-clamp-wall", build_clamp_wall),
+        ("habitat-clamp-wall", lambda: build_clamp_wall(border=back_border_x_mm, hole_inset=back_hole_inset_mm)),
         ("habitat-clamp-side", lambda: build_clamp_wall(side_span_mm, outer_height_mm)),
         ("habitat-clamp-door", build_clamp_door),
         ("habitat-clamp-roof", build_clamp_roof),
@@ -988,7 +995,7 @@ def probe_cube_groove():
     d = outer_depth_mm
     base = build_base()
     front = build_front()
-    back = build_side()
+    back = build_side(border=back_border_x_mm, hole_inset=back_hole_inset_mm)
     left = build_side(side_span_mm, outer_height_mm, joint="tongue")
     top = build_top()
     if len(_joint_screw_xy(w, d)) != joint_screw_count:
