@@ -633,10 +633,11 @@ def _stand(shape):
 
 
 def _yaw(shape, deg):
+    """Rotate about Z and zero XY. Do not zero Z. The foot tongue hangs below 0."""
     s = shape.copy()
     s.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), deg)
     bb = s.BoundBox
-    s.translate(App.Vector(-bb.XMin, -bb.YMin, -bb.ZMin))
+    s.translate(App.Vector(-bb.XMin, -bb.YMin, 0))
     return s
 
 
@@ -989,6 +990,72 @@ def _stand_panel(shape, span_y):
     return s
 
 
+def probe_seat():
+    """In memory. Does not write STL or STEP. Same seat as export_assembly."""
+    layout = seat_layout()
+    w = outer_width_mm
+    d = outer_depth_mm
+    base = build_base()
+    front = build_front()
+    if not front.isInside(App.Vector(26.0, 100.0, 7.5), 0.05, True):
+        raise SystemExit("door lip cut")
+    back = build_side(border=back_border_x_mm, hole_inset=back_hole_inset_mm)
+    left = build_side(side_span_mm, outer_height_mm, joint="tongue")
+    top = build_top()
+    screws = _joint_screw_xy(w, d)
+    if len(screws) != joint_screw_count:
+        raise SystemExit("screw count drifted")
+    sx = layout["screw_x"]
+    if any(abs(x - sx) > 0.01 and abs(x - (w - sx)) > 0.01 for x, _y in screws):
+        raise SystemExit("screw x drifted from seat_layout")
+    if _inside(top, 1.5, 6.25, 1.0):
+        raise SystemExit("roof corner is still solid")
+    if not _inside(top, 40.0, 6.25, 5.0):
+        raise SystemExit("roof groove ate the skin")
+    front_lig = abs(sx - 8.0) - 1.8 - 1.8
+    back_lig = abs(sx - back_hole_inset_mm) - 1.8 - 1.8
+    if front_lig < 1.6:
+        raise SystemExit(f"front ligament {front_lig:.2f} mm")
+    if back_lig < 1.6:
+        raise SystemExit(f"back ligament {back_lig:.2f} mm")
+    half = joint_boss_span_mm / 2.0
+    if (sx - half) - (8.0 + 1.8) < 1.6:
+        raise SystemExit("front boss eats the mesh hole")
+    if front_border_x_mm - (sx + half) < 1.6:
+        raise SystemExit("front boss eats the window")
+    if (sx - half) - (back_hole_inset_mm + 1.8) < 1.6:
+        raise SystemExit("back boss eats the mesh hole")
+    if back_border_x_mm - (sx + half) < 1.6:
+        raise SystemExit("back boss leaves the frame")
+    outer = layout["outer"]
+    place_z = layout["place_z"]
+    front_s = _at(_stand_panel(front, outer_height_mm), 0, outer, place_z)
+    back_s = _at(_stand_panel(back, outer_height_mm), 0, layout["back_y"], place_z)
+    side = _at(_yaw(_stand_panel(left, outer_height_mm), 90), outer, layout["side_y"], place_z)
+    roof_s = _at(top, 0, 0, layout["top_z"])
+    pairs = (
+        ("front", front_s, "roof", roof_s),
+        ("back", back_s, "roof", roof_s),
+        ("left", side, "roof", roof_s),
+        ("front", front_s, "base", base),
+        ("back", back_s, "base", base),
+        ("left", side, "base", base),
+        ("left", side, "back", back_s),
+    )
+    for name, shape, other_name, other in pairs:
+        hit = shape.common(other).Volume
+        if hit > 1.0:
+            raise SystemExit(f"{name} intersects {other_name}: {hit:.1f} mm3")
+    sy = layout["y_front"]
+    if _inside(base, sx, sy, 3.0):
+        raise SystemExit("pilot is not a hole")
+    if sx + 4.0 >= corner_pad_mm:
+        raise SystemExit("pad sample would land in the groove")
+    if not _inside(base, sx + 4.0, sy, 3.0):
+        raise SystemExit("pilot missed the solid pad")
+    print("SEAT: PASS screws=4 play=0.5 opening=152", flush=True)
+
+
 def probe_cube_groove():
     """In memory. Does not write a cube STL."""
     w = outer_width_mm
@@ -1065,6 +1132,12 @@ elif os.environ.get("HABITAT_GROOVE_VIEW") == "1":
 elif os.environ.get("HABITAT_CUBE_GROOVE_PROBE") == "1":
     try:
         probe_cube_groove()
+    except SystemExit as exc:
+        print(f"PROBE-FAIL: {exc}", flush=True)
+        raise
+elif os.environ.get("HABITAT_SEAT_PROBE") == "1":
+    try:
+        probe_seat()
     except SystemExit as exc:
         print(f"PROBE-FAIL: {exc}", flush=True)
         raise

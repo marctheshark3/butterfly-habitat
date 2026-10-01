@@ -12,6 +12,8 @@ def test_pinch_holes_remain():
     assert "mounting_hole_diameter_mm = 3.6" in source
     assert "def build_clamp_roof" in source
     assert "cam_offsets_ready = False" in source
+    assert "def probe_seat" in source
+    assert "HABITAT_SEAT_PROBE" in source
 
 
 def test_snap_parameters_present():
