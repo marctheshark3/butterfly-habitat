@@ -1,15 +1,23 @@
 schema_version: 1
 part:
   name: butterfly-habitat
-  revision: 0.1.0
+  revision: 0.10.0
   product_class: enclosure
   purpose: >
     Observation habitat for the girls. Bought no-see-um or organza is clamped
     between the frame and a second plate, same M3 clearance bolts. Not a
-    printed grille. A hatchling is narrower than a 2 mm printed hole. Slide
-    is a loose lip, not a tested snap. ESP shelf is a cable ledge, not a
-    measured camera pocket. Photo was style only. Size is the ~200 mm cube
-    that fits one P1S bed. MIT license.
+    printed grille. A hatchling is narrower than a 2 mm printed hole. Door
+    slide is still a loose lip. Cube walls drop into base grooves and into
+    slots on the front and back. Roof grooves run the full wall width, including
+    the corners. Screws sit at x=17. Front door margin is 24 mm, so the opening
+    is 152 mm and still a slide. Back frame border is 24 mm. Back mesh holes
+    stay at inset 6. Snap stays parked. Not fit-tested. Mesh
+    screws stay mesh screws. Roof is Plate A: a 200 mm frame, 12 mm
+    border, 176 mm window, full clamp ring. No shelf. No cable hole. The roof
+    lifts off. That lift is the hatch. The XIAO ESP32-S3 Sense is not cut on
+    this plate. Lens center is not recorded. Plate B is a drawing only.
+    Screen is a bought sheet, not printed. Photo was style only. Size is the
+    ~200 mm cube that fits one P1S bed. MIT license.
 
 manufacturing:
   process: fdm
@@ -55,11 +63,20 @@ geometry:
     - path: stl/habitat-clamp-wall.stl
       body: clamp-wall
       expected_shells: 1
+    - path: stl/habitat-clamp-side.stl
+      body: clamp-side
+      expected_shells: 1
     - path: stl/habitat-clamp-door.stl
       body: clamp-door
       expected_shells: 1
     - path: stl/habitat-clamp-roof.stl
       body: clamp-roof
+      expected_shells: 1
+    - path: stl/habitat-snap-tongue-coupon.stl
+      body: snap-tongue-coupon
+      expected_shells: 1
+    - path: stl/habitat-snap-pocket-coupon.stl
+      body: snap-pocket-coupon
       expected_shells: 1
 
 fit:
@@ -93,9 +110,74 @@ dimensions:
     value_mm: 6.0
     tolerance_mm: 0.2
     source: assumed
+  - name: groove_play
+    parameter: groove_play_mm
+    value_mm: 0.5
+    tolerance_mm: 0.2
+    source: assumed
+  - name: groove_depth
+    parameter: groove_depth_mm
+    value_mm: 4.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: groove_fence
+    parameter: groove_fence_mm
+    value_mm: 3.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: groove_roof_depth
+    parameter: groove_roof_depth_mm
+    value_mm: 3.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: corner_pad
+    parameter: corner_pad_mm
+    value_mm: 24.0
+    tolerance_mm: 0.4
+    source: assumed
+  - name: joint_screw_x
+    parameter: joint_screw_x_mm
+    value_mm: 17.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: front_border_x
+    parameter: front_border_x_mm
+    value_mm: 24.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: back_border_x
+    parameter: back_border_x_mm
+    value_mm: 24.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: back_hole_inset
+    parameter: back_hole_inset_mm
+    value_mm: 6.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: joint_boss_span
+    parameter: joint_boss_span_mm
+    value_mm: 10.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: joint_pilot_diameter
+    parameter: joint_pilot_diameter_mm
+    value_mm: 2.8
+    tolerance_mm: 0.1
+    source: assumed
+  - name: joint_boss
+    parameter: joint_boss_mm
+    value_mm: 10.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: joint_slot_depth
+    parameter: joint_slot_depth_mm
+    value_mm: 4.0
+    tolerance_mm: 0.2
+    source: assumed
   - name: door_opening_w
     parameter: door_opening_w_mm
-    value_mm: 170.0
+    value_mm: 152.0
     tolerance_mm: 1.0
     source: assumed
   - name: door_opening_h
@@ -123,11 +205,6 @@ dimensions:
     value_mm: 3.6
     tolerance_mm: 0.1
     source: datasheet
-  - name: cable_hole_diameter
-    parameter: cable_hole_diameter_mm
-    value_mm: 8.0
-    tolerance_mm: 0.5
-    source: assumed
   - name: drain_slot_width
     parameter: drain_slot_width_mm
     value_mm: 4.0
@@ -143,6 +220,96 @@ dimensions:
     value_mm: 3.0
     tolerance_mm: 0.2
     source: assumed
+  - name: cam_board_l
+    parameter: cam_board_l_mm
+    value_mm: 21.0
+    tolerance_mm: 0.2
+    source: datasheet
+  - name: cam_board_w
+    parameter: cam_board_w_mm
+    value_mm: 17.8
+    tolerance_mm: 0.2
+    source: datasheet
+  - name: cam_board_h
+    parameter: cam_board_h_mm
+    value_mm: 15.0
+    tolerance_mm: 0.3
+    source: datasheet
+  - name: cam_clearance_per_side
+    parameter: cam_clearance_per_side_mm
+    value_mm: 0.4
+    tolerance_mm: 0.1
+    source: assumed
+  - name: cam_aperture_diameter
+    parameter: cam_aperture_diameter_mm
+    value_mm: 6.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: cam_pod_wall
+    parameter: cam_pod_wall_mm
+    value_mm: 2.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: cam_usb_slot_w
+    parameter: cam_usb_slot_w_mm
+    value_mm: 9.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: cam_usb_slot_h
+    parameter: cam_usb_slot_h_mm
+    value_mm: 3.5
+    tolerance_mm: 0.2
+    source: assumed
+  - name: snap_arm_length
+    parameter: snap_arm_length_mm
+    value_mm: 14.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: snap_arm_thickness
+    parameter: snap_arm_thickness_mm
+    value_mm: 2.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: snap_arm_width
+    parameter: snap_arm_width_mm
+    value_mm: 8.0
+    tolerance_mm: 0.3
+    source: assumed
+  - name: snap_root_fillet
+    parameter: snap_root_fillet_mm
+    value_mm: 1.0
+    tolerance_mm: 0.2
+    source: assumed
+  - name: snap_undercut
+    parameter: snap_undercut_mm
+    value_mm: 0.8
+    tolerance_mm: 0.1
+    source: assumed
+  - name: snap_lead_angle
+    parameter: snap_lead_angle_deg
+    value_mm: 30.0
+    tolerance_mm: 2.0
+    source: assumed
+  - name: snap_return_angle
+    parameter: snap_return_angle_deg
+    value_mm: 45.0
+    tolerance_mm: 2.0
+    source: assumed
+  - name: snap_clearance_per_side
+    parameter: snap_clearance_per_side_mm
+    value_mm: 0.4
+    tolerance_mm: 0.1
+    source: assumed
+  - name: snap_pocket_depth
+    parameter: snap_pocket_depth_mm
+    value_mm: 0.5
+    tolerance_mm: 0.2
+    source: assumed
+  - name: snap_count_per_edge
+    parameter: snap_count_per_edge
+    value_mm: 2.0
+    tolerance_mm: 0.0
+    source: assumed
 
 print:
   orientation: base-on-bed
@@ -154,3 +321,27 @@ print:
 service:
   environment: wet
   drainage: slots
+
+hardware:
+  components:
+    - id: xiao_sense
+      mpn_or_generic: "Seeed Studio XIAO ESP32-S3 Sense 113991115"
+      role: mcu
+      qty: 1
+      envelope_mm: [21.0, 17.8, 15.0]
+      interfaces:
+        - name: cam_board_l
+          parameter: cam_board_l_mm
+          value_mm: 21.0
+          tolerance_mm: 0.2
+          source: datasheet
+        - name: cam_board_w
+          parameter: cam_board_w_mm
+          value_mm: 17.8
+          tolerance_mm: 0.2
+          source: datasheet
+        - name: cam_board_h
+          parameter: cam_board_h_mm
+          value_mm: 15.0
+          tolerance_mm: 0.3
+          source: datasheet

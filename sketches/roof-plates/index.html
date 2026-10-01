@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Roof plates, plain and camera</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #f3efe6;
+    color: #241f1a;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.35;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: end;
+    padding: 22px 28px 8px;
+  }
+  h1 { font-size: 22px; font-weight: 650; margin: 0 0 4px; letter-spacing: 0; }
+  p.lead { margin: 0; max-width: 720px; color: #4a433b; font-size: 14px; }
+  nav { display: flex; gap: 8px; }
+  button {
+    border: 1px solid #c9bfb0;
+    background: #fff;
+    color: #241f1a;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  button.on { background: #241f1a; color: #f3efe6; border-color: #241f1a; }
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 12px 28px 28px;
+  }
+  main.one { grid-template-columns: 1fr; max-width: 760px; }
+  article {
+    background: #fffdf8;
+    border: 1px solid #e4dccf;
+    border-radius: 12px;
+    padding: 14px 14px 18px;
+  }
+  article h2 { margin: 0 0 2px; font-size: 16px; }
+  article .stance { margin: 0 0 10px; color: #6a6158; font-size: 13px; }
+  svg { width: 100%; height: auto; display: block; }
+  .note { margin: 8px 2px 0; font-size: 13px; color: #3d3832; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #7a4b32;
+    border: 1px solid #e4c7b4;
+    border-radius: 999px;
+    padding: 2px 8px;
+    margin-bottom: 6px;
+  }
+  footer {
+    padding: 0 28px 28px;
+    color: #6a6158;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Two roof plates. Same cube.</h1>
+    <p class="lead">The photo corner was a 48 by 40 mm shelf and an 8 mm hole. Plate A is the live roof. Plate B is not cut. The red dash is not a hole.</p>
+  </div>
+  <nav>
+    <button type="button" id="both" class="on">Both</button>
+    <button type="button" id="plain">Plain</button>
+    <button type="button" id="cam">Camera</button>
+  </nav>
+</header>
+<main id="board">
+  <article id="plain-card">
+    <div class="tag">Plate A, no camera</div>
+    <h2>Full mesh. The photo corner goes away.</h2>
+    <p class="stance">This is the fix for the shot. The roof is a frame, a sheet, and a clamp. No shelf. No hole.</p>
+    <svg viewBox="0 0 460 520" role="img" aria-label="Plain roof plate, top view">
+      <rect width="460" height="520" fill="#fffdf8"/>
+      <g transform="translate(70,36) scale(1.45)">
+        <rect x="0" y="0" width="200" height="200" fill="#c4b49a" stroke="#6f624f" stroke-width="0.8"/>
+        <rect x="12" y="12" width="176" height="176" fill="#e4d3a4" stroke="#b7a36d" stroke-width="0.4"/>
+        <g stroke="#d7c48a" stroke-width="0.35">
+          <path d="M16 20 H184 M16 36 H184 M16 52 H184 M16 68 H184 M16 84 H184 M16 100 H184 M16 116 H184 M16 132 H184 M16 148 H184 M16 164 H184 M16 180 H184"/>
+        </g>
+        <rect x="0" y="0" width="200" height="12" fill="#8aa4c4" fill-opacity="0.92"/>
+        <rect x="0" y="188" width="200" height="12" fill="#8aa4c4" fill-opacity="0.92"/>
+        <rect x="0" y="12" width="12" height="176" fill="#8aa4c4" fill-opacity="0.92"/>
+        <rect x="188" y="12" width="12" height="176" fill="#8aa4c4" fill-opacity="0.92"/>
+        <g fill="#2a2622">
+          <circle cx="6" cy="6" r="1.8"/>
+          <circle cx="100" cy="6" r="1.8"/>
+          <circle cx="194" cy="6" r="1.8"/>
+          <circle cx="6" cy="100" r="1.8"/>
+          <circle cx="194" cy="100" r="1.8"/>
+          <circle cx="6" cy="194" r="1.8"/>
+          <circle cx="100" cy="194" r="1.8"/>
+          <circle cx="194" cy="194" r="1.8"/>
+        </g>
+      </g>
+      <g font-size="12" fill="#241f1a" font-family="Segoe UI, sans-serif">
+        <text x="70" y="348">200 mm square. 12 mm border. 176 mm window.</text>
+        <text x="70" y="368">Clamp is a full ring. It is not notched.</text>
+        <text x="70" y="388">Mesh covers the old shelf, including that corner.</text>
+        <text x="70" y="408">Photo corner is the upper left. Mesh. No shelf. No hole.</text>
+        <text x="70" y="436" fill="#6a6158">Screws are M3 clearance, 3.6 mm. Pattern is a sketch,</text>
+        <text x="70" y="454" fill="#6a6158">not a joint into the walls. Roof still lifts off.</text>
+      </g>
+    </svg>
+  </article>
+  <article id="cam-card">
+    <div class="tag">Plate B, camera</div>
+    <h2>A corner pod. The lens hole is not drawn.</h2>
+    <p class="stance">Same mesh field, sealed up to a boss. The 8 mm hole does not come back as a fake lens.</p>
+    <svg viewBox="0 0 460 520" role="img" aria-label="Camera roof plate, top view">
+      <rect width="460" height="520" fill="#fffdf8"/>
+      <g transform="translate(70,36) scale(1.45)">
+        <rect x="0" y="0" width="200" height="200" fill="#c4b49a" stroke="#6f624f" stroke-width="0.8"/>
+        <path d="M25.8 12 H188 V188 H12 V22.6 H25.8 V12 Z" fill="#e4d3a4" stroke="#b7a36d" stroke-width="0.4"/>
+        <g stroke="#d7c48a" stroke-width="0.35">
+          <path d="M16 36 H184 M16 52 H184 M16 68 H184 M16 84 H184 M30 100 H184 M16 116 H184 M16 132 H184 M16 148 H184 M16 164 H184 M16 180 H184"/>
+        </g>
+        <rect x="25.8" y="0" width="174.2" height="12" fill="#8aa4c4" fill-opacity="0.92"/>
+        <rect x="0" y="188" width="200" height="12" fill="#8aa4c4" fill-opacity="0.92"/>
+        <rect x="0" y="22.6" width="12" height="165.4" fill="#8aa4c4" fill-opacity="0.92"/>
+        <rect x="188" y="12" width="12" height="176" fill="#8aa4c4" fill-opacity="0.92"/>
+        <rect x="0" y="0" width="25.8" height="22.6" fill="#d8c4a4" stroke="#6f624f" stroke-width="0.7"/>
+        <rect x="2" y="2" width="21.8" height="18.6" fill="none" stroke="#6f624f" stroke-width="0.45" stroke-dasharray="1.2 0.8"/>
+        <circle cx="12.9" cy="11.3" r="3.2" fill="none" stroke="#8b3a32" stroke-width="0.7" stroke-dasharray="1.1 0.7"/>
+        <rect x="-1.2" y="8" width="2.4" height="6.2" fill="#8b3a32"/>
+        <g fill="#2a2622">
+          <circle cx="100" cy="6" r="1.8"/>
+          <circle cx="194" cy="6" r="1.8"/>
+          <circle cx="194" cy="100" r="1.8"/>
+          <circle cx="6" cy="100" r="1.8"/>
+          <circle cx="6" cy="194" r="1.8"/>
+          <circle cx="100" cy="194" r="1.8"/>
+          <circle cx="194" cy="194" r="1.8"/>
+        </g>
+      </g>
+      <g font-size="12" fill="#241f1a" font-family="Segoe UI, sans-serif">
+        <text x="70" y="348">Pod outer 25.8 by 22.6 mm. Pocket 21.8 by 18.6.</text>
+        <text x="70" y="368">Board 21.0 by 17.8 by 15.0, datasheet. Wall 2.0, assumed.</text>
+        <text x="70" y="388">Red dash is not a hole. Lens center is unknown.</text>
+        <text x="70" y="408">Red nick is the USB slot, 9 by 3.5, out the side.</text>
+        <text x="70" y="436" fill="#6a6158">Mesh seals to the pod wall. No open step.</text>
+        <text x="70" y="454" fill="#6a6158">Look-down is the existing spec intent, not a measured aim.</text>
+      </g>
+    </svg>
+  </article>
+</main>
+<footer>
+  Live model is Plate A. Plate B does not cut a lens. Open this file, not a generic plan name.
+</footer>
+<script>
+  const board = document.getElementById("board");
+  const plain = document.getElementById("plain-card");
+  const cam = document.getElementById("cam-card");
+  const buttons = {
+    both: document.getElementById("both"),
+    plain: document.getElementById("plain"),
+    cam: document.getElementById("cam")
+  };
+  function show(which) {
+    plain.hidden = which === "cam";
+    cam.hidden = which === "plain";
+    board.classList.toggle("one", which !== "both");
+    for (const key of Object.keys(buttons)) buttons[key].classList.toggle("on", key === which);
+  }
+  for (const key of Object.keys(buttons)) buttons[key].addEventListener("click", () => show(key));
+</script>
+</body>
+</html>
