@@ -240,10 +240,12 @@ def build_side(span_x=None, span_y=None, joint="slot"):
 
 
 def _back_screw_bosses(plate, w, d, h):
-    """Boss sits on the print-top face. Hole is vertical once the panel stands."""
+    """10 mm in X and Z. Hole is vertical once the panel stands."""
     radius = mounting_hole_diameter_mm / 2.0
-    for x in (12.0, w - 12.0):
-        plate = plate.fuse(_box(x - 3.0, d - 12.0, 0, 6.0, 12.0, joint_boss_mm))
+    span = joint_boss_span_mm
+    half = span / 2.0
+    for x, _y in _joint_screw_xy(w, d)[2:]:
+        plate = plate.fuse(_box(x - half, d - 12.0, 0, span, 12.0, joint_boss_mm))
         plate = plate.cut(_hole_along_y(x, d - 14.0, 5.0, radius, 16.0))
     return plate
 
@@ -251,8 +253,10 @@ def _back_screw_bosses(plate, w, d, h):
 def _front_screw_bosses(plate, w, d, h):
     extra = joint_boss_mm - h
     radius = mounting_hole_diameter_mm / 2.0
-    for x in (12.0, w - 12.0):
-        plate = plate.fuse(_box(x - 3.0, d - 12.0, h - OVERLAP, 6.0, 12.0, extra + OVERLAP))
+    span = joint_boss_span_mm
+    half = span / 2.0
+    for x, _y in _joint_screw_xy(w, d)[:2]:
+        plate = plate.fuse(_box(x - half, d - 12.0, h - OVERLAP, span, 12.0, extra + OVERLAP))
         plate = plate.cut(_hole_along_y(x, d - 14.0, 5.0, radius, 16.0))
     return plate
 
