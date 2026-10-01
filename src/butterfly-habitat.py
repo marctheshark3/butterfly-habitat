@@ -1,4 +1,4 @@
-"""Butterfly habitat. Print flat. Clamp bought mesh between two plates. Stand the frames up.
+"""Print-in-place cube. Door still slides. Not fit-tested.
 
 Photo is style only. Size is the ~200 mm cube picked for one P1S bed.
 Mesh is bought no-see-um or organza, not a printed grille. Screws are M3 clearance.
@@ -61,6 +61,7 @@ snap_clearance_per_side_mm = 0.4
 snap_pocket_depth_mm = 0.5
 snap_count_per_edge = 2
 # Drop-in. 0.5 mm is total play, not per side. Not fit-tested.
+# The front opening is 152 mm. The door frame is 148 mm wide. It still slides.
 groove_play_mm = 0.5
 groove_depth_mm = 4.0
 groove_fence_mm = 3.0
