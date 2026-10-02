@@ -23,7 +23,7 @@ def main():
     module = runpy.run_path(str(ROOT / 'src/butterfly-habitat.py'), run_name='habitat_inspector')
     assembly = module['build']()
     geometries, items = {}, []
-    colors = dict(base='#bab29f', front='#cdc9b5', back='#bbc3aa', left='#b4c0ab', right='#b4c0ab', roof='#a1c0b9', door='#7bb099', keeper='#e39f5c')
+    colors = json.loads((ROOT / 'inspector/colors.json').read_text())
     offsets = dict(roof=[0,0,65], door=[0,-60,0], left=[-45,0,0], right=[45,0,0], back=[0,45,0], front=[0,-25,0])
     for name, item in assembly.items.items():
         shape = item.shape
@@ -40,7 +40,7 @@ def main():
         bb = shape.BoundBox
         hardware = item.kind in ('screw','nut')
         items.append(dict(instance=name, geometry=name, cad_edges=name+'-edges', kind='hardware' if hardware else item.kind,
-                          color='#55606e' if hardware else colors.get(item.group,'#a8b8a5'), opacity=0.15 if item.kind=='mesh' else 1,
+                          color='#55606e' if hardware else colors.get(name,'#a8b8a5'), opacity=0.15 if item.kind=='mesh' else 1,
                           explode_mm=offsets.get(item.group,[0,0,0]), bbox_mm=[bb.XLength,bb.YLength,bb.ZLength],
                           centroid=[bb.Center.x,bb.Center.y,bb.Center.z], vertexCount=len(vertices),
                           status='Digital checks passed; physical fit pending',

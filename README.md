@@ -26,7 +26,9 @@ If that passes, print the [door](candidate/stl/habitat-door.stl) and
 border using eight screws and eight nuts, and can become the finished door.
 Then test the [rail and corner coupons](candidate/coupons/) before printing the
 large panels. The full door-cycle test also needs the front frame, both rails
-and keeper. Physical results have **not yet been recorded**.
+and keeper. The mesh-fastener coupon prints were reported successful. Mesh was not yet
+available for the test; fabric retention, assembled thickness and full hardware
+engagement remain unverified.
 
 ## P1S print setup
 
@@ -46,6 +48,36 @@ The 15 production parts need multiple plates. The existing
 [sliced projects](candidate/slicing/) document the candidate settings; inspect
 your arranged plate and slice preview before sending a job to the printer.
 See the [print specification](docs/PRINT_SPEC.yaml) for part-by-part orientation.
+
+## Color plan
+
+The local inspector previews four filament colors. Screen colors are approximate.
+
+| Color | Parts |
+| --- | --- |
+| Medium blue | Base, front, back, left, right, roof |
+| Matte pink | Back/side/roof clamps and both rails |
+| Orange | Door and door clamp |
+| Red | Rotating keeper / latch |
+
+These are separate printed parts, so the scheme does not require color changes
+within a part. The static reference images below retain the earlier neutral
+palette. The inspector palette is defined in `inspector/colors.json`.
+
+The manufacturing baseline remains PETG. If using matte PLA instead, select
+its matching filament profile and repeat the fit tests with that material.
+
+## Selected mesh candidate
+
+[uxcell 150-micron nylon mesh, 39 × 39 inches](https://www.amazon.com/dp/B09VC3K6C2)
+is the selected candidate. One sheet is sufficient for the five panel cutouts.
+The 150-micron rating describes the openings, **not the fabric thickness**.
+Measure its compressed thickness and test retention with the coupons before
+finalizing the mesh-dependent parts. No measured thickness or mesh-fit result
+has been recorded yet. The current CAD still assumes 0.20 mm.
+
+For use with monarch eggs and hatchlings, fine mesh alone is insufficient:
+door and wall gaps also need checking before the enclosure is used.
 
 ## Assembly at a glance
 

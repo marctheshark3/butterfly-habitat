@@ -19,6 +19,13 @@
 The dated review and its source hash are in
 [`candidate/required-review.json`](../candidate/required-review.json).
 
+## Physical test report
+
+The mesh-fastener coupon prints were reported successful by the builder.
+No mesh was available during that test. This is a limited print result;
+compressed mesh thickness, fabric retention, full hardware engagement and the
+complete door/corner checks are still pending. `physical_fit_pass` remains false.
+
 ## What is automated
 
 The assembly definition contains 15 printed bodies, five compressed-fabric

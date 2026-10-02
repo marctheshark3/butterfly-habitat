@@ -1,0 +1,17 @@
+{
+  "base": "#388DC7",
+  "front": "#388DC7",
+  "back": "#388DC7",
+  "left": "#388DC7",
+  "right": "#388DC7",
+  "roof": "#388DC7",
+  "door": "#F68C38",
+  "door-clamp": "#F68C38",
+  "rail-left": "#F0A4BA",
+  "rail-right": "#F0A4BA",
+  "keeper": "#DD4945",
+  "back-clamp": "#F0A4BA",
+  "left-clamp": "#F0A4BA",
+  "right-clamp": "#F0A4BA",
+  "roof-clamp": "#F0A4BA"
+}
