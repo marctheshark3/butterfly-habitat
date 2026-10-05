@@ -8,3 +8,12 @@ renders/
 *.pem
 *.key
 secrets/
+
+# Local printer connections, account/session data and secret-scan reports
+.secrets/
+.local/
+printer-connection*.json
+bambu-credentials*.json
+BambuStudio.conf
+gitleaks-report.*
+secret-scan-report.*

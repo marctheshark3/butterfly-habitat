@@ -1,0 +1,6 @@
+[2026-10-04 10:42:01.174637] [0x000077000a228400] [trace]   Initializing StaticPrintConfigs
+[2026-10-04 10:42:01.186952] [0x000077000a228400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name , extruder_count 1
+[2026-10-04 10:42:01.426355] [0x000077000a228400] [error]   error_code 65544, description: Wayland: Failed to connect to display
+
+[2026-10-04 10:42:01.426373] [0x000077000a228400] [error]   glfwInit return error, code 65544
+

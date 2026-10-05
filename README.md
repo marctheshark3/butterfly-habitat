@@ -67,6 +67,16 @@ palette. The inspector palette is defined in `inspector/colors.json`.
 The manufacturing baseline remains PETG. If using matte PLA instead, select
 its matching filament profile and repeat the fit tests with that material.
 
+### PLA prints while waiting for mesh
+
+The builder selected PLA for the current spools. The
+[PLA starter pack](candidate/print-first/README.md) contains prepared P1S projects
+for the blue corner-fit coupons, then the actual blue base, blue front and red
+keeper. Start with the corner fit; the base is the first full-size print.
+These use Generic PLA until a spool-specific profile is selected. The original
+`candidate/slicing/` projects remain PETG. Mesh-dependent parts and physical
+release checks remain pending.
+
 ## Selected mesh candidate
 
 [uxcell 150-micron nylon mesh, 39 × 39 inches](https://www.amazon.com/dp/B09VC3K6C2)
@@ -188,6 +198,47 @@ python3 -m unittest discover -s tests
 # Optional PNG inspection views; needs numpy and Pillow:
 python3 scripts/render-views.py
 ```
+
+To re-slice one part, add `--part habitat-base`. The results for the other parts
+are retained. New slices run in a clean temporary directory, so an old project
+cannot be mistaken for a successful new slice. Source, profile and project
+hashes are recorded with each new result.
+
+For PLA, choose a separate output directory to keep the PETG evidence intact:
+
+```sh
+python3 scripts/slice.py --profiles /path/to/BambuStudio/resources/profiles/BBL \
+  --filament 'Generic PLA' --output candidate/slicing-pla --part habitat-base
+```
+
+An output directory cannot mix different printer/process/filament profiles.
+Use a fresh directory when changing those settings. Keep the starter projects'
+color assignments when preparing new PLA plates.
+
+## Repository checks
+
+These checks use Python 3.10+ and do not require FreeCAD, Bambu Studio or a
+printer. The installer downloads a checksum-pinned Gitleaks release into the
+ignored `.local/bin/` directory on Linux or macOS:
+
+```sh
+python3 scripts/install-gitleaks.py
+python3 -m unittest discover -s tests -v
+python3 scripts/package-starter.py --check
+python3 scripts/check-secrets.py --history
+```
+
+The [GitHub Actions workflow](.github/workflows/checks.yml) runs the same checks
+on pushes and pull requests with read-only permissions. It checks exported CAD
+evidence and meshes, slicer failure handling, PLA project settings, source
+hashes, ZIP contents, and secret detection inside current, staged and historical
+print archives. It does not substitute for FreeCAD regeneration or physical
+fit tests. Secret handling rules are in [AGENTS.md](AGENTS.md).
+
+To rebuild the PLA download ZIP after an approved project or guide update, run
+`python3 scripts/package-starter.py`. It validates the projects first and creates
+a repeatable archive containing only the listed files. `--check` verifies the
+existing ZIP and loose STL copies without modifying them.
 
 ## Validation status
 
