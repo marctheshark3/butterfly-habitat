@@ -1,0 +1,11 @@
+title = "Butterfly habitat secret checks"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "printer-access-code"
+description = "Printer LAN access code or connection password"
+regex = '''(?i)(?:bambu[_-]?(?:access[_-]?code|password)|(?:device|dev|printer|lan)[_-]?access[_-]?code|access[_-]?code)["']?\s*[:=]\s*["']?([a-z0-9]{8})\b'''
+secretGroup = 1
+keywords = ["access_code", "accesscode", "access-code", "bambu_password", "bambupassword"]

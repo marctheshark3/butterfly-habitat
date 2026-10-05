@@ -1,0 +1,98 @@
+{
+  "revision": "0.11.0",
+  "source_sha256": "b3a97ae213a8eade62f6b420ef8844b4601364d7c43c2d2b25380711151e7f93",
+  "mesh_mm": 0.2,
+  "mesh_measured": false,
+  "physical_fit_pass": false,
+  "material_change": "PLA selected by builder; previous candidate slices remain PETG.",
+  "jobs": [
+    {
+      "project": "01-blue-corner-fit/01-blue-corner-fit.3mf",
+      "material": "Generic PLA",
+      "color": "#388DC7",
+      "seconds": 5018.603515625,
+      "grams": 42.298797607421875,
+      "objects": [
+        "corner-front.stl",
+        "corner-base.stl",
+        "corner-left.stl"
+      ],
+      "supports": true,
+      "plate_bounds_including_brim": [
+        54.45431000000001,
+        54.82931000000001,
+        201.54569,
+        200.31482000000003
+      ],
+      "sources": {
+        "candidate/coupons/corner-front.stl": "e61abc18b99b16c3eaaa7d92ed892a42a437070bd0fb76f69ea602311d52852b",
+        "candidate/coupons/corner-base.stl": "c1ad5231eca0c00e1a1a62e189067a41f75dc942b9721dc616a9b370f47c640c",
+        "candidate/coupons/corner-left.stl": "e4250fd94acc0a330e9def09b95e98d09eed3f63dd09e4e5ed1bb9a512790005"
+      },
+      "project_sha256": "2fced719fe3c2473d7735feb66800cd54fbc40fa05ce6c738c079db7bcf01d89"
+    },
+    {
+      "project": "02-blue-base/02-blue-base.3mf",
+      "material": "Generic PLA",
+      "color": "#388DC7",
+      "seconds": 13349.0185546875,
+      "grams": 156.37599182128906,
+      "objects": [
+        "habitat-base.stl"
+      ],
+      "supports": false,
+      "plate_bounds_including_brim": [
+        23.329300000000003,
+        23.32929,
+        232.6707,
+        232.67069
+      ],
+      "sources": {
+        "candidate/stl/habitat-base.stl": "9cb22c12ac0b2fba78bb363e12d36fef2989c91cba7bb853f02d7412666f4eb8"
+      },
+      "project_sha256": "d0703bb907701a4c5c1d08a12876399ba407004edd0ccb0b014aded99d858aa3"
+    },
+    {
+      "project": "03-blue-front/03-blue-front.3mf",
+      "material": "Generic PLA",
+      "color": "#388DC7",
+      "seconds": 8155.57958984375,
+      "grams": 76.18317413330078,
+      "objects": [
+        "habitat-front.stl"
+      ],
+      "supports": true,
+      "plate_bounds_including_brim": [
+        23.32929,
+        27.954290000000004,
+        232.67069,
+        227.98742000000001
+      ],
+      "sources": {
+        "candidate/stl/habitat-front.stl": "74574449a5dc9f584f9c36f74e352e25e8768fcc49fea0e3ca565fc642471e9b"
+      },
+      "project_sha256": "1fe31ac1a7643c072c3de52595d0d209321db60c5142c2f536a893709f5c1e05"
+    },
+    {
+      "project": "04-red-keeper/04-red-keeper.3mf",
+      "material": "Generic PLA",
+      "color": "#DD4945",
+      "seconds": 684.0001831054688,
+      "grams": 1.0516821146011353,
+      "objects": [
+        "habitat-keeper.stl"
+      ],
+      "supports": false,
+      "plate_bounds_including_brim": [
+        109.07931,
+        118.8293,
+        146.92071,
+        137.1707
+      ],
+      "sources": {
+        "candidate/stl/habitat-keeper.stl": "b1b2c6c0171097c775dddaa912e57d075beef373bab39de05f397997acc03e98"
+      },
+      "project_sha256": "cc4bb3562d2401cb790028003d55c8a0b67b850e8e6b8332ef1226dc8322c79c"
+    }
+  ]
+}

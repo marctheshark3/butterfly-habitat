@@ -1,0 +1,30 @@
+{
+  "01-blue-corner-fit": {
+    "layers": 114,
+    "bridge_segments": 2583,
+    "longest_bridge_extrusion_mm": 77.766,
+    "arc_moves_tessellated": 1243,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "02-blue-base": {
+    "layers": 40,
+    "bridge_segments": 3774,
+    "longest_bridge_extrusion_mm": 277.341,
+    "arc_moves_tessellated": 2767,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "03-blue-front": {
+    "layers": 114,
+    "bridge_segments": 5609,
+    "longest_bridge_extrusion_mm": 140.671,
+    "arc_moves_tessellated": 1073,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  },
+  "04-red-keeper": {
+    "layers": 45,
+    "bridge_segments": 90,
+    "longest_bridge_extrusion_mm": 7.677,
+    "arc_moves_tessellated": 149,
+    "note": "Extrusion length includes anchoring; inspect bridge support in the 3MF."
+  }
+}

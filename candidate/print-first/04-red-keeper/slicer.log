@@ -1,0 +1,6 @@
+[2026-10-04 10:42:03.323215] [0x00007b39a9bbe400] [trace]   Initializing StaticPrintConfigs
+[2026-10-04 10:42:03.332378] [0x00007b39a9bbe400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1
+[2026-10-04 10:42:03.381513] [0x00007b39a9bbe400] [error]   error_code 65544, description: Wayland: Failed to connect to display
+
+[2026-10-04 10:42:03.381528] [0x00007b39a9bbe400] [error]   glfwInit return error, code 65544
+
