@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 108,
+    "plate_index": 0,
+    "prepare_time": 8,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFA01",
+                    "id": 1,
+                    "main_used_g": 88.81383514404297,
+                    "total_used_g": 88.81383514404297
+                }
+            ],
+            "generate_support_material_time": 15,
+            "id": 1,
+            "infill_time": 328,
+            "layer_filament_change": 0,
+            "main_predication": 6470.46240234375,
+            "make_perimeters_time": 47,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 200.0,
+                        "height": 8.0,
+                        "width": 200.0,
+                        "x": 28.0,
+                        "y": 27.999990463256836,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-roof.stl",
+                    "triangle_count": 3864
+                }
+            ],
+            "sliced_time": 629,
+            "sliced_time_with_cache": 199,
+            "total_predication": 6987.92724609375,
+            "triangle_count": 3864,
+            "warning_message": ""
+        }
+    ]
+}

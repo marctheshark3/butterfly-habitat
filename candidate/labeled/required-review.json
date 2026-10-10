@@ -1,0 +1,12 @@
+{
+  "source_sha256": "b3a97ae213a8eade62f6b420ef8844b4601364d7c43c2d2b25380711151e7f93",
+  "label_source_sha256": "20b5f459213bff70cf67a8c7fdbc321f94cf910e73c6cfdc99cdbd479579c3f5",
+  "variant": "engraved-ids-1",
+  "mesh_compressed_mm": 0.2,
+  "mesh_measurement_confirmed": false,
+  "slicer_review_pass": false,
+  "wall_thickness_review_pass": false,
+  "physical_fit_pass": false,
+  "reviewer": "",
+  "notes": "Separate engraved variant. Record new slice and physical observations."
+}

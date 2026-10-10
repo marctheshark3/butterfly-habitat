@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 45,
+    "plate_index": 0,
+    "prepare_time": 9,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFA01",
+                    "id": 1,
+                    "main_used_g": 45.6007080078125,
+                    "total_used_g": 45.6007080078125
+                }
+            ],
+            "generate_support_material_time": 7,
+            "id": 1,
+            "infill_time": 275,
+            "layer_filament_change": 0,
+            "main_predication": 3438.640625,
+            "make_perimeters_time": 36,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 187.75,
+                        "height": 3.0,
+                        "width": 200.0,
+                        "x": 28.0,
+                        "y": 34.1249885559082,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-back-clamp.stl",
+                    "triangle_count": 2968
+                }
+            ],
+            "sliced_time": 412,
+            "sliced_time_with_cache": 70,
+            "total_predication": 3956.1201171875,
+            "triangle_count": 2968,
+            "warning_message": ""
+        }
+    ]
+}

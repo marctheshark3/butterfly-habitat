@@ -1,0 +1,723 @@
+{
+  "revision": "0.11.0",
+  "status": "engineering candidate",
+  "parts": {
+    "back": {
+      "bbox": [
+        200.0,
+        190.75,
+        22.00000000000003
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 4328,
+      "first_layer_area_mm2": 16226.569918415695
+    },
+    "back-clamp": {
+      "bbox": [
+        200.0,
+        187.75,
+        3.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2968,
+      "first_layer_area_mm2": 16226.569918418105
+    },
+    "left": {
+      "bbox": [
+        191.5000000000001,
+        190.7500000000001,
+        8.000000000000146
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3168,
+      "first_layer_area_mm2": 13168.569918414332
+    },
+    "left-clamp": {
+      "bbox": [
+        183.5,
+        187.75,
+        3.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2864,
+      "first_layer_area_mm2": 13168.56991841897
+    },
+    "right": {
+      "bbox": [
+        191.50000000000014,
+        190.7500000000001,
+        8.000000000000146
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3412,
+      "first_layer_area_mm2": 13168.569918414445
+    },
+    "right-clamp": {
+      "bbox": [
+        183.5,
+        187.75,
+        3.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3108,
+      "first_layer_area_mm2": 13168.569918418265
+    },
+    "roof": {
+      "bbox": [
+        200.0,
+        200.0,
+        8.000000000000057
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3864,
+      "first_layer_area_mm2": 19162.21239802139
+    },
+    "roof-clamp": {
+      "bbox": [
+        200.0,
+        200.0,
+        3.0000000000000107
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3624,
+      "first_layer_area_mm2": 19114.146030422755
+    },
+    "front": {
+      "bbox": [
+        200.0,
+        190.75,
+        22.000000000000085
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 4292,
+      "first_layer_area_mm2": 13493.284959206789
+    },
+    "base": {
+      "bbox": [
+        200.0,
+        200.0,
+        8.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3040,
+      "first_layer_area_mm2": 39871.320364908956
+    },
+    "door": {
+      "bbox": [
+        164.0,
+        170.0,
+        8.0
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3260,
+      "first_layer_area_mm2": 11505.389894328819
+    },
+    "door-clamp": {
+      "bbox": [
+        164.0,
+        170.0,
+        11.5
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 3052,
+      "first_layer_area_mm2": 11678.569918418962
+    },
+    "rail-left": {
+      "bbox": [
+        29.000000000000014,
+        184.00000000000003,
+        14.800000000000058
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2228,
+      "first_layer_area_mm2": 3096.3680889232623
+    },
+    "rail-right": {
+      "bbox": [
+        29.000000000000018,
+        184.00000000000003,
+        14.800000000000058
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 2016,
+      "first_layer_area_mm2": 3106.546849120862
+    },
+    "keeper": {
+      "bbox": [
+        28.5,
+        9.0,
+        9.000000000000004
+      ],
+      "manifold": true,
+      "bed_with_brim": true,
+      "triangles": 1172,
+      "first_layer_area_mm2": 228.30296177434724
+    }
+  },
+  "pairs_checked": 7381,
+  "collisions": [],
+  "motion": [
+    {
+      "name": "door removal",
+      "travel_mm": 190,
+      "collisions": []
+    },
+    {
+      "name": "roof removal",
+      "travel_mm": 20,
+      "collisions": []
+    },
+    {
+      "name": "left installation",
+      "travel_mm": 200,
+      "collisions": []
+    },
+    {
+      "name": "right installation",
+      "travel_mm": 200,
+      "collisions": []
+    },
+    {
+      "name": "front installation",
+      "travel_mm": 200,
+      "collisions": []
+    },
+    {
+      "name": "back installation",
+      "travel_mm": 200,
+      "collisions": []
+    }
+  ],
+  "fasteners": 51,
+  "mesh_measured": false,
+  "motion_checked": true,
+  "slicing": "pending",
+  "physical": "pending",
+  "critical_webs_mm": {
+    "mesh_nut_seat": 1.8,
+    "base_under_head_seat": 4.8,
+    "structural_boss_slot_sides": 3.05,
+    "base_screw_tip_cap": 2.8000000000000007,
+    "roof_screw_tip_cap": 3,
+    "rail_screw_pocket_to_wall_slot": 2.3000000000000007,
+    "rail_lip": 3,
+    "keeper_pivot_edge": 2.2,
+    "wall_tongue": 4,
+    "front_above_aperture": 15.75,
+    "roof_above_groove": 5
+  },
+  "joint_clearances_mm": {
+    "left-front": 0.24999999999995026,
+    "left-back": 0.2499999999998863,
+    "right-front": 0.24999999999982947,
+    "right-back": 0.24999999999982947,
+    "door-rear": 0.30000000000000177,
+    "rail-left": 0.3000000000000007,
+    "rail-right": 0.30000000000001137
+  },
+  "errors": [],
+  "geometry_pass": true,
+  "motion_proof": {
+    "method": "conservative original envelopes",
+    "source_sha256": "b3a97ae213a8eade62f6b420ef8844b4601364d7c43c2d2b25380711151e7f93",
+    "every_labeled_body_is_subset": true,
+    "note": "Original bodies passed all motion checks in this run; IDs only remove material."
+  },
+  "variant": "engraved-ids-1",
+  "part_ids": {
+    "base": {
+      "id": "A1",
+      "location": "inside floor, near the back edge",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.187549149046225,
+      "print_origin_mm": [
+        90,
+        176,
+        8
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 311422.1679719141,
+      "labeled_volume_mm3": 311415.9804227652,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "front": {
+      "id": "B1",
+      "location": "inside face of the lower border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.887334946910796,
+      "print_origin_mm": [
+        70,
+        178,
+        8
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 110002.25699163189,
+      "labeled_volume_mm3": 109995.36965668495,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "rail-left": {
+      "id": "B2",
+      "location": "outer side, halfway up",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 7.595073768441843,
+      "print_origin_mm": [
+        0,
+        92,
+        6
+      ],
+      "text_right": [
+        0,
+        -1,
+        0
+      ],
+      "text_up": [
+        0,
+        0,
+        1
+      ],
+      "outward_normal": [
+        -1,
+        0,
+        0
+      ],
+      "original_volume_mm3": 36717.484197601734,
+      "labeled_volume_mm3": 36709.8891238333,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "rail-right": {
+      "id": "B3",
+      "location": "outer side, halfway up",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 7.833576693665142,
+      "print_origin_mm": [
+        29,
+        84,
+        6
+      ],
+      "text_right": [
+        0,
+        1,
+        0
+      ],
+      "text_up": [
+        0,
+        0,
+        1
+      ],
+      "outward_normal": [
+        1,
+        0,
+        0
+      ],
+      "original_volume_mm3": 37123.71492511042,
+      "labeled_volume_mm3": 37115.88134841677,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "keeper": {
+      "id": "B4",
+      "location": "outer face of the latch arm",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 7.2073112112076725,
+      "print_origin_mm": [
+        14,
+        6.5,
+        0
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        -1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        -1
+      ],
+      "original_volume_mm3": 828.9637194071071,
+      "labeled_volume_mm3": 821.7564081958996,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "back": {
+      "id": "C1",
+      "location": "inside face of the upper border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 5.517475007649747,
+      "print_origin_mm": [
+        60,
+        9,
+        8
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 128318.84384983989,
+      "labeled_volume_mm3": 128313.32637483226,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "back-clamp": {
+      "id": "C2",
+      "location": "outward face of the lower border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.2252138291812,
+      "print_origin_mm": [
+        55,
+        6,
+        3
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 48679.70975525684,
+      "labeled_volume_mm3": 48673.48454142767,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "left": {
+      "id": "D1",
+      "location": "inside face of the upper border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.290982714703241,
+      "print_origin_mm": [
+        60,
+        8,
+        8
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 111353.30359225633,
+      "labeled_volume_mm3": 111347.01260954168,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "left-clamp": {
+      "id": "D2",
+      "location": "outward face of the lower border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.998721536233674,
+      "print_origin_mm": [
+        55,
+        6,
+        3
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 39505.709755256845,
+      "labeled_volume_mm3": 39498.711033720574,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "right": {
+      "id": "E1",
+      "location": "inside face of the upper border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.130005972565905,
+      "print_origin_mm": [
+        60,
+        8,
+        8
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 111353.30359225639,
+      "labeled_volume_mm3": 111347.17358628387,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "right-clamp": {
+      "id": "E2",
+      "location": "outward face of the lower border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.837744794096088,
+      "print_origin_mm": [
+        55,
+        6,
+        3
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 39505.70975525683,
+      "labeled_volume_mm3": 39498.872010462765,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "door": {
+      "id": "F1",
+      "location": "rear face of the lower border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 5.375740490107171,
+      "print_origin_mm": [
+        55,
+        8,
+        0
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        -1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        -1
+      ],
+      "original_volume_mm3": 92438.16717558976,
+      "labeled_volume_mm3": 92432.79143509963,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "door-clamp": {
+      "id": "F2",
+      "location": "outward face, beside the finger grip",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.08347931163847,
+      "print_origin_mm": [
+        50,
+        6,
+        3
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 35851.70975525683,
+      "labeled_volume_mm3": 35845.62627594518,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "roof": {
+      "id": "G1",
+      "location": "underside border, clear of the locating grooves",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 6.48200597256501,
+      "print_origin_mm": [
+        68,
+        12,
+        8
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 133324.0570124277,
+      "labeled_volume_mm3": 133317.57500645498,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    },
+    "roof-clamp": {
+      "id": "G2",
+      "location": "upper face of the border",
+      "depth_mm": 0.4,
+      "stroke_mm": 0.8,
+      "minimum_backing_checked_mm": 1.6,
+      "removed_mm3": 7.189744794096098,
+      "print_origin_mm": [
+        55,
+        6,
+        3
+      ],
+      "text_right": [
+        1,
+        0,
+        0
+      ],
+      "text_up": [
+        0,
+        1,
+        0
+      ],
+      "outward_normal": [
+        0,
+        0,
+        1
+      ],
+      "original_volume_mm3": 57342.43809127128,
+      "labeled_volume_mm3": 57335.24834647718,
+      "envelope_unchanged": true,
+      "material_added_mm3": 0
+    }
+  }
+}

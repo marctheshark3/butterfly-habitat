@@ -4,6 +4,7 @@ Run with APPIMAGE_EXTRACT_AND_RUN=1 VibeCADCmd scripts/export-inspector.py.
 """
 import base64
 import gzip
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -21,7 +22,14 @@ def encode(data):
 
 def main():
     module = runpy.run_path(str(ROOT / 'src/butterfly-habitat.py'), run_name='habitat_inspector')
-    assembly = module['build']()
+    baseline = json.loads((ROOT / 'candidate/assembly/manifest.json').read_text())
+    assembly = module['build'](baseline['mesh_mm'], baseline['mesh_measured'])
+    ids = runpy.run_path(str(ROOT / 'src/part_ids.py'))
+    labeled = json.loads((ROOT / 'candidate/labeled/assembly/manifest.json').read_text())
+    if (labeled['source_sha256'] != hashlib.sha256((ROOT / 'src/butterfly-habitat.py').read_bytes()).hexdigest()
+            or labeled['label_source_sha256'] != hashlib.sha256((ROOT / 'src/part_ids.py').read_bytes()).hexdigest()):
+        raise ValueError('Regenerate the labeled candidate before refreshing the inspector.')
+    ids['engrave'](assembly, module)
     geometries, items = {}, []
     colors = json.loads((ROOT / 'inspector/colors.json').read_text())
     offsets = dict(roof=[0,0,65], door=[0,-60,0], left=[-45,0,0], right=[45,0,0], back=[0,45,0], front=[0,-25,0])
@@ -43,15 +51,16 @@ def main():
                           color='#55606e' if hardware else colors.get(name,'#a8b8a5'), opacity=0.15 if item.kind=='mesh' else 1,
                           explode_mm=offsets.get(item.group,[0,0,0]), bbox_mm=[bb.XLength,bb.YLength,bb.ZLength],
                           centroid=[bb.Center.x,bb.Center.y,bb.Center.z], vertexCount=len(vertices),
-                          status='Digital checks passed; physical fit pending',
-                          evidence=f'{item.kind}; {item.group} group. Revision 0.11.0. Compressed mesh thickness assumed 0.20 mm; measure before production.'))
-    concept = dict(id='habitat', name='Butterfly habitat · revision 0.11.0', default_view='solid', views=['solid','translucent','exploded'],
+                          part_id=ids['PART_IDS'].get(name),
+                          status='Engineering candidate; physical fit and label legibility pending',
+                          evidence=(f'{ids["PART_IDS"][name]} · ' if name in ids['PART_IDS'] else '') + f'{item.kind}; {item.group} group. Revision 0.11.0, engraved-ID variant. Compressed mesh thickness assumed 0.20 mm; measure before production.'))
+    concept = dict(id='habitat', name='Butterfly habitat · 0.11.0 · engraved part IDs', default_view='solid', views=['solid','translucent','exploded'],
                    release='Engineering candidate', priority='Physical fit pending', service='122 components · 15 printed parts · 5 mesh sheets · 51 screws + 51 nuts. Mesh thickness is assumed at 0.20 mm.',
                    metrics=dict(solids=len(items),source='habitat-assembly.step',deflection_mm=0.2),items=items)
     out = ROOT/'inspector'
     (out/'models').mkdir(parents=True,exist_ok=True)
     (out/'models/habitat-v011.json').write_text(json.dumps(dict(title='Butterfly habitat — CAD inspector',concepts=[concept],geometry=geometries),separators=(',',':')))
-    (out/'catalog.json').write_text(json.dumps(dict(default='habitat-v011',models=[dict(id='habitat-v011',name='Butterfly habitat 0.11.0')]),indent=2)+'\n')
+    (out/'catalog.json').write_text(json.dumps(dict(default='habitat-v011',models=[dict(id='habitat-v011',name='Butterfly habitat 0.11.0 · engraved part IDs')]),indent=2)+'\n')
     print(f'Inspector model exported: {len(items)} components')
 
 try:
