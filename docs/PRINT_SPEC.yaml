@@ -114,6 +114,17 @@ print:
     - {id: rail-right, file: habitat-rail-right.stl, bed_face: broad-retaining-face}
     - {id: keeper, file: habitat-keeper.stl, bed_face: broad-outer-face}
   excluded: [archive, sketches, experimental-snap-coupons]
+part_identification:
+  variant: engraved-ids-1
+  source: src/part_ids.py
+  exporter: scripts/label-parts.py
+  stl_directory: candidate/labeled/stl/
+  preserves_original_print_set: true
+  depth_mm: 0.4
+  stroke_mm: 0.8
+  minimum_backing_checked_mm: 1.6
+  id_key: docs/ASSEMBLY.md#part-id-key
+  physical_legibility_verified: false
 service:
   environment: indoor-or-sheltered
   floor: solid-washable

@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 12,
+    "plate_index": 0,
+    "prepare_time": 7,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFA01",
+                    "id": 1,
+                    "main_used_g": 1.127838134765625,
+                    "total_used_g": 1.127838134765625
+                }
+            ],
+            "generate_support_material_time": 4,
+            "id": 1,
+            "infill_time": 19,
+            "layer_filament_change": 0,
+            "main_predication": 132.27044677734375,
+            "make_perimeters_time": 14,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 9.0,
+                        "height": 9.0,
+                        "width": 28.500001907348633,
+                        "x": 113.75000762939453,
+                        "y": 123.5,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-keeper.stl",
+                    "triangle_count": 1172
+                }
+            ],
+            "sliced_time": 100,
+            "sliced_time_with_cache": 53,
+            "total_predication": 649.9946899414063,
+            "triangle_count": 1172,
+            "warning_message": ""
+        }
+    ]
+}

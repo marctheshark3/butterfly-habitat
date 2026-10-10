@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 54,
+    "plate_index": 0,
+    "prepare_time": 12,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFA01",
+                    "id": 1,
+                    "main_used_g": 53.29127883911133,
+                    "total_used_g": 53.29127883911133
+                }
+            ],
+            "generate_support_material_time": 11,
+            "id": 1,
+            "infill_time": 324,
+            "layer_filament_change": 0,
+            "main_predication": 3927.21875,
+            "make_perimeters_time": 44,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 200.0,
+                        "height": 3.0,
+                        "width": 200.0,
+                        "x": 28.0,
+                        "y": 27.999990463256836,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-roof-clamp.stl",
+                    "triangle_count": 3624
+                }
+            ],
+            "sliced_time": 506,
+            "sliced_time_with_cache": 95,
+            "total_predication": 4444.68359375,
+            "triangle_count": 3624,
+            "warning_message": ""
+        }
+    ]
+}

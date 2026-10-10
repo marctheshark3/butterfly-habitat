@@ -1,0 +1,92 @@
+{
+  "corner-base": {
+    "source_part": "base",
+    "valid": true,
+    "bbox": [
+      65.0,
+      65.0,
+      8.0
+    ]
+  },
+  "corner-front": {
+    "source_part": "front",
+    "valid": true,
+    "bbox": [
+      65.0,
+      60.0,
+      22.000000000000004
+    ]
+  },
+  "corner-left": {
+    "source_part": "left",
+    "valid": true,
+    "bbox": [
+      60.75000000000004,
+      59.999999999999986,
+      8.00000000000003
+    ]
+  },
+  "corner-left-clamp": {
+    "source_part": "left-clamp",
+    "valid": true,
+    "bbox": [
+      56.75,
+      57.0,
+      3.0
+    ]
+  },
+  "rail-front": {
+    "source_part": "front",
+    "valid": true,
+    "bbox": [
+      24.0,
+      25.0,
+      8.000000000000002
+    ]
+  },
+  "rail-rail-left": {
+    "source_part": "rail-left",
+    "valid": true,
+    "bbox": [
+      17.0,
+      25.0,
+      14.800000000000013
+    ]
+  },
+  "rail-door": {
+    "source_part": "door",
+    "valid": true,
+    "bbox": [
+      20.0,
+      25.0,
+      8.000000000000002
+    ]
+  },
+  "rail-door-clamp": {
+    "source_part": "door-clamp",
+    "valid": true,
+    "bbox": [
+      20.0,
+      25.0,
+      3.0000000000000018
+    ]
+  },
+  "mesh-fastener-back": {
+    "source_part": "back",
+    "valid": true,
+    "bbox": [
+      24.0,
+      25.0,
+      8.000000000000028
+    ]
+  },
+  "mesh-fastener-back-clamp": {
+    "source_part": "back-clamp",
+    "valid": true,
+    "bbox": [
+      24.0,
+      25.0,
+      3.0000000000000107
+    ]
+  }
+}

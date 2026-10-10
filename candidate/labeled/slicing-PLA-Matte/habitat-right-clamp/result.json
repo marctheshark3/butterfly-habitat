@@ -1,0 +1,47 @@
+{
+    "error_string": "Success.",
+    "export_time": 47,
+    "plate_index": 0,
+    "prepare_time": 10,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFA01",
+                    "id": 1,
+                    "main_used_g": 37.87836456298828,
+                    "total_used_g": 37.87836456298828
+                }
+            ],
+            "generate_support_material_time": 10,
+            "id": 1,
+            "infill_time": 300,
+            "layer_filament_change": 0,
+            "main_predication": 2971.9130859375,
+            "make_perimeters_time": 52,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 187.75,
+                        "height": 3.0,
+                        "width": 183.5,
+                        "x": 36.2499885559082,
+                        "y": 34.1249885559082,
+                        "z": 0.0
+                    },
+                    "id": 5,
+                    "name": "habitat-right-clamp.stl",
+                    "triangle_count": 3108
+                }
+            ],
+            "sliced_time": 465,
+            "sliced_time_with_cache": 80,
+            "total_predication": 3489.400390625,
+            "triangle_count": 3108,
+            "warning_message": ""
+        }
+    ]
+}

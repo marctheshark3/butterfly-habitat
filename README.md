@@ -91,6 +91,35 @@ door and wall gaps also need checking before the enclosure is used.
 
 ## Assembly at a glance
 
+### Built-in part IDs for future prints
+
+The separate [labeled print set](candidate/labeled/README.md) has recessed IDs modeled
+into all 15 parts. The existing Bambu projects and unmarked candidate files
+remain the current build's print set. There is no need to reprint existing
+pieces just for a label; use the [ID key](docs/ASSEMBLY.md#part-id-key) and
+[paper labels](candidate/templates/part-labels.svg) to identify them.
+
+| Assembly | IDs |
+| --- | --- |
+| Base | A1 |
+| Front, left rail, right rail, keeper | B1, B2, B3, B4 |
+| Back frame and clamp | C1 + C2 |
+| Left frame and clamp | D1 + D2 |
+| Right frame and clamp | E1 + E2 |
+| Door frame and clamp | F1 + F2 |
+| Roof frame and clamp | G1 + G2 |
+
+Letters identify assemblies; matching frame/clamp pairs use `1` and `2`.
+Left and right are viewed from outside the front doorway. The written guide,
+inspector booklet and paper labels use the same IDs.
+
+The marks are 0.4 mm deep with 0.8 mm strokes. Their locations retain at least
+1.6 mm of backing and keep the original envelopes and print orientations.
+CAD checks cover the labeled solids and interfaces; physical label legibility
+and fit remain untested. The [variant manifest](candidate/labeled/assembly/manifest.json)
+records each label location and both source hashes. This is still the 0.11.0
+engineering candidate, with the same unmeasured mesh assumption.
+
 ![Exploded CAD reference showing the habitat parts](candidate/views/exploded.png)
 
 *Exploded reference view. Offsets show the parts; they are not installation paths.*
@@ -163,12 +192,18 @@ To refresh the viewer after changing CAD, export its model with FreeCAD and
 regenerate the instructions:
 
 ```sh
+APPIMAGE_EXTRACT_AND_RUN=1 VibeCADCmd scripts/label-parts.py
 APPIMAGE_EXTRACT_AND_RUN=1 VibeCADCmd scripts/export-inspector.py
+python3 scripts/labels.py
 python3 scripts/assembly-guide.py
 ```
 
 Edit `scripts/assembly-guide.py` to update the shared sequence used by the
 Markdown guide, browser guide and inspector booklet.
+Edit `src/part_ids.py` for the shared ID map and engraving locations. The label
+exporter writes `candidate/labeled/` and does not replace the original print
+set. Re-slice the labeled geometry before printing; existing unmarked G-code
+cannot acquire labels from a guide update.
 
 ## Build and check
 

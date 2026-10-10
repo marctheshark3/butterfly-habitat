@@ -1,10 +1,28 @@
 {
-  "note": "Revision 0.11 engineering candidate. Digital geometry and slicing checks pass. Physical assembly, fabric retention and 50 door cycles still need testing. The model assumes 0.20 mm compressed mesh; measure your fabric and regenerate before final printing.",
+  "note": "Revision 0.11 engineering candidate. Digital geometry and slicing checks pass. Physical assembly, fabric retention and 50 door cycles still need testing. The model assumes 0.20 mm compressed mesh; measure your fabric and regenerate before final printing. Each letter identifies one assembly; matching frame and clamp IDs end in 1 and 2. Left and right are viewed from outside the front doorway. The future-print labeled variant has small recessed IDs. Existing unmarked 0.11 parts can be identified with this key and the paper labels; they do not need reprinting just for identification. The labeled variant preserves the original fit geometry and print orientations. Its physical fit and label legibility still need a printed check.",
+  "part_ids": {
+    "base": "A1",
+    "front": "B1",
+    "rail-left": "B2",
+    "rail-right": "B3",
+    "keeper": "B4",
+    "back": "C1",
+    "back-clamp": "C2",
+    "left": "D1",
+    "left-clamp": "D2",
+    "right": "E1",
+    "right-clamp": "E2",
+    "door": "F1",
+    "door-clamp": "F2",
+    "roof": "G1",
+    "roof-clamp": "G2"
+  },
   "steps": [
     {
-      "label": "Prepare the back mesh panel",
+      "label": "Prepare the back mesh panel (C1 + C2)",
       "hardware": "8 M3 \u00d7 10 screws + 8 M3 nyloc nuts",
       "text": [
+        "Use C1 back frame with C2 back clamp.",
         "On each frame, put eight nuts in the hex pockets opposite the clamp face. Point each nut\u2019s nylon end away from the clamp. Hold loose nuts with temporary tape until the screws engage.",
         "Lay the matching mesh sheet on the frame, place the clamp over it, and insert eight 10 mm screws from the clamp side. Start all eight before tightening gradually around the border. Remove temporary tape.",
         "Check that the fabric is held around the entire opening, the clamp stays flat and screw tips remain recessed. Set the five completed panels aside."
@@ -54,9 +72,10 @@
       "number": 1
     },
     {
-      "label": "Prepare the left mesh panel",
+      "label": "Prepare the left mesh panel (D1 + D2)",
       "hardware": "8 M3 \u00d7 10 screws + 8 M3 nyloc nuts",
       "text": [
+        "Use D1 left frame with D2 left clamp.",
         "On each frame, put eight nuts in the hex pockets opposite the clamp face. Point each nut\u2019s nylon end away from the clamp. Hold loose nuts with temporary tape until the screws engage.",
         "Lay the matching mesh sheet on the frame, place the clamp over it, and insert eight 10 mm screws from the clamp side. Start all eight before tightening gradually around the border. Remove temporary tape.",
         "Check that the fabric is held around the entire opening, the clamp stays flat and screw tips remain recessed. Set the five completed panels aside."
@@ -106,9 +125,10 @@
       "number": 2
     },
     {
-      "label": "Prepare the right mesh panel",
+      "label": "Prepare the right mesh panel (E1 + E2)",
       "hardware": "8 M3 \u00d7 10 screws + 8 M3 nyloc nuts",
       "text": [
+        "Use E1 right frame with E2 right clamp.",
         "On each frame, put eight nuts in the hex pockets opposite the clamp face. Point each nut\u2019s nylon end away from the clamp. Hold loose nuts with temporary tape until the screws engage.",
         "Lay the matching mesh sheet on the frame, place the clamp over it, and insert eight 10 mm screws from the clamp side. Start all eight before tightening gradually around the border. Remove temporary tape.",
         "Check that the fabric is held around the entire opening, the clamp stays flat and screw tips remain recessed. Set the five completed panels aside."
@@ -158,9 +178,10 @@
       "number": 3
     },
     {
-      "label": "Prepare the door mesh panel",
+      "label": "Prepare the door mesh panel (F1 + F2)",
       "hardware": "8 M3 \u00d7 10 screws + 8 M3 nyloc nuts",
       "text": [
+        "Use F1 door frame with F2 door clamp.",
         "On each frame, put eight nuts in the hex pockets opposite the clamp face. Point each nut\u2019s nylon end away from the clamp. Hold loose nuts with temporary tape until the screws engage.",
         "Lay the matching mesh sheet on the frame, place the clamp over it, and insert eight 10 mm screws from the clamp side. Start all eight before tightening gradually around the border. Remove temporary tape.",
         "Check that the fabric is held around the entire opening, the clamp stays flat and screw tips remain recessed. Set the five completed panels aside."
@@ -210,9 +231,10 @@
       "number": 4
     },
     {
-      "label": "Prepare the roof mesh panel",
+      "label": "Prepare the roof mesh panel (G1 + G2)",
       "hardware": "8 M3 \u00d7 10 screws + 8 M3 nyloc nuts",
       "text": [
+        "Use G1 roof frame with G2 roof clamp.",
         "On each frame, put eight nuts in the hex pockets opposite the clamp face. Point each nut\u2019s nylon end away from the clamp. Hold loose nuts with temporary tape until the screws engage.",
         "Lay the matching mesh sheet on the frame, place the clamp over it, and insert eight 10 mm screws from the clamp side. Start all eight before tightening gradually around the border. Remove temporary tape.",
         "Check that the fabric is held around the entire opening, the clamp stays flat and screw tips remain recessed. Set the five completed panels aside."
@@ -265,9 +287,9 @@
       "label": "Load the remaining nuts while the parts are accessible",
       "hardware": "11 M3 nyloc nuts",
       "text": [
-        "Front frame: insert two nuts in the lower inward-facing boss slots for the base, two in the upper inward-facing boss slots for the roof, and four in the inside-face hex pockets for the rails. Total: eight nuts.",
-        "Back panel: insert two nuts in the lower inward-facing boss slots for the base.",
-        "Rail-left: insert one nut in the inside-face pocket behind the keeper pivot before mounting the rail.",
+        "B1 front frame: insert two nuts in the lower inward-facing boss slots for the base, two in the upper inward-facing boss slots for the roof, and four in the inside-face hex pockets for the rails. Total: eight nuts.",
+        "C1 back frame: insert two nuts in the lower inward-facing boss slots for the base.",
+        "B2 left rail: insert one nut in the inside-face pocket behind the keeper pivot before mounting the rail.",
         "Base nuts have nylon ends upward; roof nuts have nylon ends downward. Rail and keeper nuts have nylon ends toward the inside of the enclosure. Temporarily retain any loose nuts until their screws engage."
       ],
       "placed_ids": [
@@ -305,9 +327,9 @@
       "label": "Attach the rails and keeper to the front frame on the bench",
       "hardware": "5 M3 \u00d7 10 screws; nuts loaded in step 2",
       "text": [
-        "Place the front frame with its outside face accessible. Put rail-left and rail-right on the outside, with their stops at the bottom and their open track ends at the top. Left and right are as viewed from outside the front.",
+        "Place B1 front frame with its outside face accessible. Put B2 left rail and B3 right rail on the outside, with their stops at the bottom and their open track ends at the top. Left and right are as viewed from outside the front.",
         "Insert two 10 mm screws through each rail\u2019s deep counterbores into the front frame nuts. Seat the heads; keep the running channels clear.",
-        "Attach the keeper to the top of rail-left using the fifth 10 mm screw. Adjust the pivot so the keeper moves by hand and stays where placed. Swing its arm clear of the door path."
+        "Attach B4 keeper / latch to the top of B2 left rail using the fifth 10 mm screw. Adjust the pivot so the keeper moves by hand and stays where placed. Swing its arm clear of the door path."
       ],
       "placed_ids": [
         "front",
@@ -350,9 +372,9 @@
       "label": "Fasten the front and back to the base",
       "hardware": "4 M3 \u00d7 16 screws; nuts loaded in step 2",
       "text": [
-        "The grooved face of the base goes up; the recessed screw-head pockets go underneath. Place it on two supports so you can reach the underside without turning loose walls over.",
-        "Seat the front frame\u2019s bottom tongue in the front groove, with rails outside and nut bosses inside. Hold it upright and insert two 16 mm screws from below.",
-        "Seat the back panel in the opposite groove, with its mesh clamp outside. Hold it upright and insert the remaining two 16 mm screws from below.",
+        "The grooved face of A1 base goes up; the recessed screw-head pockets go underneath. Place it on two supports so you can reach the underside without turning loose walls over.",
+        "Seat B1 front frame\u2019s bottom tongue in the front groove, with rails outside and nut bosses inside. Hold it upright and insert two 16 mm screws from below.",
+        "Seat the completed C1 back frame / C2 back clamp panel in the opposite groove, with its mesh clamp outside. Hold it upright and insert the remaining two 16 mm screws from below.",
         "Check that both walls sit fully down and all four heads sit within their underside recesses. Remove temporary nut-retaining tape."
       ],
       "placed_ids": [
@@ -414,8 +436,8 @@
       "label": "Slide in the side panels",
       "hardware": "No additional hardware",
       "text": [
-        "Keep the roof off. Hold the left panel with its mesh clamp facing out. Align both vertical edge tongues with the open slots on the inside faces of the front and back.",
-        "Lower the panel straight down until its bottom tongue seats in the base. Repeat for the right panel.",
+        "Keep the roof off. Hold the completed D1 left frame / D2 left clamp panel with its mesh clamp facing out. Align both vertical edge tongues with the open slots on the inside faces of the front and back.",
+        "Lower the panel straight down until its bottom tongue seats in the base. Repeat for the completed E1 right frame / E2 right clamp panel.",
         "Check that all four wall tops are level. Keep the enclosure upright; the side panels can still lift out until the roof is secured."
       ],
       "placed_ids": [
@@ -548,7 +570,7 @@
       "label": "Insert the door and check the keeper",
       "hardware": "Completed door panel; no additional hardware",
       "text": [
-        "With the keeper swung clear, hold the completed door above the rail openings. Its clamp and projecting finger grip face outward; the grip is at the bottom.",
+        "With B4 keeper / latch swung clear, hold the completed F1 door frame / F2 door clamp panel above the rail openings. Its clamp and projecting finger grip face outward; the grip is at the bottom.",
         "Lower both door edges into the tracks together until the door rests on both bottom stops. Do not force a tight track.",
         "Swing the keeper across the top of the closed door so its hook prevents the door lifting. Swing it clear again and check that the door slides freely."
       ],
@@ -682,7 +704,7 @@
       "label": "Attach the complete roof",
       "hardware": "2 M3 \u00d7 16 screws; nuts loaded in step 2",
       "text": [
-        "Place the completed roof with its locating grooves down and mesh clamp up. Its two larger retention-access holes go toward the front, over the two upper front-frame bosses.",
+        "Place the completed G1 roof frame / G2 roof clamp panel with its locating grooves down and mesh clamp up. Its two larger retention-access holes go toward the front, over the two upper front-frame bosses.",
         "Lower it onto all four wall tops. Insert one 16 mm screw through each large access hole into the front-frame nuts. These two screws seat on the roof frame.",
         "Leave the eight short mesh screws assembled. To remove the roof later, remove only the two long retention screws and lift the entire roof assembly. Keep the enclosure upright while the roof is off."
       ],

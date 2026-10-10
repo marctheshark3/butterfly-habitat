@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="183.5mm" height="187.75mm" viewBox="0 0 183.5 187.75">
+<rect x="1" y="1" width="181.5" height="185.75" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="10.0" cy="10.0" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="91.75" cy="10.0" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="173.5" cy="10.0" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="10.0" cy="93.875" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="173.5" cy="93.875" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="10.0" cy="177.75" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="91.75" cy="177.75" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<circle cx="173.5" cy="177.75" r="1.8" fill="none" stroke="black" stroke-width="0.2"/>
+<text x="25" y="25" font-size="4">left mesh — print at 100%</text></svg>

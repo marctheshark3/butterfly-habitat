@@ -1,0 +1,304 @@
+[
+  {
+    "part": "habitat-back-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "db8b7f8708366a39b1cd8e75f026f46c3a9e7e2b38924da9974225e5e6aeff09",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "11ff3009393eb09e267ebd7122d46c5110fcfad6cccc0b2f5de312a88ac3e6a1"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:13.545217] [0x00007875c8afa400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:13.962125] [0x00007875c8afa400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:13.962148] [0x00007875c8afa400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "fbd9260f6e01518078f7b50de17b39535498b01300fae6b302a34668046e6c60",
+    "filament_color": "#F0A4BA",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-back",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "6ba3bc2e3baf8bdafc0c7b3836c296ff192763ded72005eb7cd243babfb5f9fc",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "8622bcddfe45e99ee4f5494c90e5a4c6c64bbefe9cc876a2144bf0eaef49faa9",
+      "filament": "3cb284221ffb0ed489bd065307449f6e79a126c6bb191ca1e032548a55d4f6cf"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:14.426328] [0x000072059f802400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:15.187247] [0x000072059f802400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:15.187286] [0x000072059f802400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "3f97fc27d7ec4b9226987e4351569a14133df75d96b409ee2f994b04abad4a79",
+    "filament_color": "#388DC7",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-base",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "1f4f5ffc174fb0685515b377de1e2fb3942b289b9a2d1f36eb03d27333c2675a",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "3cb284221ffb0ed489bd065307449f6e79a126c6bb191ca1e032548a55d4f6cf"
+    },
+    "warnings": [
+      "[2026-10-09 08:40:41.599680] [0x0000753d47f89400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:40:42.119773] [0x0000753d47f89400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:40:42.119807] [0x0000753d47f89400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "fb1d4544b3fbad963df6fac7f26a83b8dc7876e0e0f397aa8428965cbb93e608",
+    "filament_color": "#388DC7",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-door-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "64a657b6796ce65c083a95f490fb44763357133332d339e9da4ff69cedcf2f64",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "290e01246473f7de01c84570079c03034b8fd3bb3e9272276393767c0b82373b"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:16.827747] [0x0000723c79e2e400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:17.063483] [0x0000723c69ff7640] [error]   ZFiller: both point in subject : 1, 2, 1, 0 ",
+      "[2026-10-09 08:36:17.063591] [0x0000723c69ff7640] [error]   ZFiller: both point in subject : 1, 2, 1, 0 ",
+      "[2026-10-09 08:36:17.279266] [0x0000723c79e2e400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:17.279285] [0x0000723c79e2e400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "ede2e29cacdda3894d15f3c42f08ce7514156986bd70f105d6c0d462c17a81de",
+    "filament_color": "#F68C38",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-door",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "1f4da0ade92b7a56ca37f9ecb391285567870327c5e776f7118eaa209032483c",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "290e01246473f7de01c84570079c03034b8fd3bb3e9272276393767c0b82373b"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:17.765379] [0x000071a30ffc9400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:18.185256] [0x000071a30ffc9400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:18.185275] [0x000071a30ffc9400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "49655d6187c03c545f8f71c9ca873351b35c0af00989f463a7bcb4265fedac04",
+    "filament_color": "#F68C38",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-front",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "d43cf9ce2e1e572f969b5183d3d7217ff7421e8befe95048866ebdac4c54c6ab",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "8622bcddfe45e99ee4f5494c90e5a4c6c64bbefe9cc876a2144bf0eaef49faa9",
+      "filament": "3cb284221ffb0ed489bd065307449f6e79a126c6bb191ca1e032548a55d4f6cf"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:18.695073] [0x000078d20061c400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:19.328209] [0x000078d20061c400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:19.328236] [0x000078d20061c400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "7ba2212b597569f9ceffd39b17277ec0b560844796196f780a80db70eb002a23",
+    "filament_color": "#388DC7",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-keeper",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "dba6d03209a20d0d07fef89a1c59f66e1845370ba35e9eeb47fec8bd0c0df8e3",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "02143ca5bd6066f430955d9e0c4a2d3e48bfdb97a5a8ad052c57e231e44ef1c2"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:19.867798] [0x000075c993be8400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:19.972419] [0x000075c993be8400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:19.972437] [0x000075c993be8400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "5638966739050c4a8939bab62b8ec89dcb2e45cc7a3e2d75bc7171d3a900d336",
+    "filament_color": "#DD4945",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-left-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "f32bf903163e35e9e74ebe0f8e3792e17056d22ff833c8d90448eb8994b1bb20",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "11ff3009393eb09e267ebd7122d46c5110fcfad6cccc0b2f5de312a88ac3e6a1"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:20.393085] [0x0000724fa86c6400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:20.817717] [0x0000724fa86c6400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:20.817738] [0x0000724fa86c6400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "6ff832a614604b23e29f70288018a9eb4d4e1c78bf15e9e69e5048296d63f419",
+    "filament_color": "#F0A4BA",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-left",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "4eddf60ab93b8f4e984a8ccb9e9875e023d0969d9fe3b024fe66f45a71ee96ee",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "8622bcddfe45e99ee4f5494c90e5a4c6c64bbefe9cc876a2144bf0eaef49faa9",
+      "filament": "3cb284221ffb0ed489bd065307449f6e79a126c6bb191ca1e032548a55d4f6cf"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:21.274555] [0x00007c5885713400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:21.852778] [0x00007c5885713400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:21.852828] [0x00007c5885713400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "da6d666635a753a9cf8f43e32bf527cdab3389903f2be5d578fbb2e7ab09a3a8",
+    "filament_color": "#388DC7",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-rail-left",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "811e881cccdd7e4f3a4cc05c8ded927d81de4d291e2427d1c83b91ec79365e1c",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "11ff3009393eb09e267ebd7122d46c5110fcfad6cccc0b2f5de312a88ac3e6a1"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:22.421207] [0x00007c6e642d2400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:22.736154] [0x00007c6e642d2400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:22.736185] [0x00007c6e642d2400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "512af2b580891f0f256fa22b3e0cac4de28d8c149d31138d55c84d5bac87b36a",
+    "filament_color": "#F0A4BA",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-rail-right",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "697ad7e096c18965fb0040cf6e6aa451b35c205df1f6b7df1907afaf83f2145d",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "11ff3009393eb09e267ebd7122d46c5110fcfad6cccc0b2f5de312a88ac3e6a1"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:23.239846] [0x0000735f1ec93400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:23.582148] [0x0000735f1ec93400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:23.582171] [0x0000735f1ec93400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "ce3ebc3a1578d05a3e28e6f1299d45f133dec969e9186fecd04225c26a17409c",
+    "filament_color": "#F0A4BA",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-right-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "59f99c52a36930905735389f2edc9428661de9c77b681939aff25dd99fd46ce6",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "11ff3009393eb09e267ebd7122d46c5110fcfad6cccc0b2f5de312a88ac3e6a1"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:24.072724] [0x00007ff8dc076400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:24.542957] [0x00007ff8dc076400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:24.542976] [0x00007ff8dc076400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "197da8b986a5d8546daa3ef6c4d7bf8356520e209fc33f33c94934b660b6c021",
+    "filament_color": "#F0A4BA",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-right",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": true,
+    "stl_sha256": "ec7e1bfd4dee93fcc7bccbd43901a25badb55110c3db77dae04eac26ca814cd2",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "8622bcddfe45e99ee4f5494c90e5a4c6c64bbefe9cc876a2144bf0eaef49faa9",
+      "filament": "3cb284221ffb0ed489bd065307449f6e79a126c6bb191ca1e032548a55d4f6cf"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:25.039360] [0x0000711ff2d11400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:25.661598] [0x0000711ff2d11400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:25.661623] [0x0000711ff2d11400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "c27a4ee374a63a7075acb7b14bf5eb84b361978f1c15b644a8d7f964b026b4b9",
+    "filament_color": "#388DC7",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-roof-clamp",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "323fb0570f8f7a7bc96eee8212fd028e888fdf6ba69169f0084621c1db08e4ee",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "11ff3009393eb09e267ebd7122d46c5110fcfad6cccc0b2f5de312a88ac3e6a1"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:26.162849] [0x0000739f38b2e400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:26.672782] [0x0000739f38b2e400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:26.672807] [0x0000739f38b2e400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "69647fae265161f04f2b729a50bad2132cf98aca7651d99775d4700ddd73ec5e",
+    "filament_color": "#F0A4BA",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  },
+  {
+    "part": "habitat-roof",
+    "exit_code": 0,
+    "gcode_present": true,
+    "supports_enabled": false,
+    "stl_sha256": "6f86b5d31959f85eceff00933112e2b102b6c80c2fa5004acf9ec4a931d89113",
+    "profile_sha256": {
+      "machine": "c3850c332cdae2cdeb044a1149c718407eb59bfd60d4360189bea1eaa1e8c0a3",
+      "process": "05980ba86029c79e304be914e52c83faf88f478d43f08cd68d62dc65adbafbea",
+      "filament": "3cb284221ffb0ed489bd065307449f6e79a126c6bb191ca1e032548a55d4f6cf"
+    },
+    "warnings": [
+      "[2026-10-09 08:36:27.162552] [0x0000730094b51400] [error]   3198: nozzle_volume_type not found, when different_extruder or multiple extruder, new_printer_name Bambu Lab P1S 0.4 nozzle, extruder_count 1",
+      "[2026-10-09 08:36:27.796148] [0x0000730094b51400] [error]   error_code 65544, description: Wayland: Failed to connect to display",
+      "[2026-10-09 08:36:27.796183] [0x0000730094b51400] [error]   glfwInit return error, code 65544"
+    ],
+    "project_sha256": "4e146bee8bd8361f1d0e224c5b6e4a31d07df7de73fb14b6d4e903b9788cd8e6",
+    "filament_color": "#388DC7",
+    "filament_profile": "Bambu PLA Matte @BBL P1S 0.4 nozzle"
+  }
+]

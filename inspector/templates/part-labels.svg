@@ -1,48 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="148mm" viewBox="0 0 210 148">
 <text x="10" y="10" font-size="4">Habitat 0.11.0 — temporary part labels</text>
 <rect x="10" y="18" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="13" y="26" font-size="4">back</text>
-<text x="13" y="33" font-size="2.7">habitat-back.stl</text>
+<text x="13" y="26" font-size="4">A1 — base</text>
+<text x="13" y="33" font-size="2.7">habitat-base.stl</text>
 <rect x="74" y="18" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="77" y="26" font-size="4">back-clamp</text>
-<text x="77" y="33" font-size="2.7">habitat-back-clamp.stl</text>
+<text x="77" y="26" font-size="4">B1 — front</text>
+<text x="77" y="33" font-size="2.7">habitat-front.stl</text>
 <rect x="138" y="18" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="141" y="26" font-size="4">base</text>
-<text x="141" y="33" font-size="2.7">habitat-base.stl</text>
+<text x="141" y="26" font-size="4">B2 — rail-left</text>
+<text x="141" y="33" font-size="2.7">habitat-rail-left.stl</text>
 <rect x="10" y="42" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="13" y="50" font-size="4">door</text>
-<text x="13" y="57" font-size="2.7">habitat-door.stl</text>
+<text x="13" y="50" font-size="4">B3 — rail-right</text>
+<text x="13" y="57" font-size="2.7">habitat-rail-right.stl</text>
 <rect x="74" y="42" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="77" y="50" font-size="4">door-clamp</text>
-<text x="77" y="57" font-size="2.7">habitat-door-clamp.stl</text>
+<text x="77" y="50" font-size="4">B4 — keeper</text>
+<text x="77" y="57" font-size="2.7">habitat-keeper.stl</text>
 <rect x="138" y="42" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="141" y="50" font-size="4">front</text>
-<text x="141" y="57" font-size="2.7">habitat-front.stl</text>
+<text x="141" y="50" font-size="4">C1 — back</text>
+<text x="141" y="57" font-size="2.7">habitat-back.stl</text>
 <rect x="10" y="66" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="13" y="74" font-size="4">keeper</text>
-<text x="13" y="81" font-size="2.7">habitat-keeper.stl</text>
+<text x="13" y="74" font-size="4">C2 — back-clamp</text>
+<text x="13" y="81" font-size="2.7">habitat-back-clamp.stl</text>
 <rect x="74" y="66" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="77" y="74" font-size="4">left</text>
+<text x="77" y="74" font-size="4">D1 — left</text>
 <text x="77" y="81" font-size="2.7">habitat-left.stl</text>
 <rect x="138" y="66" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="141" y="74" font-size="4">left-clamp</text>
+<text x="141" y="74" font-size="4">D2 — left-clamp</text>
 <text x="141" y="81" font-size="2.7">habitat-left-clamp.stl</text>
 <rect x="10" y="90" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="13" y="98" font-size="4">rail-left</text>
-<text x="13" y="105" font-size="2.7">habitat-rail-left.stl</text>
+<text x="13" y="98" font-size="4">E1 — right</text>
+<text x="13" y="105" font-size="2.7">habitat-right.stl</text>
 <rect x="74" y="90" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="77" y="98" font-size="4">rail-right</text>
-<text x="77" y="105" font-size="2.7">habitat-rail-right.stl</text>
+<text x="77" y="98" font-size="4">E2 — right-clamp</text>
+<text x="77" y="105" font-size="2.7">habitat-right-clamp.stl</text>
 <rect x="138" y="90" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="141" y="98" font-size="4">right</text>
-<text x="141" y="105" font-size="2.7">habitat-right.stl</text>
+<text x="141" y="98" font-size="4">F1 — door</text>
+<text x="141" y="105" font-size="2.7">habitat-door.stl</text>
 <rect x="10" y="114" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="13" y="122" font-size="4">right-clamp</text>
-<text x="13" y="129" font-size="2.7">habitat-right-clamp.stl</text>
+<text x="13" y="122" font-size="4">F2 — door-clamp</text>
+<text x="13" y="129" font-size="2.7">habitat-door-clamp.stl</text>
 <rect x="74" y="114" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="77" y="122" font-size="4">roof</text>
+<text x="77" y="122" font-size="4">G1 — roof</text>
 <text x="77" y="129" font-size="2.7">habitat-roof.stl</text>
 <rect x="138" y="114" width="60" height="20" fill="none" stroke="black" stroke-width="0.2"/>
-<text x="141" y="122" font-size="4">roof-clamp</text>
+<text x="141" y="122" font-size="4">G2 — roof-clamp</text>
 <text x="141" y="129" font-size="2.7">habitat-roof-clamp.stl</text>
 </svg>
